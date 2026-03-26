@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSK Music - Live Stats Demo</title>
+  <style>
+    /* Demo page styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    .demo-header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .demo-header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      background: linear-gradient(135deg, #fff 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .demo-header p {
+      font-size: 18px;
+      color: #888;
+      margin: 0;
+    }
+
+    .demo-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .demo-info {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .demo-info h2 {
+      font-size: 24px;
+      margin: 0 0 1rem;
+    }
+
+    .demo-info p {
+      color: #888;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+
+    .demo-info ul {
+      color: #888;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .demo-info li {
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-info code {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #1DB954;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-header">
+    <h1>SSK Music Live Stats</h1>
+    <p>Real-time YouTube & Spotify streaming numbers</p>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-info">
+      <h2>🎯 About This Demo</h2>
+      <p>This is the live stats component for SSK Music Beats. It displays real-time streaming numbers from YouTube and Spotify with animated counters and embedded playlist modals.</p>
+
+      <h2>✨ Features</h2>
+      <ul>
+        <li><strong>Real-time updates</strong> - Polls APIs every 10 seconds</li>
+        <li><strong>Smooth animations</strong> - Stock market ticker style counting</li>
+        <li><strong>Live indicators</strong> - Pulsing dots show active polling</li>
+        <li><strong>Interactive modals</strong> - Click cards to view playlists</li>
+        <li><strong>Responsive design</strong> - Works on all devices</li>
+        <li><strong>Demo mode</strong> - Works without API keys for testing</li>
+      </ul>
+
+      <h2>🔑 Setup Required</h2>
+      <p>To connect live data, configure these in the script:</p>
+      <ul>
+        <li><code>YOUTUBE_API_KEY</code> - Get from Google Cloud Console</li>
+        <li><code>YOUTUBE_PLAYLIST_ID</code> - Your YouTube playlist ID</li>
+        <li><code>SPOTIFY_CLIENT_ID</code> - Get from Spotify Developer Dashboard</li>
+        <li><code>SPOTIFY_CLIENT_SECRET</code> - Your Spotify app secret</li>
+        <li><code>SPOTIFY_PLAYLIST_URI</code> - Your Spotify playlist URI</li>
+      </ul>
+
+      <h2>📖 Documentation</h2>
+      <p>See <code>docs/LIVE_STATS_SETUP.md</code> for complete setup instructions.</p>
+    </div>
+
+    <!-- LIVE STATS COMPONENT -->
+    <div id="stats-container"></div>
+  </div>
+
+  <script>
+    // Load the live stats component
+    fetch('components/live-stats.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('stats-container').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Failed to load live stats:', error);
+        document.getElementById('stats-container').innerHTML = `
+          <div style="text-align:center;padding:3rem;color:#888;">
+            Failed to load live stats component
+          </div>
+        `;
+      });
+  </script>
+</body>
+</html>

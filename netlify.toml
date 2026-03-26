@@ -1,0 +1,17 @@
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Redirect API route to Netlify function
+[[redirects]]
+  from = "/api/stats"
+  to = "/.netlify/functions/stats"
+  status = 200
+  force = true
+
+# Opt out of secrets scanning for this site
+# (API keys are in env vars, not in code)
+[build.environment]
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"

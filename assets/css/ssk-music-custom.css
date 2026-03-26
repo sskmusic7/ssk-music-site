@@ -1,0 +1,375 @@
+/*
+SSK MUSIC BEATS - CUSTOM COLOR SCHEME
+White background + Navy Blue accents + Black text
+No purple colors
+*/
+
+/* ============================================
+   COLOR VARIABLES
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --ssk-primary: #1a365d;      /* Navy Blue - Deep */
+  --ssk-primary-light: #2c5282; /* Navy Blue - Light */
+  --ssk-primary-dark: #1a365d;  /* Navy Blue - Dark */
+
+  /* Accent Colors */
+  --ssk-accent: #000000;        /* Pure Black */
+  --ssk-accent-light: #333333;  /* Dark Gray */
+  --ssk-accent-lighter: #666666; /* Medium Gray */
+
+  /* Background Colors */
+  --ssk-bg-white: #ffffff;       /* Pure White */
+  --ssk-bg-light: #f8f9fa;       /* Very Light Gray */
+  --ssk-bg-off-white: #fafafa;   /* Off White */
+
+  /* Text Colors */
+  --ssk-text-primary: #000000;   /* Black */
+  --ssk-text-secondary: #333333; /* Dark Gray */
+  --ssk-text-muted: #666666;     /* Medium Gray */
+  --ssk-text-light: #999999;     /* Light Gray */
+  --ssk-text-white: #ffffff;      /* White */
+
+  /* Border Colors */
+  --ssk-border: #e0e0e0;         /* Light Gray */
+  --ssk-border-dark: #cccccc;    /* Medium Gray */
+
+  /* YouTube & Spotify Brand Colors */
+  --youtube-red: #FF0000;
+  --spotify-green: #1DB954;
+}
+
+/* ============================================
+   GLOBAL OVERRIDES - NO PURPLE
+   ============================================ */
+body {
+  background-color: var(--ssk-bg-white) !important;
+  color: var(--ssk-text-primary) !important;
+}
+
+/* Remove all purple colors */
+* {
+  border-color: var(--ssk-border) !important;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: var(--ssk-primary) !important;
+}
+
+a:hover {
+  color: var(--ssk-primary-light) !important;
+}
+
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+.header-container {
+  background-color: var(--ssk-bg-white) !important;
+  border-bottom: 1px solid var(--ssk-border) !important;
+}
+
+.type-1 .logo img {
+  max-height: 50px !important;
+}
+
+/* Nav links */
+nav ul li a span {
+  color: var(--ssk-text-primary) !important;
+}
+
+nav ul li a span:hover,
+nav ul li a span:focus {
+  color: var(--ssk-primary) !important;
+}
+
+/* Mobile menu button */
+.menu-toggle span {
+  background-color: var(--ssk-text-primary) !important;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  background-color: var(--ssk-bg-white) !important;
+  color: var(--ssk-text-primary) !important;
+}
+
+.hero-content h1 {
+  color: var(--ssk-text-primary) !important;
+}
+
+.hero-content p {
+  color: var(--ssk-text-secondary) !important;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn,
+button,
+[type="submit"] {
+  background-color: var(--ssk-primary) !important;
+  color: var(--ssk-text-white) !important;
+  border: none !important;
+}
+
+.btn:hover,
+.btn:focus,
+button:hover,
+button:focus,
+[type="submit"]:hover,
+[type="submit"]:focus {
+  background-color: var(--ssk-primary-light) !important;
+  color: var(--ssk-text-white) !important;
+}
+
+.btn-outline {
+  background-color: transparent !important;
+  color: var(--ssk-primary) !important;
+  border: 2px solid var(--ssk-primary) !important;
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--ssk-primary) !important;
+  color: var(--ssk-text-white) !important;
+}
+
+/* ============================================
+   CARDS & SECTIONS
+   ============================================ */
+.card,
+.album-item,
+.artist-card,
+.event-card {
+  background-color: var(--ssk-bg-white) !important;
+  border: 1px solid var(--ssk-border) !important;
+}
+
+.card:hover,
+.album-item:hover {
+  border-color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background-color: var(--ssk-primary) !important;
+  color: var(--ssk-text-white) !important;
+}
+
+footer a {
+  color: var(--ssk-text-white) !important;
+}
+
+footer a:hover {
+  color: var(--ssk-bg-light) !important;
+}
+
+/* ============================================
+   DISCOGRAPHY / ALBUMS
+   ============================================ */
+.discography-item {
+  background-color: var(--ssk-bg-white) !important;
+}
+
+.discography-item:hover {
+  border-color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   ARTISTS PAGE
+   ============================================ */
+.artist-card {
+  background-color: var(--ssk-bg-white) !important;
+}
+
+.artist-card h3 {
+  color: var(--ssk-text-primary) !important;
+}
+
+/* ============================================
+   EVENTS PAGE
+   ============================================ */
+.event-card {
+  background-color: var(--ssk-bg-white) !important;
+}
+
+.event-date {
+  color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   GALLERY
+   ============================================ */
+.gallery-item {
+  border-color: var(--ssk-border) !important;
+}
+
+/* ============================================
+   SHOP PAGE
+   ============================================ */
+.product-card {
+  background-color: var(--ssk-bg-white) !important;
+  border: 1px solid var(--ssk-border) !important;
+}
+
+.product-card:hover {
+  border-color: var(--ssk-primary) !important;
+}
+
+.price {
+  color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+.contact-form input,
+.contact-form textarea {
+  background-color: var(--ssk-bg-white) !important;
+  border: 1px solid var(--ssk-border) !important;
+  color: var(--ssk-text-primary) !important;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   SOCIAL ICONS
+   ============================================ */
+.social-icon {
+  color: var(--ssk-text-secondary) !important;
+}
+
+.social-icon:hover {
+  color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   NAVIGATION DOTS / PAGINATION
+   ============================================ */
+.swiper-pagination-bullet-active {
+  background-color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+.modal {
+  background-color: var(--ssk-bg-white) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--ssk-border) !important;
+}
+
+/* ============================================
+   SECTION HEADINGS
+   ============================================ */
+.section-title h2 {
+  color: var(--ssk-text-primary) !important;
+}
+
+.section-subtitle {
+  color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   BACKGROUND SECTIONS
+   ============================================ */
+.bg-section {
+  background-color: var(--ssk-bg-light) !important;
+}
+
+/* ============================================
+   LIVE STATS COMPONENT (if embedded)
+   ============================================ */
+.stats-wrap {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+}
+
+.stats-header h1 {
+  color: var(--ssk-text-primary) !important;
+}
+
+.stat-card {
+  background: var(--ssk-bg-white) !important;
+  border: 1px solid var(--ssk-border) !important;
+}
+
+.stat-card:hover {
+  border-color: var(--ssk-primary) !important;
+}
+
+/* ============================================
+   REMOVE ALL PURPLE/INDIGO
+   ============================================ */
+* [class*="purple"],
+* [class*="indigo"],
+* [class*="violet"] {
+  /* Force override any purple colors */
+  color: var(--ssk-primary) !important;
+  background-color: transparent !important;
+}
+
+/* Remove gradient backgrounds with purple */
+section[class*="gradient"],
+div[class*="gradient"] {
+  background: var(--ssk-bg-white) !important;
+}
+
+/* ============================================
+   BEATSTARS EMBED
+   ============================================ */
+.beatstars-player {
+  border: 1px solid var(--ssk-border) !important;
+  border-radius: 8px !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    color: var(--ssk-text-primary) !important;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.bg-white {
+  background-color: var(--ssk-bg-white) !important;
+}
+
+.bg-light {
+  background-color: var(--ssk-bg-light) !important;
+}
+
+.text-primary {
+  color: var(--ssk-text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--ssk-text-secondary) !important;
+}
+
+.text-navy {
+  color: var(--ssk-primary) !important;
+}
+
+.bg-navy {
+  background-color: var(--ssk-primary) !important;
+}
+
+.border-navy {
+  border-color: var(--ssk-primary) !important;
+}

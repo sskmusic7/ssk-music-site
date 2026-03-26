@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact | SSK Music</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Contact SSK Music for music production and licensing services.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="assets/css/plugins.css"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+
+    <!-- Premium Google Fonts - Syne for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Font icons -->
+    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css"/>
+
+    <style>
+        /* SSK Music Custom Styles */
+        :root {
+            --ssk-navy: #1a365d;
+            --ssk-navy-light: #2d4a7f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            letter-spacing: -0.01em;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.02em;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Sticky Navigation Header */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 54, 93, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .sticky-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .sticky-logo img {
+            max-height: 40px;
+            display: block;
+        }
+
+        .sticky-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .sticky-nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+        }
+
+        .sticky-nav-link:hover {
+            opacity: 0.7;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(10, 22, 40, 0.95) 100%);
+            padding: 6rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .contact-hero p {
+            font-size: 1.125rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+
+        .contact-info-card h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: #1a365d;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon i {
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .contact-item-content h4 {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .contact-item-content p {
+            font-size: 1rem;
+            color: #1a365d;
+            margin: 0;
+        }
+
+        .contact-item-content a {
+            color: #1a365d;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item-content a:hover {
+            opacity: 0.7;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a365d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #1a365d;
+            color: white;
+            border-color: #1a365d;
+        }
+
+        /* Contact Form */
+        .contact-form-card {
+            background: white;
+        }
+
+        .contact-form-card h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1a365d;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: #1a365d;
+            color: white;
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #2d4a7f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a365d;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        footer h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- STICKY NAVIGATION HEADER -->
+    <header class="sticky-header">
+        <div class="sticky-header-content">
+            <div class="sticky-logo">
+                <a href="index.html">
+                    <img src="assets/images/SSK Logo.png" alt="SSK Music">
+                </a>
+            </div>
+            <div class="sticky-cta">
+                <a href="index.html" class="sticky-nav-link">Home</a>
+                <a href="#services" class="sticky-nav-link">Services</a>
+                <a href="contact.html" class="sticky-nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Let's discuss your music production and licensing needs</p>
+        </div>
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-container">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info-card">
+                <h3>Contact Information</h3>
+                <p style="color: #666; margin-bottom: 2rem;">Reach out to discuss your project or inquiry. We typically respond within 24-48 hours.</p>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <i class="ri-mail-send-line"></i>
+                    </div>
+                    <div class="contact-item-content">
+                        <h4>Email</h4>
+                        <p><a href="mailto:sskmusic7@gmail.com">sskmusic7@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <i class="ri-building-4-line"></i>
+                    </div>
+                    <div class="contact-item-content">
+                        <h4>Services</h4>
+                        <p>Music Licensing • Production • Sync</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <div class="contact-item-content">
+                        <h4>Response Time</h4>
+                        <p>24-48 hours</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://genius.com/artists/Ssk-music" target="_blank" class="social-link">
+                        <i class="ri-verified-badge-fill"></i>
+                    </a>
+                    <a href="https://instagram.com/sskmusicbeats" target="_blank" class="social-link">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" class="social-link">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-card">
+                <h3>Send a Message</h3>
+                <form id="contactform" name="contactform">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="licensing">Music Licensing / Sync</option>
+                            <option value="production">Production Services</option>
+                            <option value="collaboration">Artist Collaboration</option>
+                            <option value="custom">Custom Composition</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <img src="assets/images/SSK Logo.png" alt="SSK Music" style="max-height: 50px; margin-bottom: 1.5rem;">
+                    <p style="color: rgba(255,255,255,0.8);">
+                        Comprehensive entertainment company delivering premium music production and licensing since 2015.
+                    </p>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <h3>Contact</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="mailto:sskmusic7@gmail.com">sskmusic7@gmail.com</a>
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="https://genius.com/artists/Ssk-music" target="_blank">Genius</a>
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <a href="https://instagram.com/sskmusicbeats" target="_blank">Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><a href="index.html">Home</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="index.html#services">Services</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; 2025 SSK Music. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Contact Form Handler -->
+    <script>
+        document.getElementById('contactform').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // For now, show an alert (in production, you'd use Formspree, Netlify Forms, or similar)
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
