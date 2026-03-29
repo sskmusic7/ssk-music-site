@@ -311,6 +311,169 @@
         footer a:hover {
             color: white;
         }
+
+        /* ============================================
+           MOBILE RESPONSIVE FIXES
+           ============================================ */
+
+        /* Prevent horizontal scroll on all devices */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+            position: relative !important;
+        }
+
+        /* Mobile header adjustments */
+        @media (max-width: 768px) {
+            .sticky-header {
+                padding: 0.75rem 1rem !important;
+            }
+
+            .sticky-header-content {
+                gap: 0.75rem !important;
+            }
+
+            /* Logo size */
+            .sticky-logo img {
+                max-height: 32px !important;
+            }
+
+            /* Mobile nav - make text smaller */
+            .sticky-cta {
+                gap: 0.5rem !important;
+            }
+
+            .sticky-nav-link {
+                font-size: 0.65rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            /* Body padding for smaller header */
+            body {
+                padding-top: 60px !important;
+            }
+
+            /* Contact hero adjustments */
+            .contact-hero {
+                padding: 3rem 0 !important;
+            }
+
+            .contact-hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem) !important;
+            }
+
+            .contact-hero p {
+                font-size: 0.9rem !important;
+                padding: 0 1rem;
+            }
+
+            /* Contact container */
+            .contact-container {
+                padding: 2rem 1rem !important;
+            }
+
+            /* Contact grid - stack on mobile */
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            /* Contact info card */
+            .contact-info-card {
+                padding: 1.5rem !important;
+            }
+
+            .contact-info-card h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .contact-item {
+                margin-bottom: 1.5rem !important;
+            }
+
+            .contact-item-icon {
+                width: 40px !important;
+                height: 40px !important;
+            }
+
+            .contact-item-icon i {
+                font-size: 1rem !important;
+            }
+
+            /* Form adjustments */
+            .contact-form-card h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.75rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            .btn-submit {
+                padding: 1rem 2rem !important;
+                font-size: 0.75rem !important;
+                width: 100%;
+            }
+
+            /* Social links */
+            .social-link {
+                width: 40px !important;
+                height: 40px !important;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 0 1rem !important;
+            }
+
+            footer .col-xl-4,
+            footer .col-lg-4 {
+                margin-bottom: 2rem;
+                text-align: center !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .sticky-nav-link {
+                font-size: 0.6rem !important;
+                letter-spacing: 0.05em !important;
+            }
+
+            .sticky-logo img {
+                max-height: 28px !important;
+            }
+
+            .contact-item {
+                gap: 0.75rem !important;
+            }
+
+            .contact-item-icon {
+                width: 36px !important;
+                height: 36px !important;
+            }
+        }
+
+        /* Fix for any element causing overflow */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        img, video, iframe {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Container max-width for mobile */
+        .container {
+            max-width: 100% !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
     </style>
 </head>
 

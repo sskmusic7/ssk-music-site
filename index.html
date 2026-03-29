@@ -513,6 +513,189 @@
         .featured-production-link:hover {
             opacity: 0.8;
         }
+
+        /* ============================================
+           MOBILE RESPONSIVE FIXES
+           ============================================ */
+
+        /* Prevent horizontal scroll on all devices */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+            position: relative !important;
+        }
+
+        /* Mobile header - hide stats, simplify navigation */
+        @media (max-width: 768px) {
+            /* Sticky header adjustments */
+            .sticky-header {
+                padding: 0.75rem 1rem !important;
+            }
+
+            .sticky-header-content {
+                gap: 0.75rem !important;
+            }
+
+            /* Hide stats on mobile to save space */
+            .sticky-stats {
+                display: none !important;
+            }
+
+            /* Logo size */
+            .sticky-logo img {
+                max-height: 32px !important;
+            }
+
+            /* Mobile nav - make text smaller */
+            .sticky-cta {
+                gap: 0.5rem !important;
+            }
+
+            .sticky-nav-link {
+                font-size: 0.65rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            /* Body padding for smaller header */
+            body {
+                padding-top: 60px !important;
+            }
+
+            /* Hero adjustments */
+            .hero-custom {
+                min-height: 100vh !important;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 15vw, 5rem) !important;
+            }
+
+            .hero-tagline {
+                font-size: 0.7rem !important;
+                padding: 0 1rem !important;
+            }
+
+            .hero-content p[style*="letter-spacing: 0.15em"] {
+                font-size: 0.75rem !important;
+                padding: 0 1rem !important;
+            }
+
+            .btn-ssk {
+                padding: 1rem 2rem !important;
+                font-size: 0.75rem !important;
+            }
+
+            /* Clients section - stack logos vertically on mobile */
+            .clients-grid {
+                gap: 2rem !important;
+            }
+
+            .client-logo img {
+                max-height: 40px !important;
+            }
+
+            /* Services cards - full width on mobile */
+            #services [style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            #services [style*="background: white"] {
+                padding: 1.5rem !important;
+            }
+
+            #services [style*="width: 70px"] {
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            /* Stats grid - stack on mobile */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .stat-card {
+                padding: 1.5rem !important;
+            }
+
+            /* Section padding - reduce on mobile */
+            .section-padding {
+                padding: 3rem 0 !important;
+            }
+
+            /* Achievement stats - stack properly */
+            .content-over-hero .col-6 {
+                margin-bottom: 1rem !important;
+            }
+
+            .content-over-hero h3 {
+                font-size: 1.75rem !important;
+            }
+
+            /* Genius badge - compact on mobile */
+            .credentials-section a[style*="width: 100%"] div {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .credentials-section img {
+                height: 50px !important;
+            }
+
+            /* Social icons - smaller on mobile */
+            .section-padding[style*="background: #1a365d"] i {
+                font-size: 2rem !important;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 0 1rem !important;
+            }
+
+            footer .col-xl-4,
+            footer .col-lg-4 {
+                margin-bottom: 2rem;
+                text-align: center !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .sticky-nav-link {
+                font-size: 0.6rem !important;
+                letter-spacing: 0.05em !important;
+            }
+
+            .sticky-logo img {
+                max-height: 28px !important;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 20vw, 4rem) !important;
+            }
+
+            .clients-grid {
+                gap: 1.5rem !important;
+            }
+        }
+
+        /* Fix for any element causing overflow */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        img, video, iframe {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Container max-width for mobile */
+        .container {
+            max-width: 100% !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
     </style>
 
 </head>
