@@ -98,10 +98,28 @@
 
         /* Hero Section */
         .contact-hero {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(10, 22, 40, 0.95) 100%);
+            background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
             padding: 6rem 0;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/images/pattern.jpg') repeat;
+            opacity: 0.05;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            z-index: 1;
         }
 
         .contact-hero h1 {
@@ -489,8 +507,8 @@
             </div>
             <div class="sticky-cta">
                 <a href="index.html" class="sticky-nav-link">Home</a>
-                <a href="#services" class="sticky-nav-link">Services</a>
-                <a href="contact.html" class="sticky-nav-link">Contact</a>
+                <a href="discography.html" class="sticky-nav-link">Discography</a>
+                <a href="contact.html" class="sticky-nav-link active">Contact</a>
             </div>
         </div>
     </header>

@@ -1,0 +1,416 @@
+/* ============================================
+   SSK MUSIC DISCOGRAPHY STYLES
+   ============================================ */
+
+/* Page Container */
+.discography-page {
+    padding: 2rem 0 4rem;
+}
+
+/* Tab Navigation */
+.discography-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    background: #1a365d;
+    border: 2px solid #e9ecef;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1a365d;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: #1a365d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: #1a365d;
+    color: white;
+}
+
+.tab-btn i {
+    font-size: 1.5rem;
+}
+
+/* Search & Filter */
+.discography-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.search-box {
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #1a365d;
+}
+
+.search-icon {
+    color: #999;
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: white;
+    border: 2px solid #e9ecef;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #1a365d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #1a365d;
+    color: white;
+    border-color: #1a365d;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #1a365d;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Releases Grid */
+.releases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Credits Grid */
+.credits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Release Card */
+.release-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.release-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.release-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.release-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.release-type {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: linear-gradient(135deg, #1a365d, #2d4a7f);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.release-info {
+    padding: 1.25rem;
+}
+
+.release-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.release-artist {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.release-year {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #999;
+}
+
+.release-stats {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.stat-item i {
+    color: #1a365d;
+}
+
+.release-platforms {
+    margin-top: 1rem;
+}
+
+.platform-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1a365d;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.platform-link:hover {
+    background: #1a365d;
+    color: white;
+}
+
+.platform-link i {
+    font-size: 1rem;
+}
+
+/* Credit Card */
+.credit-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.credit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.credit-header {
+    background: linear-gradient(135deg, #1a365d, #2d4a7f);
+    padding: 1.25rem 0.75rem;
+}
+
+.credit-tier {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.credit-tier.a-tier {
+    background: rgba(255, 215, 0, 0.9);
+    color: #1a365d;
+}
+
+.credit-tier.b-tier {
+    background: rgba(255, 165, 0, 0.7);
+    color: #1a365d;
+}
+
+.credit-info {
+    padding: 1.25rem;
+}
+
+.credit-track {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.credit-artist {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.credit-year {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #999;
+}
+
+.credit-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #999;
+}
+
+.credit-role span {
+    color: #1a365d;
+    font-weight: 600;
+}
+
+.credit-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.credit-label {
+    background: rgba(26, 54, 93, 0.1);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.credit-platforms {
+    margin-top: 1rem;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 3rem;
+}
+
+.loading-state i {
+    font-size: 3rem;
+    color: #1a365d;
+    animation: spin 1s linear infinite;
+}
+
+.loading-state p {
+    font-family: 'Inter', sans-serif;
+    color: #666;
+    margin-top: 1rem;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .discography-filters {
+        flex-direction: column;
+    }
+
+    .filter-buttons {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .releases-grid,
+    .credits-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
