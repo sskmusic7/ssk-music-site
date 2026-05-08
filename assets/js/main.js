@@ -400,19 +400,26 @@ function header(){
 	})
  
 
-	var showAnim = gsap.from('header:not([data-sticky-nav="true"])', {
-		yPercent: -100,
-		paused: true,
-		duration: 0.4
-	}).progress(1);
-	
+	// var showAnim = gsap.from('header:not([data-sticky-nav="true"])', {
+	// 	yPercent: -100,
+	// 	paused: true,
+	// 	duration: 0.4
+	// }).progress(1);
+
 	
 	ScrollTrigger.create({
+	ScrollTrigger.create({
+		start: "100px",
 		start: "100px",
 		end: 99999,
+		end: 99999,
+		onUpdate: (self) => {
 		onUpdate: (self) => {
 		self.direction === -1 ? showAnim.play() : showAnim.reverse()
+		self.direction === -1 ? showAnim.play() : showAnim.reverse()
 		}
+		}
+	});
 	});
 	
 	$(window).on('scroll', function(){	
