@@ -63,10 +63,12 @@
             right: 0;
             background: rgba(26, 54, 93, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 9999;
             padding: 1rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            visibility: visible !important;
+            pointer-events: auto !important;
         }
 
         .sticky-header-content {
@@ -100,6 +102,9 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             transition: opacity 0.3s;
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 1;
         }
 
         .sticky-nav-link:hover {
@@ -173,9 +178,9 @@
                 <a href="index.html">SSK MUSIC</a>
             </div>
             <nav class="sticky-nav">
-                <a href="index.html" class="sticky-nav-link">Home</a>
-                <a href="contact.html" class="sticky-nav-link">Contact</a>
-                <a href="discography.html" class="sticky-nav-link active">Discography</a>
+                <a href="index.html" class="sticky-nav-link bypass-touch-check">Home</a>
+                <a href="contact.html" class="sticky-nav-link bypass-touch-check">Contact</a>
+                <a href="discography.html" class="sticky-nav-link bypass-touch-check active">Discography</a>
             </nav>
         </div>
     </header>

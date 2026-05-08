@@ -66,10 +66,12 @@
             right: 0;
             background: rgba(26, 54, 93, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 9999;
             padding: 1rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            visibility: visible !important;
+            pointer-events: auto !important;
         }
 
         .sticky-header-content {
@@ -91,6 +93,7 @@
             gap: 1.5rem;
             flex: 1;
             justify-content: center;
+            overflow: hidden;
         }
 
         .sticky-stat {
@@ -132,6 +135,8 @@
             display: flex;
             gap: 1rem;
             align-items: center;
+            position: relative;
+            z-index: 10;
         }
 
         .sticky-nav-link {
@@ -142,6 +147,9 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             transition: opacity 0.3s;
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 1;
         }
 
         .sticky-nav-link:hover {
@@ -710,7 +718,7 @@
 <body>
 
     <!-- STICKY NAVIGATION HEADER -->
-    <header class="sticky-header">
+    <header id="main-header" class="sticky-header">
         <div class="sticky-header-content">
             <div class="sticky-logo">
                 <img src="assets/images/SSK Logo.png" alt="SSK Music">
@@ -732,10 +740,10 @@
                 </div>
             </div>
             <div class="sticky-cta">
-                <a href="#stats" class="sticky-nav-link">Stats</a>
-                <a href="#services" class="sticky-nav-link">Services</a>
-                <a href="discography.html" class="sticky-nav-link">Discography</a>
-                <a href="contact.html" class="sticky-nav-link">Contact</a>
+                <a href="#stats" class="sticky-nav-link bypass-touch-check">Stats</a>
+                <a href="#services" class="sticky-nav-link bypass-touch-check">Services</a>
+                <a href="discography.html" class="sticky-nav-link bypass-touch-check">Discography</a>
+                <a href="contact.html" class="sticky-nav-link bypass-touch-check">Contact</a>
             </div>
         </div>
     </header>
