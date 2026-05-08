@@ -91,54 +91,7 @@ function createReleaseCard(item) {
     `;
 }
 
-// Create credit card HTML
-function createCreditCard(item, tier) {
-    const tierLabel = tier.toUpperCase();
-    const tierClass = tier.toLowerCase() + '-tier';
-
-    const statsHTML = item.youtube_views || item.spotify_streams ? `
-        <div class="credit-stats">
-            <div class="credit-label">${item.youtube_views ? 'YouTube Views' : 'Spotify Streams'}</div>
-            <div class="stat-item">
-                <i class="${item.youtube_views ? 'ri-youtube-fill' : 'ri-spotify-fill'}"></i>
-                <span>${formatNumber(item.youtube_views || item.spotify_streams)}</span>
-            </div>
-        </div>
-    ` : '';
-
-    const platformsHTML = item.genius ? `
-        <div class="credit-platforms">
-            <a href="${item.genius}" target="_blank" class="platform-link">
-                <i class="ri-brain-line"></i>
-                <span>Genius</span>
-            </a>
-        </div>
-    ` : '';
-
-    return `
-        <div class="credit-card" data-tier="${tier}">
-            <div class="credit-header">
-                <span class="credit-tier ${tierClass}">${tier}-List</span>
-            </div>
-            <div class="credit-info">
-                <h4 class="credit-track">${item.track}</h4>
-                <div class="credit-artist">
-                    <i class="ri-user-3-line"></i>
-                    ${item.artist}
-                </div>
-                <div class="credit-role">
-                    Role: <span>${item.role}</span>
-                </div>
-                ${item.label ? `<div class="credit-year">Label: ${item.label}</div>` : ''}
-                <div class="credit-year">${item.year}</div>
-                ${statsHTML}
-                ${platformsHTML}
-            </div>
-        </div>
-    `;
-}
-
-// Filter and search items
+// Filter items
 function filterItems(items) {
     return items.filter(item => {
         // Search filter
@@ -147,13 +100,7 @@ function filterItems(items) {
             (item.artist && item.artist.toLowerCase().includes(searchQuery.toLowerCase())) ||
             (item.track && item.track.toLowerCase().includes(searchQuery.toLowerCase()));
 
-        // Type filter
-        const matchesType = currentFilter === 'all' ||
-            (currentFilter === 'beats' && item.type === 'beat') ||
-            (currentFilter === 'albums' && item.type === 'album') ||
-            (currentFilter === 'credits');
-
-        return matchesSearch && matchesType;
+        return matchesSearch;
     });
 }
 
@@ -169,6 +116,7 @@ function renderReleases() {
 
     loading.style.display = 'none';
 
+    // Get all release items (beats + albums)
     const allItems = [
         ...(discographyData.releases.beats || []),
         ...(discographyData.releases.albums || [])
@@ -176,11 +124,6 @@ function renderReleases() {
 
     // Apply filter
     let filteredItems = filterItems(allItems);
-
-    // Filter out credits-only items from releases tab
-    if (currentFilter === 'all' || currentFilter === 'beats' || currentFilter === 'albums') {
-        filteredItems = filteredItems.filter(item => item.type !== 'credit');
-    }
 
     if (filteredItems.length === 0) {
         content.innerHTML = `
@@ -198,60 +141,15 @@ function renderReleases() {
     content.innerHTML = filteredItems.map(createReleaseCard).join('');
 }
 
-// Render credits section
-function renderCredits() {
-    const content = document.getElementById('credits-content');
-    const loading = document.getElementById('creditsLoading');
-
-    if (!discographyData) {
-        loading.style.display = 'block';
-        return;
-    }
-
-    loading.style.display = 'none';
-
-    const allItems = [
-        ...(discographyData.production_credits.a_list || []).map(item => ({...item, tier: 'a'})),
-        ...(discographyData.production_credits.b_list || []).map(item => ({...item, tier: 'b'}))
-    ];
-
-    // Apply search filter
-    const filteredItems = allItems.filter(item => {
-        if (!searchQuery) return true;
-        const query = searchQuery.toLowerCase();
-        return (item.track && item.track.toLowerCase().includes(query)) ||
-               (item.artist && item.artist.toLowerCase().includes(query));
-    });
-
-    if (filteredItems.length === 0) {
-        content.innerHTML = `
-            <div style="text-align: center; padding: 3rem;">
-                <i class="ri-music-2-line" style="font-size: 3rem; color: #999;"></i>
-                <p style="font-family: 'Inter', sans-serif; color: #666; margin-top: 1rem;">No credits found matching your search.</p>
-            </div>
-        `;
-        return;
-    }
-
-    // Sort by year (newest first)
-    filteredItems.sort((a, b) => b.year - a.year);
-
-    content.innerHTML = filteredItems.map(item => createCreditCard(item, item.tier)).join('');
-}
-
 // Update display based on tab
 function updateDisplay() {
     const releasesSection = document.getElementById('releases-section');
-    const creditsSection = document.getElementById('credits-section');
 
     if (currentTab === 'releases') {
         releasesSection.style.display = 'block';
-        creditsSection.style.display = 'none';
         renderReleases();
     } else {
         releasesSection.style.display = 'none';
-        creditsSection.style.display = 'block';
-        renderCredits();
     }
 }
 
@@ -267,7 +165,6 @@ function switchTab(tab) {
         }
     });
 
-    // Update display
     updateDisplay();
 }
 
@@ -282,17 +179,6 @@ function handleFilter(filter) {
             btn.classList.add('active');
         }
     });
-
-    // Switch to releases tab if selecting beats/albums
-    if (filter === 'beats' || filter === 'albums') {
-        currentTab = 'releases';
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.tab === 'releases') {
-                btn.classList.add('active');
-            }
-        });
-    }
 
     updateDisplay();
 }
@@ -311,13 +197,13 @@ async function loadDiscographyData() {
         updateDisplay();
     } catch (error) {
         console.error('Error loading discography data:', error);
-        document.getElementById('releases-content').innerHTML = `
+        const content = document.getElementById('releases-content');
+        content.innerHTML = `
             <div style="text-align: center; padding: 3rem;">
                 <i class="ri-error-warning-line" style="font-size: 3rem; color: #dc3545;"></i>
                 <p style="font-family: 'Inter', sans-serif; color: #666; margin-top: 1rem;">Error loading discography data.</p>
             </div>
         `;
-        document.getElementById('credits-content').innerHTML = '';
     }
 }
 

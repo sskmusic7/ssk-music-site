@@ -1,220 +1,198 @@
 {
-  "releases": {
-    "beats": [
-      {
-        "id": "beat-001",
-        "title": "Been Wavey",
-        "artist": "B Young",
-        "producer": "SSK Music",
-        "year": 2020,
-        "type": "single",
-        "youtube_views": 17000000,
-        "spotify_streams": 22500000,
-        "platforms": {
-          "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-          "spotify": "https://open.spotify.com/track/xxxxxxxx",
-          "genius": "https://genius.com/B-young-been-wavey-lyrics"
-        }
-      },
-      {
-        "id": "beat-002",
-        "title": "Juice",
-        "artist": "B Young",
-        "producer": "SSK Music",
-        "year": 2020,
-        "type": "single",
-        "youtube_views": 53000000,
-        "spotify_streams": 97000000,
-        "platforms": {
-          "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-          "spotify": "https://open.spotify.com/track/xxxxxxxx",
-          "genius": "https://genius.com/B-young-juice-lyrics"
-        }
-      },
-      {
-        "id": "beat-003",
-        "title": "Extra",
-        "artist": "Ambush x Sp Montiz",
-        "producer": "SSK Music",
-        "year": 2022,
-        "type": "single",
-        "youtube_views": 2000000,
-        "spotify_streams": 1500000,
-        "platforms": {
-          "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-          "spotify": "https://open.spotify.com/track/xxxxxxxx",
-          "genius": "https://genius.com/Ambush-extra-lyrics"
-        }
-      },
-      {
-        "id": "beat-004",
-        "title": "Silverback",
-        "artist": "Ambush x Sp Montiz",
-        "producer": "SSK Music",
-        "year": 2022,
-        "type": "single",
-        "youtube_views": 1500000,
-        "spotify_streams": 1500000,
-        "platforms": {
-          "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-          "spotify": "https://open.spotify.com/track/xxxxxxxx",
-          "genius": "https://genius.com/Ambush-silverback-lyrics"
-        }
-      }
-    ],
-    "albums": [
-      {
-        "id": "album-001",
-        "title": "Proper Paper",
-        "artist": "Alicai Harley",
-        "producer": "SSK Music",
-        "year": 2023,
-        "type": "album",
-        "tracks": 12,
-        "platforms": {
-          "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-          "spotify": "https://open.spotify.com/album/xxxxxxxx",
-          "apple_music": "https://music.apple.com/us/album/xxxxxxxx",
-          "genius": "https://genius.com/Alicai-harley-proper-paper-lyrics"
-        }
-      }
-    ]
-  },
-  "production_credits": {
-    "a_list": [
-      {
-        "id": "credit-001",
-        "track": "Been Wavey",
-        "artist": "B Young",
-        "role": "Producer",
-        "year": 2020,
-        "label": "Columbia",
-        "spotify_streams": 22500000,
-        "youtube_views": 17000000,
+  "releases": [
+    {
+      "id": "beat-001",
+      "title": "Been Wavey",
+      "artist": "B Young",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 17000000,
+      "spotify_streams": 22500000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/track/xxxxxxxx",
         "genius": "https://genius.com/B-young-been-wavey-lyrics"
-      },
-      {
-        "id": "credit-002",
-        "track": "Juice",
-        "artist": "B Young",
-        "role": "Producer",
-        "year": 2020,
-        "label": "Sony/Columbia",
-        "spotify_streams": 97000000,
-        "youtube_views": 53000000,
+      }
+    },
+    {
+      "id": "beat-002",
+      "title": "Juice",
+      "artist": "B Young",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 53000000,
+      "spotify_streams": 97000000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/track/xxxxxxxx",
         "genius": "https://genius.com/B-young-juice-lyrics"
-      },
-      {
-        "id": "credit-003",
-        "track": "Bestie Remix",
-        "artist": "Not3s",
-        "role": "Producer",
-        "year": 2018,
-        "label": "Unknown",
-        "genius": "https://genius.com/Not3s-bestie-remix-lyrics"
-      },
-      {
-        "id": "credit-004",
-        "track": "Parlé",
-        "artist": "8Cyn (FKA One Acen) x Dré Six",
-        "role": "Producer",
-        "year": 2021,
-        "label": "Universal/Atlantic",
-        "spotify_streams": 5000000,
-        "genius": "https://genius.com/8cyn-parle-lyrics"
-      },
-      {
-        "id": "credit-005",
-        "track": "Twin Flame",
-        "artist": "Marley Waters",
-        "role": "Producer",
-        "year": 2022,
-        "label": "Atlantic",
-        "spotify_streams": 3900000,
-        "genius": "https://genius.com/Marley-waters-twin-flame-lyrics"
-      },
-      {
-        "id": "credit-006",
-        "track": "Extra & Silverback",
-        "artist": "Ambush x Sp Montiz",
-        "role": "Producer",
-        "year": 2022,
-        "label": "Atlantic",
-        "spotify_streams": 3000000,
-        "youtube_views": 3500000,
+      }
+    },
+    {
+      "id": "beat-003",
+      "title": "Extra",
+      "artist": "Ambush x Sp Montiz",
+      "producer": "SSK Music",
+      "year": 2022,
+      "type": "single",
+      "youtube_views": 2000000,
+      "spotify_streams": 1500000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/track/xxxxxxxx",
+        "genius": "https://genius.com/Ambush-extra-lyrics"
+      }
+    },
+    {
+      "id": "beat-004",
+      "title": "Silverback",
+      "artist": "Ambush x Sp Montiz",
+      "producer": "SSK Music",
+      "year": 2022,
+      "type": "single",
+      "youtube_views": 1500000,
+      "spotify_streams": 1500000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/track/xxxxxxxx",
         "genius": "https://genius.com/Ambush-silverback-lyrics"
-      },
-      {
-        "id": "credit-007",
-        "track": "Let Go & Let God",
-        "artist": "Stevie Valentine",
-        "role": "Producer",
-        "year": 2023,
-        "label": "RCA",
-        "spotify_streams": 39000000,
-        "genius": "https://genius.com/Stevie-valentine-let-go-let-god-lyrics"
-      },
-      {
-        "id": "credit-008",
-        "track": "Proper Paper",
-        "artist": "Alicai Harley",
-        "role": "Producer",
-        "year": 2023,
-        "label": "Warner/Parlophone",
+      }
+    },
+    {
+      "id": "album-001",
+      "title": "Proper Paper",
+      "artist": "Alicai Harley",
+      "producer": "SSK Music",
+      "year": 2023,
+      "type": "album",
+      "tracks": 12,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/album/xxxxxxxx",
+        "apple_music": "https://music.apple.com/us/album/xxxxxxxx",
         "genius": "https://genius.com/Alicai-harley-proper-paper-lyrics"
-      },
-      {
-        "id": "credit-009",
-        "track": "Fire in the Booth",
-        "artist": "Tion Wayne",
-        "role": "Producer",
-        "year": 2022,
-        "label": "BBC",
-        "youtube_views": 302000,
+      }
+    },
+    {
+      "id": "release-005",
+      "title": "Bestie Remix",
+      "artist": "Not3s",
+      "producer": "SSK Music",
+      "year": 2018,
+      "type": "single",
+      "youtube_views": 5000000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "genius": "https://genius.com/Not3s-bestie-remix-lyrics"
+      }
+    },
+    {
+      "id": "release-006",
+      "title": "Parlé",
+      "artist": "8Cyn (FKA One Acen) x Dré Six",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "spotify_streams": 5000000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "genius": "https://genius.com/8cyn-parle-lyrics"
+      }
+    },
+    {
+      "id": "release-007",
+      "title": "Win Flame",
+      "artist": "Marley Waters",
+      "producer": "SSK Music",
+      "year": 2022,
+      "type": "single",
+      "spotify_streams": 3900000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "genius": "https://genius.com/Marley-waters-win-flame-lyrics"
+      }
+    },
+    {
+      "id": "release-008",
+      "title": "Proper Paper",
+      "artist": "Alicai Harley",
+      "producer": "SSK Music",
+      "year": 2023,
+      "type": "album",
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
+        "spotify": "https://open.spotify.com/album/xxxxxxxx",
+        "apple_music": "https://music.apple.com/us/album/xxxxxxxx",
+        "genius": "https://genius.com/Alicai-harley-proper-paper-lyrics"
+      }
+    },
+    {
+      "id": "release-009",
+      "title": "Fire in the Booth",
+      "artist": "Tion Wayne",
+      "producer": "SSK Music",
+      "year": 2022,
+      "type": "single",
+      "youtube_views": 302000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
         "genius": "https://genius.com/Tion-wayne-fire-in-the-booth-lyrics"
       }
-    ],
-    "b_list": [
-      {
-        "id": "credit-101",
-        "track": "Summer Never Ends",
-        "artist": "Enigma",
-        "role": "Producer",
-        "year": 2024,
-        "label": "Unknown",
+    },
+    {
+      "id": "release-010",
+      "title": "Summer Never Ends",
+      "artist": "Enigma",
+      "producer": "SSK Music",
+      "year": 2024,
+      "type": "single",
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
         "genius": "https://genius.com/Enigma-summer-never-ends-lyrics"
-      },
-      {
-        "id": "credit-102",
-        "track": "Fever",
-        "artist": "Marley Waters",
-        "role": "Producer",
-        "year": 2021,
-        "label": "Atlantic",
-        "spotify_streams": 2500000,
+      }
+    },
+    {
+      "id": "release-011",
+      "title": "Fever",
+      "artist": "Marley Waters",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "spotify_streams": 2500000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
         "genius": "https://genius.com/Marley-waters-fever-lyrics"
-      },
-      {
-        "id": "credit-103",
-        "track": "Skiner",
-        "artist": "Aden x Asme",
-        "role": "Producer",
-        "year": 2024,
-        "label": "Spinning Top",
-        "spotify_streams": 2300000,
-        "youtube_views": 1300000,
+      }
+    },
+    {
+      "id": "release-012",
+      "title": "Skiner",
+      "artist": "Aden x Asme",
+      "producer": "SSK Music",
+      "year": 2024,
+      "type": "single",
+      "spotify_streams": 2300000,
+      "youtube_views": 1300000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
         "genius": "https://genius.com/aden-x-asme-skiner-lyrics"
-      },
-      {
-        "id": "credit-104",
-        "track": "Erdz Boy",
-        "artist": "Mowgs",
-        "role": "Producer",
-        "year": 2021,
-        "label": "Unknown",
-        "youtube_views": 3300000,
+      }
+    },
+    {
+      "id": "release-013",
+      "title": "Erdz Boy",
+      "artist": "Mowgs",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "spotify_streams": 0,
+      "youtube_views": 3300000,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
         "genius": "https://genius.com/Mowgs-erdz-boy-lyrics"
       }
-    ]
-  }
+    }
+  ]
 }
