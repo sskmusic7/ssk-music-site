@@ -400,7 +400,7 @@ function header(){
 	})
  
 
-	var showAnim = gsap.from('header', { 
+	var showAnim = gsap.from('header:not([data-sticky-nav="true"])', {
 		yPercent: -100,
 		paused: true,
 		duration: 0.4
@@ -426,7 +426,7 @@ function header(){
 	
 	var social_animation = gsap.timeline({yoyo: false,reversed: true});
 	social_animation.pause();
-	social_animation.to("header", .5, { autoAlpha:0, ease: Power3.easeOut},0);
+	social_animation.to("header:not([data-sticky-nav='true'])", .5, { autoAlpha:0, ease: Power3.easeOut},0);
 	social_animation.to(".social-mobile", .5, { autoAlpha:1, 'pointer-events': 'all',  ease: Power3.easeOut}, 0);
 	social_animation.from(".social-mobile a", .5, { stagger:.1, autoAlpha:0, y:30,  ease: Power3.easeOut});
 
