@@ -1,197 +1,879 @@
 {
   "releases": [
     {
-      "id": "beat-001",
-      "title": "Been Wavey",
-      "artist": "B Young",
+      "id": "track-001",
+      "title": "When It Rains",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 396947,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=UEHLBICbJ30"
+      }
+    },
+    {
+      "id": "track-002",
+      "title": "The Coldest Winter",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2020,
       "type": "single",
-      "youtube_views": 17000000,
-      "spotify_streams": 22500000,
+      "youtube_views": 13041,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/track/xxxxxxxx",
-        "genius": "https://genius.com/B-young-been-wavey-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=JQgyR1hOKFI"
       }
     },
     {
-      "id": "beat-002",
-      "title": "Juice",
-      "artist": "B Young",
+      "id": "track-003",
+      "title": "INAG",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2020,
       "type": "single",
-      "youtube_views": 53000000,
-      "spotify_streams": 97000000,
+      "youtube_views": 12660,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/track/xxxxxxxx",
-        "genius": "https://genius.com/B-young-juice-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=Ts3NgGFwlhc"
       }
     },
     {
-      "id": "beat-003",
-      "title": "Extra",
-      "artist": "Ambush x Sp Montiz",
+      "id": "track-004",
+      "title": "Every Hood",
+      "artist": "Various Artists",
       "producer": "SSK Music",
-      "year": 2022,
+      "year": 2020,
       "type": "single",
-      "youtube_views": 2000000,
-      "spotify_streams": 1500000,
+      "youtube_views": 10620,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/track/xxxxxxxx",
-        "genius": "https://genius.com/Ambush-extra-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=2MZQGNS6cb8"
       }
     },
     {
-      "id": "beat-004",
-      "title": "Silverback",
-      "artist": "Ambush x Sp Montiz",
-      "producer": "SSK Music",
-      "year": 2022,
-      "type": "single",
-      "youtube_views": 1500000,
-      "spotify_streams": 1500000,
-      "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/track/xxxxxxxx",
-        "genius": "https://genius.com/Ambush-silverback-lyrics"
-      }
-    },
-    {
-      "id": "album-001",
-      "title": "Proper Paper",
-      "artist": "Alicai Harley",
-      "producer": "SSK Music",
-      "year": 2023,
-      "type": "album",
-      "tracks": 12,
-      "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/album/xxxxxxxx",
-        "apple_music": "https://music.apple.com/us/album/xxxxxxxx",
-        "genius": "https://genius.com/Alicai-harley-proper-paper-lyrics"
-      }
-    },
-    {
-      "id": "release-005",
-      "title": "Bestie Remix",
-      "artist": "Not3s",
-      "producer": "SSK Music",
-      "year": 2018,
-      "type": "single",
-      "youtube_views": 5000000,
-      "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Not3s-bestie-remix-lyrics"
-      }
-    },
-    {
-      "id": "release-006",
-      "title": "Parlé",
-      "artist": "8Cyn (FKA One Acen) x Dré Six",
+      "id": "track-005",
+      "title": "Dr Dr",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2021,
       "type": "single",
-      "spotify_streams": 5000000,
+      "youtube_views": 3892,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/8cyn-parle-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=k_-7UX5xPFM"
       }
     },
     {
-      "id": "release-007",
-      "title": "Win Flame",
-      "artist": "Marley Waters",
+      "id": "track-006",
+      "title": "The African Dream",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2026,
+      "type": "single",
+      "youtube_views": 3427,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=2yCkhf9LA_M"
+      }
+    },
+    {
+      "id": "track-007",
+      "title": "Dairy Free",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1699,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=jK-2c43VNWs"
+      }
+    },
+    {
+      "id": "track-008",
+      "title": "Really Need Somebody",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1364,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=iD81zm3kwPU"
+      }
+    },
+    {
+      "id": "track-009",
+      "title": "Lotus",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1329,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=rF_W--9EVNw"
+      }
+    },
+    {
+      "id": "track-010",
+      "title": "Just the 2",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1233,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=8DcGdT59Ero"
+      }
+    },
+    {
+      "id": "track-011",
+      "title": "All Night Long",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1002,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=GM1dIhUDwc4"
+      }
+    },
+    {
+      "id": "track-012",
+      "title": "Sweet Love",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 975,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=2hM-1YkyhKU"
+      }
+    },
+    {
+      "id": "track-013",
+      "title": "Intentions",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 937,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=755xr-wn2n4"
+      }
+    },
+    {
+      "id": "track-014",
+      "title": "Feeling It",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 769,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=GBE6_cdwsC8"
+      }
+    },
+    {
+      "id": "track-015",
+      "title": "Ability",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 735,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=ctLIHajmvO4"
+      }
+    },
+    {
+      "id": "track-016",
+      "title": "Creep Life",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 726,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=m6rSSNjZky0"
+      }
+    },
+    {
+      "id": "track-017",
+      "title": "In Motion",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 724,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=VFTTgf8f_SU"
+      }
+    },
+    {
+      "id": "track-018",
+      "title": "Speak Up",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 677,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=TjLhNuPmHf0"
+      }
+    },
+    {
+      "id": "track-019",
+      "title": "Living it Up",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 525,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=qoRLdr8tvzw"
+      }
+    },
+    {
+      "id": "track-020",
+      "title": "Move On",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 500,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=svSL8SGpVpQ"
+      }
+    },
+    {
+      "id": "track-021",
+      "title": "Me & Mariah",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 480,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=RuYtBJP5hLM"
+      }
+    },
+    {
+      "id": "track-022",
+      "title": "Fresh",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 368,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=0B1w26DXihE"
+      }
+    },
+    {
+      "id": "track-023",
+      "title": "The Influence",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 363,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=UtoroYO67BI"
+      }
+    },
+    {
+      "id": "track-024",
+      "title": "Too Bad Girl",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 349,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=5gRf9BExHSg"
+      }
+    },
+    {
+      "id": "track-025",
+      "title": "Pop Champ",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 342,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=mcqsE6FG67g"
+      }
+    },
+    {
+      "id": "track-026",
+      "title": "Bounce For Me",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 273,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=-E1iFlPi46E"
+      }
+    },
+    {
+      "id": "track-027",
+      "title": "Enjoy Yourself",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2022,
       "type": "single",
-      "spotify_streams": 3900000,
+      "youtube_views": 261,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Marley-waters-win-flame-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=2U8H_Ki8aYk"
       }
     },
     {
-      "id": "release-008",
-      "title": "Proper Paper",
-      "artist": "Alicai Harley",
+      "id": "track-028",
+      "title": "String Vest Season",
+      "artist": "Various Artists",
       "producer": "SSK Music",
-      "year": 2023,
-      "type": "album",
-      "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "spotify": "https://open.spotify.com/album/xxxxxxxx",
-        "apple_music": "https://music.apple.com/us/album/xxxxxxxx",
-        "genius": "https://genius.com/Alicai-harley-proper-paper-lyrics"
-      }
-    },
-    {
-      "id": "release-009",
-      "title": "Fire in the Booth",
-      "artist": "Tion Wayne",
-      "producer": "SSK Music",
-      "year": 2022,
+      "year": 2020,
       "type": "single",
-      "youtube_views": 302000,
+      "youtube_views": 213,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Tion-wayne-fire-in-the-booth-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=ySOwRix55lI"
       }
     },
     {
-      "id": "release-010",
-      "title": "Summer Never Ends",
-      "artist": "Enigma",
+      "id": "track-029",
+      "title": "Against The World",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 190,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=j-7bhDXhFPQ"
+      }
+    },
+    {
+      "id": "track-030",
+      "title": "Promises",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 168,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=0pZ87crtVhM"
+      }
+    },
+    {
+      "id": "track-031",
+      "title": "9 Months",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 168,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=LrZUuv2wP5Y"
+      }
+    },
+    {
+      "id": "track-032",
+      "title": "Drill & Chill",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2024,
       "type": "single",
+      "youtube_views": 144,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Enigma-summer-never-ends-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=zibFHtYLC7A"
       }
     },
     {
-      "id": "release-011",
-      "title": "Fever",
-      "artist": "Marley Waters",
+      "id": "track-033",
+      "title": "Hey Ma 18",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 133,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=-ADW_6T4EjM"
+      }
+    },
+    {
+      "id": "track-034",
+      "title": "Summer Crush",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2021,
       "type": "single",
-      "spotify_streams": 2500000,
+      "youtube_views": 131,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Marley-waters-fever-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=53vsw0I2_WY"
       }
     },
     {
-      "id": "release-012",
-      "title": "Skiner",
-      "artist": "Aden x Asme",
+      "id": "track-035",
+      "title": "Dairy Free Changed Key",
+      "artist": "Various Artists",
       "producer": "SSK Music",
-      "year": 2024,
+      "year": 2020,
       "type": "single",
-      "spotify_streams": 2300000,
-      "youtube_views": 1300000,
+      "youtube_views": 111,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/aden-x-asme-skiner-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=wvJpP02TbkE"
       }
     },
     {
-      "id": "release-013",
-      "title": "Erdz Boy",
-      "artist": "Mowgs",
+      "id": "track-036",
+      "title": "Numbers Game",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 95,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=UeBkDwOTlWA"
+      }
+    },
+    {
+      "id": "track-037",
+      "title": "Nevaeh",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 79,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=k_5rl2APWNE"
+      }
+    },
+    {
+      "id": "track-038",
+      "title": "Prod by SSK",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 75,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=mcqsE6FG67g"
+      }
+    },
+    {
+      "id": "track-039",
+      "title": "Where The Party At",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 73,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=mcqsE6FG67g"
+      }
+    },
+    {
+      "id": "track-040",
+      "title": "Drama Free (Version 2)",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 58,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=wvJpP02TbkE"
+      }
+    },
+    {
+      "id": "track-041",
+      "title": "Rodeo",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 58,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=tB96fEcELIw"
+      }
+    },
+    {
+      "id": "track-042",
+      "title": "HighKey 18",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 54,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=02jEt__fFhQ"
+      }
+    },
+    {
+      "id": "track-043",
+      "title": "New Zion",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 53,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=Odbxb3JqL3E"
+      }
+    },
+    {
+      "id": "track-044",
+      "title": "SSK x Mokuba Lives - New Dream",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 39,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=qmLcD66LR90"
+      }
+    },
+    {
+      "id": "track-045",
+      "title": "This is How We Do It",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 33,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=c_Nr47iY7FY"
+      }
+    },
+    {
+      "id": "track-046",
+      "title": "A Whole New World",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 33,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=iFltl15S3V8"
+      }
+    },
+    {
+      "id": "track-047",
+      "title": "Won-Ton",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 29,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=uY-G0qtFW2k"
+      }
+    },
+    {
+      "id": "track-048",
+      "title": "Kenya",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 28,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=150BFi2TdGM"
+      }
+    },
+    {
+      "id": "track-049",
+      "title": "Love Story 2",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 28,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=2sz23fBisfY"
+      }
+    },
+    {
+      "id": "track-050",
+      "title": "Sycho",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 28,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=xXHTl2sUug4"
+      }
+    },
+    {
+      "id": "track-051",
+      "title": "James Blake type beat - Parisian Girl (Prod. by SSK)",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 28,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=mcqsE6FG67g"
+      }
+    },
+    {
+      "id": "track-052",
+      "title": "SSK Lockdown Challenge instrumental",
+      "artist": "Various Artists",
       "producer": "SSK Music",
       "year": 2021,
       "type": "single",
-      "spotify_streams": 0,
-      "youtube_views": 3300000,
+      "youtube_views": 24,
       "platforms": {
-        "youtube": "https://www.youtube.com/watch?v=xxxxxxxx",
-        "genius": "https://genius.com/Mowgs-erdz-boy-lyrics"
+        "youtube": "https://www.youtube.com/watch?v=dRUzv8OXEx8"
+      }
+    },
+    {
+      "id": "track-053",
+      "title": "Bogota",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 24,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=8AIsR7-_Xmc"
+      }
+    },
+    {
+      "id": "track-054",
+      "title": "High Times",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 22,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=lbeYDQjpUg0"
+      }
+    },
+    {
+      "id": "track-055",
+      "title": "Everything you feel",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 22,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=lbW4_1AQeTI"
+      }
+    },
+    {
+      "id": "track-056",
+      "title": "Dolla Bills",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 21,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=T6FSOZNDDIg"
+      }
+    },
+    {
+      "id": "track-057",
+      "title": "Oh Baby",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 19,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=1ufvifbo3Eg"
+      }
+    },
+    {
+      "id": "track-058",
+      "title": "Spring to Fall",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 19,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=gC5cp1IURYQ"
+      }
+    },
+    {
+      "id": "track-059",
+      "title": "New wifey who dis",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 18,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=j2ag2pmOnOk"
+      }
+    },
+    {
+      "id": "track-060",
+      "title": "Gym Buddy",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 18,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=QFt60bZcRFk"
+      }
+    },
+    {
+      "id": "track-061",
+      "title": "Fela Kuti type beat",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2025,
+      "type": "single",
+      "youtube_views": 14,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=P7BELj8cyho"
+      }
+    },
+    {
+      "id": "track-062",
+      "title": "One Way Street",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 11,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=L0f5-dZ0w2M"
+      }
+    },
+    {
+      "id": "track-063",
+      "title": "West Coast Soul",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 11,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=hAShB7tWTPk"
+      }
+    },
+    {
+      "id": "track-064",
+      "title": "The Pull Up",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2023,
+      "type": "single",
+      "youtube_views": 8,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=SUw7QEIDI6c"
+      }
+    },
+    {
+      "id": "track-065",
+      "title": "Caught Feels",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 6,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=WnPcpizLfYs"
+      }
+    },
+    {
+      "id": "track-066",
+      "title": "Follow My Lead",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2026,
+      "type": "single",
+      "youtube_views": 5,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=VGCJ9-cbgPg"
+      }
+    },
+    {
+      "id": "track-067",
+      "title": "Borrow & Buy - Prod by",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 4,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=eujUdl7yTJs"
+      }
+    },
+    {
+      "id": "track-068",
+      "title": "Watered Plants",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2022,
+      "type": "single",
+      "youtube_views": 2,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=8QWKVRWe6WU"
+      }
+    },
+    {
+      "id": "track-069",
+      "title": "Magnificent",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 2,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=iEWm1AHwAMY"
+      }
+    },
+    {
+      "id": "track-070",
+      "title": "Ghastly",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 2,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=ewS4zmUF1f8"
+      }
+    },
+    {
+      "id": "track-071",
+      "title": "Zion 18",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2026,
+      "type": "single",
+      "youtube_views": 1,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=1jCCppDM2OY"
+      }
+    },
+    {
+      "id": "track-072",
+      "title": "Aint No Fun",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2021,
+      "type": "single",
+      "youtube_views": 1,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=-pt5TLjOI4U"
+      }
+    },
+    {
+      "id": "track-073",
+      "title": "Lightning",
+      "artist": "Various Artists",
+      "producer": "SSK Music",
+      "year": 2020,
+      "type": "single",
+      "youtube_views": 1,
+      "platforms": {
+        "youtube": "https://www.youtube.com/watch?v=mcqsE6FG67g"
       }
     }
   ]
