@@ -116,11 +116,8 @@ function renderReleases() {
 
     loading.style.display = 'none';
 
-    // Get all release items (beats + albums)
-    const allItems = [
-        ...(discographyData.releases.beats || []),
-        ...(discographyData.releases.albums || [])
-    ];
+    // Get all release items
+    const allItems = discographyData.releases || [];
 
     // Apply filter
     let filteredItems = filterItems(allItems);
