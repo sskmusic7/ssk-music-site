@@ -347,7 +347,7 @@
         .stat-card {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
+            border-radius: 0;
             padding: 2.5rem;
             text-align: center;
             transition: all 0.3s ease;
@@ -364,7 +364,7 @@
             width: 60px;
             height: 60px;
             margin: 0 auto 1.5rem;
-            border-radius: 12px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -403,7 +403,7 @@
             background: white;
             color: #1a365d;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 0;
             font-weight: 700;
             font-size: 0.875rem;
             text-transform: uppercase;
@@ -456,7 +456,7 @@
 
         .modal-content {
             background: white;
-            border-radius: 20px;
+            border-radius: 0;
             padding: 2rem;
             max-width: 800px;
             width: 100%;
@@ -475,7 +475,7 @@
             background: #f5f5f5;
             border: none;
             padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
@@ -749,13 +749,19 @@
                 .sticky-nav-link {
                     transition: all 0.2s ease;
                     position: relative !important;
-                    z-index: 1;
+                    z-index: 10 !important;
                     cursor: pointer !important;
+                    pointer-events: auto !important;
                 }
                 .sticky-nav-link:hover {
                     opacity: 0.7;
                     transform: translateY(-2px);
                     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
+                }
+                .sticky-cta {
+                    position: relative;
+                    z-index: 10 !important;
+                    pointer-events: auto !important;
                 }
             </style>
         </div>
@@ -771,10 +777,6 @@
         <div class="hero-content">
             <h1 class="hero-title">SSK MUSIC</h1>
             <p class="hero-tagline">Premium Music Production & Licensing</p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; letter-spacing: 0.15em; text-transform: uppercase;">Music for Film. TV. Advertising. Gaming. Major Labels.</p>
-            <a href="contact.html" class="btn-ssk">
-                Work With Us <i class="ri-arrow-right-line" style="margin-left: 8px;"></i>
-            </a>
         </div>
     </section>
 
@@ -845,67 +847,75 @@
                 <p style="color: #666;">Comprehensive music production and licensing solutions</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
-                <!-- Sync Licensing -->
-                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
-                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <i class="ri-film-line" style="font-size: 32px; color: white;"></i>
+            <!-- Carousel Container -->
+            <div style="max-width: 1200px; margin: 0 auto; position: relative;">
+                <!-- Carousel Track -->
+                <div class="services-carousel-track" style="display: flex; transition: transform 0.5s ease; overflow: hidden;">
+                    <!-- Sync Licensing -->
+                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
+                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                <i class="ri-film-line" style="font-size: 32px; color: white;"></i>
+                            </div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Sync Licensing</h3>
+                            <p style="color: #666; line-height: 1.7;">Premium music placement for film, television, advertising, and gaming projects.</p>
+                        </div>
                     </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Sync Licensing</h3>
-                    <p style="color: #666; line-height: 1.7;">Premium music placement for film, television, advertising, and gaming projects.</p>
+
+                    <!-- Production Services -->
+                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
+                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                <i class="ri-music-2-line" style="font-size: 32px; color: white;"></i>
+                            </div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Production Services</h3>
+                            <p style="color: #666; line-height: 1.7;">Full-scale music production for major labels and artists across all genres.</p>
+                        </div>
+                    </div>
+
+                    <!-- Artist Collaboration -->
+                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
+                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                <i class="ri-team-line" style="font-size: 32px; color: white;"></i>
+                            </div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Artist Collaboration</h3>
+                            <p style="color: #666; line-height: 1.7;">Direct collaboration with major label artists on chart-topping releases.</p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Composition -->
+                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
+                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                                <i class="ri-quill-pen-line" style="font-size: 32px; color: white;"></i>
+                            </div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Custom Composition</h3>
+                            <p style="color: #666; line-height: 1.7;">Original music composition for brands, campaigns, and media projects.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Production Services -->
-                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
-                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <i class="ri-music-2-line" style="font-size: 32px; color: white;"></i>
+                <!-- Carousel Navigation -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem;">
+                    <button onclick="previousService()" style="background: #1a365d; color: white; border: none; width: 50px; height: 50px; border-radius: 0; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="ri-arrow-left-line"></i>
+                    </button>
+                    <div class="carousel-indicators" style="display: flex; gap: 0.5rem;">
+                        <span class="carousel-dot" data-index="0" style="width: 12px; height: 12px; background: #1a365d; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="carousel-dot" data-index="1" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="carousel-dot" data-index="2" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="carousel-dot" data-index="3" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
                     </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Production Services</h3>
-                    <p style="color: #666; line-height: 1.7;">Full-scale music production for major labels and artists across all genres.</p>
-                </div>
-
-                <!-- Artist Collaboration -->
-                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
-                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <i class="ri-team-line" style="font-size: 32px; color: white;"></i>
-                    </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Artist Collaboration</h3>
-                    <p style="color: #666; line-height: 1.7;">Direct collaboration with major label artists on chart-topping releases.</p>
-                </div>
-
-                <!-- Custom Composition -->
-                <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
-                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <i class="ri-quill-pen-line" style="font-size: 32px; color: white;"></i>
-                    </div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Custom Composition</h3>
-                    <p style="color: #666; line-height: 1.7;">Original music composition for brands, campaigns, and media projects.</p>
+                    <button onclick="nextService()" style="background: #1a365d; color: white; border: none; width: 50px; height: 50px; border-radius: 0; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 3.5rem;">
                 <a href="contact.html" class="btn-ssk" style="background: #1a365d; color: white;">
                     Work With Us <i class="ri-arrow-right-line" style="margin-left: 8px;"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- CREDENTIALS SECTION -->
-    <section class="section-padding" style="background: white; padding: 4rem 0;">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <!-- Genius Badge -->
-                <a href="https://genius.com/artists/Ssk-music" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit;">
-                    <div style="background: linear-gradient(135deg, #FFFBF0 0%, #FFF5E6 100%); border: 2px solid #F4D03F; padding: 3rem 4rem; border-radius: 20px; text-align: center; transition: all 0.3s ease; width: 100%;">
-                        <img src="assets/images/genius-logo.png" alt="Genius" style="height: 80px; margin-bottom: 1rem; filter: brightness(0.8) contrast(1.2);">
-                        <h3 style="color: #1a365d; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 800;">10+</h3>
-                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em;">Genius-Verified Production Credits</p>
-                        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: #1a365d; color: white; padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
-                            <i class="ri-verified-badge-fill"></i> Verified on Genius
-                        </div>
-                    </div>
                 </a>
             </div>
         </div>
@@ -967,7 +977,7 @@
                     <i class="ri-verified-badge-fill" style="font-size: 3rem; color: white;"></i>
                     <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: white;">Genius</span>
                 </a>
-                <a href="https://instagram.com/sskmusicbeats" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
+                <a href="https://instagram.com/ssk_music" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
                     <i class="ri-instagram-fill" style="font-size: 3rem; color: white;"></i>
                     <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: white;">Instagram</span>
                 </a>
@@ -1026,7 +1036,7 @@
                             <a href="https://genius.com/artists/Ssk-music" target="_blank">Genius</a>
                         </li>
                         <li style="margin-bottom: 0.75rem;">
-                            <a href="https://instagram.com/sskmusicbeats" target="_blank">Instagram</a>
+                            <a href="https://instagram.com/ssk_music" target="_blank">Instagram</a>
                         </li>
                     </ul>
                 </div>
@@ -1040,7 +1050,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; 2025 SSK Music. All Rights Reserved.</p>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; 2026 SSK Music. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -1194,9 +1204,9 @@
             const ytValue = stats.youtube || youtubeTotal || 38000000;
             const spValue = stats.spotify || spotifyTotal || 17000000;
 
-            // Update main stats with animation
-            animateValue(document.getElementById('yt-count'), youtubeTotal, ytValue, 2000);
-            animateValue(document.getElementById('sp-count'), spotifyTotal, spValue, 2000);
+            // Update main stats directly (no animation)
+            document.getElementById('yt-count').textContent = formatNumber(ytValue);
+            document.getElementById('sp-count').textContent = formatNumber(spValue);
 
             // Update sticky header stats (instant, no animation)
             document.getElementById('sticky-yt').textContent = formatNumber(ytValue);
@@ -1240,6 +1250,45 @@
             document.getElementById('modal').style.display = 'none';
             document.getElementById('modal-embed').innerHTML = '';
         }
+
+        // ============================================
+        // SERVICES CAROUSEL
+        // ============================================
+        let currentService = 0;
+        const totalServices = 4;
+
+        function updateCarousel() {
+            const track = document.querySelector('.services-carousel-track');
+            if (!track) return;
+
+            track.style.transform = `translateX(-${currentService * 100}%)`;
+
+            // Update dots
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.style.background = index === currentService ? '#1a365d' : '#ccc';
+            });
+        }
+
+        function nextService() {
+            currentService = (currentService + 1) % totalServices;
+            updateCarousel();
+        }
+
+        function previousService() {
+            currentService = (currentService - 1 + totalServices) % totalServices;
+            updateCarousel();
+        }
+
+        // Add click handlers to dots
+        document.querySelectorAll('.carousel-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                currentService = parseInt(this.getAttribute('data-index'));
+                updateCarousel();
+            });
+        });
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(nextService, 5000);
 
         // Initialize
         updateStats();
