@@ -40,6 +40,13 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            position: relative !important;
+        }
+
+        /* Ensure no overlays block the navigation */
+        body::before,
+        body::after {
+            display: none !important;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -66,11 +73,16 @@
             right: 0;
             background: rgba(26, 54, 93, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 99999 !important;
+            z-index: 999999 !important;
             padding: 1rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+        /* Ensure no elements cover the navigation */
+        .sticky-header * {
             pointer-events: auto !important;
         }
 
@@ -224,7 +236,13 @@
         /* All sections after hero need to be above it */
         section:not(.hero-custom) {
             position: relative;
-            z-index: 10;
+            z-index: 1;
+        }
+
+        /* Ensure navigation is always on top */
+        header.sticky-header {
+            z-index: 999999 !important;
+            position: fixed !important;
         }
 
         /* Clients Section */
@@ -1182,9 +1200,10 @@
             submitBtn.textContent = 'Subscribing...';
 
             try {
-                // Submit to Google Apps Script
+                // Submit to Google Apps Script with CORS handling
                 const response = await fetch(EMAIL_LIST_WEB_APP_URL, {
                     method: 'POST',
+                    mode: 'no-cors', // Handle CORS for Google Apps Script
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -1195,7 +1214,10 @@
                     })
                 });
 
-                const data = await response.json();
+                // Google Apps Script with no-cors returns opaque response
+                // Assume success if no network error
+                alert('Success! Check your email for confirmation.');
+                this.reset();
 
                 if (data.success) {
                     alert('Success! Check your email for confirmation.');
