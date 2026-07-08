@@ -58,7 +58,7 @@
             right: 0;
             background: rgba(26, 54, 93, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 9999;
+            z-index: 99999 !important;
             padding: 1rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -523,16 +523,32 @@
                 <a href="contact.html" class="sticky-nav-link bypass-touch-check active">Contact</a>
             </div>
             <style>
+                .sticky-cta {
+                    position: relative !important;
+                    z-index: 9999 !important;
+                    pointer-events: auto !important;
+                    display: flex !important;
+                    gap: 1rem !important;
+                    align-items: center !important;
+                }
                 .sticky-nav-link {
                     transition: all 0.2s ease;
                     position: relative !important;
-                    z-index: 1;
+                    z-index: 9999 !important;
                     cursor: pointer !important;
+                    pointer-events: auto !important;
+                    color: white !important;
+                    text-decoration: none !important;
+                    display: block !important;
                 }
                 .sticky-nav-link:hover {
                     opacity: 0.7;
                     transform: translateY(-2px);
                     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
+                }
+                .sticky-header {
+                    z-index: 99999 !important;
+                    pointer-events: auto !important;
                 }
             </style>
         </div>

@@ -66,7 +66,7 @@
             right: 0;
             background: rgba(26, 54, 93, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 9999;
+            z-index: 99999 !important;
             padding: 1rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -746,21 +746,31 @@
                 <a href="contact.html" class="sticky-nav-link bypass-touch-check">Contact</a>
             </div>
             <style>
+                .sticky-cta {
+                    position: relative !important;
+                    z-index: 9999 !important;
+                    pointer-events: auto !important;
+                    display: flex !important;
+                    gap: 1rem !important;
+                    align-items: center !important;
+                }
                 .sticky-nav-link {
                     transition: all 0.2s ease;
                     position: relative !important;
-                    z-index: 10 !important;
+                    z-index: 9999 !important;
                     cursor: pointer !important;
                     pointer-events: auto !important;
+                    color: white !important;
+                    text-decoration: none !important;
+                    display: block !important;
                 }
                 .sticky-nav-link:hover {
                     opacity: 0.7;
                     transform: translateY(-2px);
                     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
                 }
-                .sticky-cta {
-                    position: relative;
-                    z-index: 10 !important;
+                .sticky-header {
+                    z-index: 9999 !important;
                     pointer-events: auto !important;
                 }
             </style>
@@ -865,69 +875,42 @@
                 <p style="color: #666;">Comprehensive music production and licensing solutions</p>
             </div>
 
-            <!-- Carousel Container -->
-            <div style="max-width: 1200px; margin: 0 auto; position: relative;">
-                <!-- Carousel Track -->
-                <div class="services-carousel-track" style="display: flex; transition: transform 0.5s ease; overflow: hidden;">
-                    <!-- Sync Licensing -->
-                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
-                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
-                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                                <i class="ri-film-line" style="font-size: 32px; color: white;"></i>
-                            </div>
-                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Sync Licensing</h3>
-                            <p style="color: #666; line-height: 1.7;">Premium music placement for film, television, advertising, and gaming projects.</p>
-                        </div>
+            <!-- Services Grid - Show All Services -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <!-- Sync Licensing -->
+                <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="ri-film-line" style="font-size: 32px; color: white;"></i>
                     </div>
-
-                    <!-- Production Services -->
-                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
-                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
-                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                                <i class="ri-music-2-line" style="font-size: 32px; color: white;"></i>
-                            </div>
-                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Production Services</h3>
-                            <p style="color: #666; line-height: 1.7;">Full-scale music production for major labels and artists across all genres.</p>
-                        </div>
-                    </div>
-
-                    <!-- Artist Collaboration -->
-                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
-                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
-                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                                <i class="ri-team-line" style="font-size: 32px; color: white;"></i>
-                            </div>
-                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Artist Collaboration</h3>
-                            <p style="color: #666; line-height: 1.7;">Direct collaboration with major label artists on chart-topping releases.</p>
-                        </div>
-                    </div>
-
-                    <!-- Custom Composition -->
-                    <div class="service-slide" style="min-width: 100%; padding: 0 1rem;">
-                        <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
-                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                                <i class="ri-quill-pen-line" style="font-size: 32px; color: white;"></i>
-                            </div>
-                            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Custom Composition</h3>
-                            <p style="color: #666; line-height: 1.7;">Original music composition for brands, campaigns, and media projects.</p>
-                        </div>
-                    </div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Sync Licensing</h3>
+                    <p style="color: #666; line-height: 1.7;">Premium music placement for film, television, advertising, and gaming projects.</p>
                 </div>
 
-                <!-- Carousel Navigation -->
-                <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem;">
-                    <button onclick="previousService()" style="background: #1a365d; color: white; border: none; width: 50px; height: 50px; border-radius: 0; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                        <i class="ri-arrow-left-line"></i>
-                    </button>
-                    <div class="carousel-indicators" style="display: flex; gap: 0.5rem;">
-                        <span class="carousel-dot" data-index="0" style="width: 12px; height: 12px; background: #1a365d; cursor: pointer; transition: all 0.3s;"></span>
-                        <span class="carousel-dot" data-index="1" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
-                        <span class="carousel-dot" data-index="2" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
-                        <span class="carousel-dot" data-index="3" style="width: 12px; height: 12px; background: #ccc; cursor: pointer; transition: all 0.3s;"></span>
+                <!-- Production Services -->
+                <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="ri-music-2-line" style="font-size: 32px; color: white;"></i>
                     </div>
-                    <button onclick="nextService()" style="background: #1a365d; color: white; border: none; width: 50px; height: 50px; border-radius: 0; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                        <i class="ri-arrow-right-line"></i>
-                    </button>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Production Services</h3>
+                    <p style="color: #666; line-height: 1.7;">Full-scale music production for major labels and artists across all genres.</p>
+                </div>
+
+                <!-- Artist Collaboration -->
+                <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="ri-team-line" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Artist Collaboration</h3>
+                    <p style="color: #666; line-height: 1.7;">Direct collaboration with major label artists on chart-topping releases.</p>
+                </div>
+
+                <!-- Custom Composition -->
+                <div style="background: white; padding: 2.5rem; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                        <i class="ri-quill-pen-line" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #1a365d;">Custom Composition</h3>
+                    <p style="color: #666; line-height: 1.7;">Original music composition for brands, campaigns, and media projects.</p>
                 </div>
             </div>
 
@@ -1335,44 +1318,6 @@
             document.getElementById('modal-embed').innerHTML = '';
         }
 
-        // ============================================
-        // SERVICES CAROUSEL
-        // ============================================
-        let currentService = 0;
-        const totalServices = 4;
-
-        function updateCarousel() {
-            const track = document.querySelector('.services-carousel-track');
-            if (!track) return;
-
-            track.style.transform = `translateX(-${currentService * 100}%)`;
-
-            // Update dots
-            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-                dot.style.background = index === currentService ? '#1a365d' : '#ccc';
-            });
-        }
-
-        function nextService() {
-            currentService = (currentService + 1) % totalServices;
-            updateCarousel();
-        }
-
-        function previousService() {
-            currentService = (currentService - 1 + totalServices) % totalServices;
-            updateCarousel();
-        }
-
-        // Add click handlers to dots
-        document.querySelectorAll('.carousel-dot').forEach(dot => {
-            dot.addEventListener('click', function() {
-                currentService = parseInt(this.getAttribute('data-index'));
-                updateCarousel();
-            });
-        });
-
-        // Auto-advance carousel every 5 seconds
-        setInterval(nextService, 5000);
 
         // Initialize
         updateStats();
