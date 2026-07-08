@@ -835,6 +835,24 @@
                     <div class="stat-label" style="color: #666;">Spotify Streams</div>
                 </div>
             </div>
+
+            <!-- Email List Signup -->
+            <div style="max-width: 600px; margin: 3rem auto 0; text-align: center;">
+                <h3 style="color: #1a365d; margin-bottom: 1rem;">Get Exclusive Content</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">Join our email list for free beats, production tips, and industry insights</p>
+                <form id="homepage-email-signup" style="max-width: 400px; margin: 0 auto;">
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="email" id="homepage-email" name="email" required placeholder="Enter your email"
+                               style="flex: 1; padding: 1rem; border: 2px solid #e9ecef; border-radius: 0; font-size: 1rem;">
+                        <button type="submit" class="btn-ssk" style="background: #1a365d; color: white; border: none; padding: 1rem 2rem;">
+                            Subscribe
+                        </button>
+                    </div>
+                </form>
+                <p style="color: #999; font-size: 0.75rem; margin-top: 1rem;">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -1149,6 +1167,72 @@
                 });
             }, { once: true, passive: true });
         });
+
+        // ============================================
+        // 🎯 EMAIL LIST CONFIGURATION
+        // Google Apps Script Web App URL for email list integration
+        // ============================================
+        const EMAIL_LIST_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwUkrwN7XoEDxp99czeb2JMekYfkET0GcTgLv_fcAIFzC6_NJSXm-9Zj64KW5tHsvfK3A/exec';
+
+        // Homepage Email Signup Handler
+        document.getElementById('homepage-email-signup').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('homepage-email').value.trim();
+            const submitBtn = this.querySelector('button');
+            const originalText = submitBtn.textContent;
+
+            // Basic email validation
+            if (!email || !isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Check if Web App URL is configured
+            if (EMAIL_LIST_WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') {
+                alert('Email list system is not configured yet. Please contact the administrator.');
+                return;
+            }
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Subscribing...';
+
+            try {
+                // Submit to Google Apps Script
+                const response = await fetch(EMAIL_LIST_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        name: '',
+                        source: 'website-homepage'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Success! Check your email for confirmation.');
+                    this.reset();
+                } else {
+                    alert(data.error || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 
         // ============================================
         // SSK MUSIC - LIVE STATS (Netlify Serverless)

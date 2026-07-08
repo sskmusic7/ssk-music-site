@@ -590,7 +590,7 @@
                     <a href="https://genius.com/artists/Ssk-music" target="_blank" class="social-link">
                         <i class="ri-verified-badge-fill"></i>
                     </a>
-                    <a href="https://instagram.com/sskmusicbeats" target="_blank" class="social-link">
+                    <a href="https://instagram.com/ssk_music" target="_blank" class="social-link">
                         <i class="ri-instagram-fill"></i>
                     </a>
                     <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" class="social-link">
@@ -632,6 +632,26 @@
 
                     <button type="submit" class="btn-submit">Send Message</button>
                 </form>
+
+                <!-- Email List Signup -->
+                <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #1a365d, #2d4a7f); border-radius: 0; text-align: center;">
+                    <h4 style="color: white; margin-bottom: 1rem; font-size: 1.25rem;">Join Our Email List</h4>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                        Get exclusive beats, production tips, and industry insights delivered to your inbox
+                    </p>
+                    <form id="email-signup-form" style="max-width: 400px; margin: 0 auto;">
+                        <div class="form-group">
+                            <input type="email" id="signup-email" name="email" required placeholder="Enter your email"
+                                   style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                        </div>
+                        <button type="submit" class="btn-submit" style="background: white; color: #1a365d; border: none;">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; margin-top: 1rem;">
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -657,7 +677,7 @@
                             <a href="https://genius.com/artists/Ssk-music" target="_blank">Genius</a>
                         </li>
                         <li style="margin-bottom: 0.75rem;">
-                            <a href="https://instagram.com/sskmusicbeats" target="_blank">Instagram</a>
+                            <a href="https://instagram.com/ssk_music" target="_blank">Instagram</a>
                         </li>
                     </ul>
                 </div>
@@ -671,7 +691,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; 2025 SSK Music. All Rights Reserved.</p>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; 2026 SSK Music. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -683,6 +703,13 @@
 
     <!-- Contact Form Handler -->
     <script>
+        // ============================================
+        // 🎯 EMAIL LIST CONFIGURATION
+        // Google Apps Script Web App URL for email list integration
+        // ============================================
+        const EMAIL_LIST_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwUkrwN7XoEDxp99czeb2JMekYfkET0GcTgLv_fcAIFzC6_NJSXm-9Zj64KW5tHsvfK3A/exec';
+
+        // Contact Form Handler
         document.getElementById('contactform').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -698,6 +725,66 @@
             alert('Thank you for your message! We will get back to you soon.');
             this.reset();
         });
+
+        // Email List Signup Handler
+        document.getElementById('email-signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('signup-email').value.trim();
+            const submitBtn = this.querySelector('button');
+            const originalText = submitBtn.textContent;
+
+            // Basic email validation
+            if (!email || !isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Check if Web App URL is configured
+            if (EMAIL_LIST_WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') {
+                alert('Email list system is not configured yet. Please contact the administrator.');
+                return;
+            }
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Subscribing...';
+
+            try {
+                // Submit to Google Apps Script
+                const response = await fetch(EMAIL_LIST_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        name: '', // Optional: can be added if needed
+                        source: 'website-contact-page'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Success! Check your email for confirmation.');
+                    this.reset();
+                } else {
+                    alert(data.error || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
     </script>
 
 </body>
