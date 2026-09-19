@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins.css"/>
     <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/deck.css"/>
 
     <!-- Premium Google Fonts - Syne for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -723,6 +724,58 @@
             height: auto !important;
         }
 
+        /* Social icons.
+           The rule above sets height:auto !important on every img, which
+           overrides any inline height and blew the Genius wordmark up to
+           1107x341. A class selector outranks the element selector, so the
+           sizing has to live here — not in an inline style attribute. */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px);
+            opacity: 0.85;
+        }
+
+        .social-icon,
+        .social-icon-img {
+            height: 48px !important;
+            line-height: 48px;
+            font-size: 3rem;
+            color: white;
+            display: block;
+        }
+
+        .social-icon-img {
+            width: auto !important;
+            max-width: none !important;
+            /* asset is a black wordmark; this renders it white on navy */
+            filter: brightness(0) invert(1);
+        }
+
+        .social-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
         /* Container max-width for mobile */
         .container {
             max-width: 100% !important;
@@ -1014,6 +1067,34 @@
     </section>
 
 
+    <!-- ARTIST DECK CAROUSEL -->
+    <section class="deck-section" id="deck" tabindex="-1" aria-roledescription="carousel" aria-label="SSK Music artist deck">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Deck</h2>
+            </div>
+            <p class="deck-intro">
+                The full SSK Music story &mdash; credentials, the artists, the rooms.
+                Scroll to cycle through, or hover a record to hear the work.
+            </p>
+        </div>
+
+        <div class="deck-shell">
+            <div class="deck-stage"></div>
+
+            <div class="deck-controls">
+                <button class="deck-arrow" data-dir="-1" type="button" aria-label="Previous slide">&#8592;</button>
+                <span class="deck-counter">1 / 1</span>
+                <button class="deck-arrow" data-dir="1" type="button" aria-label="Next slide">&#8594;</button>
+            </div>
+
+            <div class="deck-dots" role="tablist" aria-label="Deck slides"></div>
+            <p class="deck-hint">Keep scrolling to flip through the deck</p>
+            <p class="deck-live visually-hidden-deck" aria-live="polite"></p>
+        </div>
+    </section>
+
+
     <!-- SOCIAL SECTION -->
     <section class="section-padding" style="background: #1a365d;">
         <div class="container">
@@ -1021,18 +1102,18 @@
                 <h2 style="color: white;">Connect With Us</h2>
             </div>
 
-            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-                <a href="https://genius.com/artists/Ssk-music" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
-                    <img src="assets/images/genius-logo-transparent.png" alt="Genius" style="height: 48px; width: auto; max-width: 48px;">
-                    <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: white;">Genius</span>
+            <div class="social-links">
+                <a href="https://genius.com/artists/Ssk-music" target="_blank" rel="noopener" class="social-link">
+                    <img src="assets/images/genius-logo-transparent.png" alt="Genius" class="social-icon-img">
+                    <span class="social-label">Genius</span>
                 </a>
-                <a href="https://instagram.com/ssk_music" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
-                    <i class="ri-instagram-fill" style="font-size: 3rem; color: white;"></i>
-                    <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: white;">Instagram</span>
+                <a href="https://instagram.com/ssk_music" target="_blank" rel="noopener" class="social-link">
+                    <i class="ri-instagram-fill social-icon"></i>
+                    <span class="social-label">Instagram</span>
                 </a>
-                <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-decoration: none; color: white;">
-                    <i class="ri-youtube-fill" style="font-size: 3rem; color: white;"></i>
-                    <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: white;">YouTube</span>
+                <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" rel="noopener" class="social-link">
+                    <i class="ri-youtube-fill social-icon"></i>
+                    <span class="social-label">YouTube</span>
                 </a>
             </div>
         </div>
@@ -1121,6 +1202,7 @@
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/deck-carousel.js" defer></script>
 
     <!-- Live Stats Script -->
     <script>

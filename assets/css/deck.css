@@ -1,0 +1,374 @@
+/* ===========================================================
+   SSK deck carousel + rotating disk
+   Scroll-cycle behaviour ported from the BigHeadz town portal.
+   =========================================================== */
+
+.deck-section {
+    background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.deck-section .section-title h2 { color: #fff; }
+
+.visually-hidden-deck {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.deck-intro {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.deck-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ---------- stage ---------- */
+/* Aspect comes from the real slide dimensions (set by JS from deck.json).
+   The deck pages are 1.42:1, not 16:9 — hard-coding 16/9 cropped the torn
+   top edge and the chart panel off every slide. */
+.deck-stage {
+    position: relative;
+    aspect-ratio: var(--deck-aspect, 1.42);
+    background: #060d18;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Crossfade on opacity only.
+   An earlier version also scaled 1.03 -> 1, but the transform left the
+   slide 3% larger than the stage (overflow:hidden then clipped ~30px off
+   every deck page) and the transform transition sat stuck at currentTime 0.
+   Opacity alone reads the same and can't crop the artwork. */
+.deck-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.55s ease, visibility 0s linear 0.55s;
+    will-change: opacity;
+}
+
+.deck-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.55s ease, visibility 0s linear 0s;
+    z-index: 2;
+}
+
+/* the global `img{height:auto!important}` rule in index.html would squash
+   these, so the class has to win on specificity */
+.deck-slide img.deck-slide-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    /* contain, never cover — a pitch deck must not lose its edges */
+    object-fit: contain;
+    display: block;
+}
+
+.deck-slide picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.deck-slide-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: 2.5rem 1.75rem 1.25rem;
+    background: linear-gradient(transparent, rgba(4, 10, 20, 0.92));
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    pointer-events: none;
+}
+
+.deck-slide-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+.deck-slide-kind {
+    font-size: 0.625rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 0.35rem;
+}
+
+/* ---------- controls ---------- */
+.deck-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.deck-arrow {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.deck-arrow:hover:not(:disabled) {
+    background: #fff;
+    color: #0a1628;
+    transform: scale(1.06);
+}
+
+.deck-arrow:disabled { opacity: 0.3; cursor: default; }
+
+.deck-dots {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 560px;
+}
+
+.deck-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.28);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.deck-dot:hover { background: rgba(255, 255, 255, 0.6); }
+
+.deck-dot.is-active {
+    background: #fff;
+    transform: scale(1.5);
+}
+
+.deck-counter {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.75);
+    min-width: 76px;
+    text-align: center;
+}
+
+.deck-hint {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    transition: opacity 0.3s ease;
+}
+
+.deck-shell.is-engaged .deck-hint { opacity: 0; }
+
+/* progress bar across the top of the stage */
+.deck-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: #fff;
+    z-index: 5;
+    transition: width 0.45s ease;
+}
+
+/* ===========================================================
+   Rotating disk
+   =========================================================== */
+.deck-disk {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.75rem;
+    z-index: 4;
+    width: clamp(88px, 13vw, 132px);
+    aspect-ratio: 1;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 50%;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.deck-disk:hover,
+.deck-disk:focus-visible { transform: scale(1.08); }
+
+.deck-disk-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 50%,
+            #d8d2c4 0 17%,
+            #12100e 17.5% 19%,
+            #1b1917 19% 100%),
+        repeating-radial-gradient(circle at 50% 50%,
+            rgba(255, 255, 255, 0.05) 0 1px,
+            rgba(0, 0, 0, 0) 1px 4px);
+    background-blend-mode: overlay;
+    box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.85);
+    animation: deck-disk-spin 3.2s linear infinite;
+    animation-play-state: paused;
+}
+
+/* artwork sits in the label area */
+.deck-disk-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34%;
+    height: 34%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 2;
+    animation: deck-disk-spin 3.2s linear infinite;
+    animation-play-state: paused;
+    max-width: none !important;
+    height: 34% !important;
+}
+
+/* spindle hole */
+.deck-disk-face::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6%;
+    height: 6%;
+    transform: translate(-50%, -50%);
+    background: #060d18;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.deck-disk.is-playing .deck-disk-face,
+.deck-disk.is-playing .deck-disk-label { animation-play-state: running; }
+
+.deck-disk.is-playing {
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.5),
+        0 0 34px 8px rgba(120, 180, 255, 0.55);
+}
+
+/* little play/pause badge */
+.deck-disk-badge {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    color: #0a1628;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    z-index: 4;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.deck-disk[hidden] { display: none; }
+
+@keyframes deck-disk-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* label needs to keep its centring translate while spinning */
+@keyframes deck-disk-spin-label {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.deck-disk-label { animation-name: deck-disk-spin-label; }
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media (max-width: 768px) {
+    .deck-section { padding: 3rem 0; }
+    .deck-shell { padding: 0 0.75rem; }
+    .deck-slide-caption { padding: 2rem 1rem 0.9rem; }
+    .deck-disk { right: 0.9rem; bottom: 0.9rem; }
+    .deck-controls { gap: 0.75rem; }
+    .deck-dots { max-width: 100%; gap: 0.3rem; }
+    .deck-dot { width: 7px; height: 7px; }
+    .deck-counter { min-width: 64px; font-size: 0.7rem; }
+}
+
+/* ===========================================================
+   Reduced motion: no scroll hijack, no spin.
+   JS reads this same query and disables the wheel handler, so the
+   section degrades to a plain horizontal scroll-snap strip.
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .deck-stage {
+        aspect-ratio: auto;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .deck-slide {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+        flex: 0 0 88%;
+        scroll-snap-align: center;
+        aspect-ratio: 16 / 9;
+    }
+
+    .deck-disk-face,
+    .deck-disk-label { animation: none !important; }
+
+    .deck-progress { display: none; }
+}
