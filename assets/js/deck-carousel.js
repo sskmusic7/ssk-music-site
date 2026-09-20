@@ -169,10 +169,19 @@
         btn.appendChild(label);
         btn.appendChild(badge);
 
-        // hover preview on pointer devices only; tap/click always works
+        // Hover spins the record whether or not there's a snippet behind it.
+        // Previously the spin was gated on playSnippet(), which bails when
+        // slide.audio is null — so a disk with no audio yet did nothing at
+        // all on hover. The spin is the affordance; audio is the bonus.
         if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
-            btn.addEventListener('mouseenter', function () { playSnippet(slide, btn); });
-            btn.addEventListener('mouseleave', function () { stopAudio(); });
+            btn.addEventListener('mouseenter', function () {
+                btn.classList.add('is-spinning');
+                playSnippet(slide, btn);
+            });
+            btn.addEventListener('mouseleave', function () {
+                btn.classList.remove('is-spinning');
+                stopAudio();
+            });
         }
         btn.addEventListener('click', function (e) {
             e.stopPropagation();

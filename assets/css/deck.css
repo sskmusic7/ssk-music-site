@@ -368,7 +368,9 @@
 }
 
 .deck-disk.is-playing .deck-disk-face,
-.deck-disk.is-playing .deck-disk-label { animation-play-state: running; }
+.deck-disk.is-playing .deck-disk-label,
+.deck-disk.is-spinning .deck-disk-face,
+.deck-disk.is-spinning .deck-disk-label { animation-play-state: running; }
 
 .deck-disk.is-playing {
     box-shadow:
