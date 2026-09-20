@@ -32,6 +32,16 @@
 
     <style>
         /* SSK Music Custom Styles */
+
+        /* index.html sets these globally; without them the header padding
+           added to its width and pushed the last nav link off-screen. */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        html, body { overflow-x: hidden; }
+
         :root {
             --ssk-navy: #1a365d;
             --ssk-navy-light: #2d4a7f;
@@ -252,6 +262,14 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 1;
+        }
+
+        .sticky-nav-link:hover { opacity: 0.7; }
 
         @media (max-width: 768px) {
             /* Sticky header adjustments */
@@ -273,14 +291,18 @@
                 max-height: 32px !important;
             }
 
-            /* Mobile nav - make text smaller */
+            /* Mobile nav - make text smaller.
+               Tighter than the homepage copy: with four links the last one
+               ("Contact") ran 3px past the viewport edge at 700px. */
             .sticky-cta {
-                gap: 0.5rem !important;
+                gap: 0.3rem !important;
+                flex-shrink: 1 !important;
             }
 
             .sticky-nav-link {
                 font-size: 0.65rem !important;
-                padding: 0.25rem 0.5rem !important;
+                padding: 0.25rem 0.3rem !important;
+                white-space: nowrap;
             }
 
             /* Body padding for smaller header */
@@ -288,8 +310,6 @@
                 padding-top: 60px !important;
             }
 
-
-        @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
             }
