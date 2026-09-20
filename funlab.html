@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SSK MUSIC | Fun Lab</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Play with the tools SSK Music builds — stem player, beat machine, drum patterns and a rhyme finder.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="assets/css/plugins.css"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/funlab/stem-replicator.css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css"/>
+
+    <style>
+        * { max-width: 100%; box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif !important;
+            margin: 0;
+            padding: 80px 0 0;
+            background: #f8f9fa;
+            color: #1a1512;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif !important;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            font-weight: 700;
+        }
+
+        .sticky-header {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26, 54, 93, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sticky-header-content {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+        }
+        .sticky-logo img { max-height: 40px; display: block; }
+        .sticky-cta { display: flex; gap: 1rem; align-items: center; }
+        .sticky-nav-link {
+            color: #fff; text-decoration: none; font-size: 0.75rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+        .sticky-nav-link:hover { opacity: 0.7; }
+
+        .lab-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            color: #fff;
+        }
+        .lab-hero h1 {
+            font-size: clamp(2.5rem, 7vw, 3.6rem);
+            margin: 0 0 1rem;
+            letter-spacing: 0.02em;
+        }
+        .lab-hero p {
+            color: rgba(255,255,255,0.75);
+            max-width: 620px; margin: 0 auto;
+            font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+        }
+
+        .lab-wrap { max-width: 1100px; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+
+        .lab-tool { margin-bottom: 3.5rem; }
+        .lab-tool > h2 {
+            font-size: 1.05rem;
+            color: #1a365d;
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .lab-tool > p.lab-note {
+            font-size: 0.85rem; color: #7c848d; margin: 0 0 1.5rem;
+        }
+
+        .lab-soon {
+            border: 1px dashed #cfd6de;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: #98a1ab;
+            font-size: 0.85rem;
+            background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-header { padding: 0.75rem 1rem; }
+            .sticky-logo img { max-height: 32px; }
+            .sticky-nav-link { font-size: 0.65rem; }
+            .sticky-cta { gap: 0.4rem; }
+            body { padding-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky-header">
+        <div class="sticky-header-content">
+            <div class="sticky-logo">
+                <a href="index.html"><img src="assets/images/SSK Logo.png" alt="SSK Music"></a>
+            </div>
+            <div class="sticky-cta">
+                <a href="index.html" class="sticky-nav-link">Home</a>
+                <a href="discography.html" class="sticky-nav-link">Discography</a>
+                <a href="funlab.html" class="sticky-nav-link active">Fun Lab</a>
+                <a href="contact.html" class="sticky-nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="lab-hero">
+        <h1>Fun Lab</h1>
+        <p>Tools built in the studio, opened up so you can mess with them.
+           Everything here runs in your browser &mdash; nothing to install.</p>
+    </section>
+
+    <main class="lab-wrap">
+
+        <section class="lab-tool">
+            <h2>Stem Replicator</h2>
+            <p class="lab-note">
+                Sixteen bars of a real session, split into its parts. Mute and solo
+                to hear how the record is stacked up &mdash; everything stays in sync
+                because the stems never stop, they just get turned down.
+            </p>
+            <div id="stem-replicator"></div>
+        </section>
+
+        <section class="lab-tool">
+            <h2>Beat Machine</h2>
+            <p class="lab-note">16-step sequencer. Coming next.</p>
+            <div class="lab-soon">Needs drum one-shots &mdash; see FUN_LAB_SPEC.md</div>
+        </section>
+
+        <section class="lab-tool">
+            <h2>Drum Pattern Cheat Sheet</h2>
+            <p class="lab-note">Classic patterns across boom bap, drill, amapiano, afroswing and more.</p>
+            <div class="lab-soon">In build</div>
+        </section>
+
+        <section class="lab-tool">
+            <h2>Rhyme Finder</h2>
+            <p class="lab-note">Drop a line in, get rhymes out, with syllable counts.</p>
+            <div class="lab-soon">In build</div>
+        </section>
+
+    </main>
+
+    <script src="assets/js/funlab/stem-replicator.js"></script>
+    <script>
+        // one AudioContext shared by every tool on the page
+        window.SSK_AUDIO = window.SSK_AUDIO || null;
+        function sskAudioContext() {
+            if (!window.SSK_AUDIO) {
+                var AC = window.AudioContext || window.webkitAudioContext;
+                window.SSK_AUDIO = new AC();
+            }
+            return window.SSK_AUDIO;
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var host = document.getElementById('stem-replicator');
+            if (host && window.SSKFunLab && window.SSKFunLab.stemReplicator) {
+                // factory, not a live context — nothing is constructed until
+                // the user actually presses play
+                window.SSKFunLab.stemReplicator.mount(host, {
+                    getAudioContext: sskAudioContext
+                });
+            }
+        });
+    </script>
+</body>
+</html>

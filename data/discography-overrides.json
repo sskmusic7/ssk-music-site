@@ -5,8 +5,20 @@
     "title": "Correct Title",
     "type": "track",
     "platforms": {
-      "spotify": "https://…",
-      "beatstars": "https://…"
+      "spotify": "https://\u2026",
+      "beatstars": "https://\u2026"
     }
+  },
+  "Vqhzn3nVs3Q": {
+    "artist": "Mnelia",
+    "title": "Speeding",
+    "type": "track",
+    "_note": "not in the 'Prod. by SSK' playlist - add it there and this override can go"
+  },
+  "U78gkCMdDGs": {
+    "artist": "Marley Waters",
+    "title": "Marley Waters",
+    "type": "track",
+    "_note": "not in the 'Prod. by SSK' playlist - confirm the real title"
   }
 }

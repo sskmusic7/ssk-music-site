@@ -1,0 +1,176 @@
+/* Fun Lab — Stem Replicator.
+   Everything scoped under .funlab-stem-replicator so it can drop into any
+   page without leaking styles (the site has a global
+   `img,video,iframe{height:auto!important}` that has already broken three
+   separate things). */
+
+.funlab-stem-replicator {
+    --fsr-navy: #1a365d;
+    --fsr-dark: #0a1628;
+    --fsr-line: #e4e8ee;
+
+    background: #fff;
+    border: 1px solid var(--fsr-line);
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--fsr-dark);
+}
+
+.funlab-stem-replicator .fsr-head { margin-bottom: 1.25rem; }
+
+.funlab-stem-replicator .fsr-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--fsr-navy);
+}
+
+.funlab-stem-replicator .fsr-meta {
+    font-size: 0.75rem;
+    color: #7c848d;
+    margin-top: 0.2rem;
+}
+
+/* ---- stem rows ---- */
+.funlab-stem-replicator .fsr-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+}
+
+.funlab-stem-replicator .fsr-row {
+    display: grid;
+    grid-template-columns: 1fr auto 120px;
+    align-items: center;
+    gap: 0.6rem;
+    transition: opacity 0.2s ease;
+}
+
+.funlab-stem-replicator .fsr-row.is-off { opacity: 0.38; }
+
+.funlab-stem-replicator .fsr-name {
+    text-align: left;
+    background: #f4f6f9;
+    border: 1px solid var(--fsr-line);
+    padding: 0.7rem 0.85rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fsr-navy);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.funlab-stem-replicator .fsr-row:not(.is-off) .fsr-name {
+    background: var(--fsr-navy);
+    border-color: var(--fsr-navy);
+    color: #fff;
+}
+
+.funlab-stem-replicator .fsr-name:hover { border-color: var(--fsr-navy); }
+
+.funlab-stem-replicator .fsr-solo {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--fsr-line);
+    background: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #8a929b;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.funlab-stem-replicator .fsr-row.is-solo .fsr-solo {
+    background: #f5b301;
+    border-color: #f5b301;
+    color: #1a1a1a;
+}
+
+.funlab-stem-replicator .fsr-level {
+    height: 6px;
+    background: #eef1f5;
+    overflow: hidden;
+}
+
+.funlab-stem-replicator .fsr-level-fill {
+    height: 100%;
+    width: 0;
+    background: var(--fsr-navy);
+}
+
+/* ---- timeline ---- */
+.funlab-stem-replicator .fsr-timeline {
+    height: 4px;
+    background: #eef1f5;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.funlab-stem-replicator .fsr-timeline-fill {
+    height: 100%;
+    width: 0;
+    background: var(--fsr-navy);
+}
+
+/* ---- transport ---- */
+.funlab-stem-replicator .fsr-foot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.funlab-stem-replicator .fsr-play {
+    background: var(--fsr-navy);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.9rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.funlab-stem-replicator .fsr-play:disabled { opacity: 0.45; cursor: default; }
+
+.funlab-stem-replicator .fsr-counter {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #7c848d;
+    flex: 1;
+}
+
+.funlab-stem-replicator .fsr-reset {
+    background: none;
+    border: 1px solid var(--fsr-line);
+    padding: 0.55rem 0.9rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fsr-navy);
+    cursor: pointer;
+}
+
+.funlab-stem-replicator .fsr-reset:hover { border-color: var(--fsr-navy); }
+
+@media (max-width: 480px) {
+    .funlab-stem-replicator { padding: 1rem; }
+    .funlab-stem-replicator .fsr-row { grid-template-columns: 1fr auto 60px; }
+    .funlab-stem-replicator .fsr-foot { flex-wrap: wrap; }
+    .funlab-stem-replicator .fsr-counter { order: 3; width: 100%; flex: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .funlab-stem-replicator * { transition: none !important; }
+}
