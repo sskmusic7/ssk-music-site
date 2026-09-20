@@ -26,8 +26,13 @@ function formatStreams(num) {
 }
 
 // Create release card HTML
+function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g,
+        c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function createReleaseCard(item) {
-    const typeLabel = item.type === 'album' ? 'Album' : 'Single';
+    const typeLabel = item.type === 'beat' ? 'Beat' : 'Track';
     const viewsHTML = item.youtube_views || item.spotify_streams ? `
         <div class="release-stats">
             ${item.youtube_views ? `
@@ -68,18 +73,28 @@ function createReleaseCard(item) {
         `;
     }).join('');
 
+    // Real artwork from YouTube. maxresdefault isn't generated for every
+    // upload, so fall back to hqdefault (always exists) rather than the
+    // single hardcoded album-1.jpg that used to be on every card.
+    const art = item.artwork || '';
+    const artFallback = item.artwork_fallback || 'assets/images/album-1.jpg';
+
+    const subtitle = item.type === 'beat'
+        ? (item.typeBeatFor ? `${escapeHtml(item.typeBeatFor)} type beat` : 'Type beat')
+        : `${escapeHtml(item.artist)}${item.producer ? ` · Prod. ${escapeHtml(item.producer)}` : ''}`;
+
     return `
         <div class="release-card" data-type="${item.type}" data-year="${item.year}">
             <div class="release-image">
-                <img src="assets/images/album-1.jpg" alt="${item.title}">
+                <img src="${art}" alt="${escapeHtml(item.title)}" loading="lazy"
+                     onerror="this.onerror=null;this.src='${artFallback}';">
             </div>
             <div class="release-type">${typeLabel}</div>
             <div class="release-info">
-                <h4 class="release-title">${item.title}</h4>
+                <h4 class="release-title">${escapeHtml(item.title)}</h4>
                 <div class="release-artist">
                     <i class="ri-user-3-line"></i>
-                    ${item.artist}
-                    ${item.producer ? ` · Produced by ${item.producer}` : ''}
+                    ${subtitle}
                 </div>
                 <div class="release-year">${item.year}</div>
                 ${viewsHTML}
@@ -92,15 +107,22 @@ function createReleaseCard(item) {
 }
 
 // Filter items
+//
+// This previously only looked at searchQuery and never read currentFilter,
+// which is why the Beats / Albums buttons did nothing at all: handleFilter()
+// set the variable and re-rendered, but no code consumed it.
 function filterItems(items) {
-    return items.filter(item => {
-        // Search filter
-        const matchesSearch = !searchQuery ||
-            (item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
-            (item.artist && item.artist.toLowerCase().includes(searchQuery.toLowerCase())) ||
-            (item.track && item.track.toLowerCase().includes(searchQuery.toLowerCase()));
+    const q = searchQuery.toLowerCase();
 
-        return matchesSearch;
+    return items.filter(item => {
+        // type filter: "all" | "beat" | "track"
+        const matchesType = currentFilter === 'all' || item.type === currentFilter;
+        if (!matchesType) return false;
+
+        if (!q) return true;
+
+        return [item.title, item.artist, item.producer, item.typeBeatFor]
+            .some(v => v && String(v).toLowerCase().includes(q));
     });
 }
 
@@ -132,8 +154,17 @@ function renderReleases() {
         return;
     }
 
-    // Sort by year (newest first)
-    filteredItems.sort((a, b) => b.year - a.year);
+    // Newest first. Sort on the full publish date, not just the year —
+    // sorting by year alone left everything within a year in arbitrary order.
+    filteredItems.sort((a, b) =>
+        String(b.publishedAt || b.year).localeCompare(String(a.publishedAt || a.year)));
+
+    const subtitle = document.querySelector('#releases-section .section-subtitle');
+    if (subtitle) {
+        const beats = filteredItems.filter(i => i.type === 'beat').length;
+        const tracks = filteredItems.length - beats;
+        subtitle.textContent = `${filteredItems.length} releases — ${tracks} tracks, ${beats} beats`;
+    }
 
     content.innerHTML = filteredItems.map(createReleaseCard).join('');
 }

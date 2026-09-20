@@ -1,0 +1,12 @@
+{
+  "_README": "Keyed by YouTube videoId. Any field here wins over the auto-parsed value. Use {\"exclude\":true} to drop a video. Re-running build-discography.mjs never overwrites this file.",
+  "_EXAMPLE_dQw4w9WgXcQ": {
+    "artist": "Correct Artist",
+    "title": "Correct Title",
+    "type": "track",
+    "platforms": {
+      "spotify": "https://…",
+      "beatstars": "https://…"
+    }
+  }
+}
