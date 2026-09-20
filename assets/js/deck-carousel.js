@@ -113,14 +113,16 @@
 
         var pic = document.createElement('picture');
         var src = document.createElement('source');
-        src.srcset = slide.image;
+        src.dataset.srcset = slide.image;
         src.type = 'image/webp';
         var img = document.createElement('img');
         img.className = 'deck-slide-img';
-        img.src = slide.fallback;
+        // Source is deferred, not lazy. Off-stage slides are
+        // visibility:hidden, and browsers never fetch loading="lazy" images
+        // inside a hidden element — so stepping onto a new slide showed a
+        // blank frame. preload() assigns src as slides approach the front.
+        img.dataset.src = slide.fallback;
         img.alt = slide.title + ' — SSK Music deck';
-        // first two eager so the stage is never empty; rest lazy
-        img.loading = slide.order <= 2 ? 'eager' : 'lazy';
         img.decoding = 'async';
         img.width = slide.width;
         img.height = slide.height;
@@ -181,7 +183,18 @@
     }
 
     /** Position every slide relative to the active one (coverflow). */
-    var NEAR = 3;   // how many slides stay on stage each side
+    var NEAR = 3;     // how many slides stay on stage each side
+    var PRELOAD = 5;  // how far ahead to fetch artwork
+
+    /** Attach the real src once a slide is close enough to be seen. */
+    function preload(el) {
+        var img = el.querySelector('img.deck-slide-img');
+        if (!img || img.dataset.loaded) return;
+        var source = el.querySelector('source');
+        if (source && source.dataset.srcset) source.srcset = source.dataset.srcset;
+        img.src = img.dataset.src;
+        img.dataset.loaded = '1';
+    }
 
     function layout() {
         for (var i = 0; i < els.slides.length; i++) {
@@ -195,6 +208,8 @@
             el.classList.toggle('is-active', offset === 0);
             el.classList.toggle('is-near', dist > 0 && dist <= NEAR);
 
+            if (dist <= PRELOAD) preload(el);
+
             // keep far slides out of the a11y tree and off the GPU.
             // In reduced-motion the stage is a plain scroll-snap strip, so
             // every slide must stay visible — an inline style here would
@@ -204,6 +219,25 @@
                 el.style.visibility = dist <= NEAR ? 'visible' : 'hidden';
             }
         }
+    }
+
+    var KIND_LABEL = {
+        cover: 'SSK Music',
+        about: 'The Company',
+        credential: 'Credentials',
+        artist: 'Artist'
+    };
+
+    /** The header announces whatever slide you're on. */
+    function updateNowPlaying() {
+        if (!els.now) return;
+        var s = slides[index];
+        els.now.classList.add('is-changing');
+        setTimeout(function () {
+            els.nowKind.textContent = KIND_LABEL[s.kind] || s.kind;
+            els.nowTitle.textContent = s.title;
+            els.now.classList.remove('is-changing');
+        }, 180);
     }
 
     function go(next, viaScroll) {
@@ -222,6 +256,7 @@
         els.dots[index].classList.add('is-active');
         els.dots[index].setAttribute('aria-current', 'true');
 
+        updateNowPlaying();
         els.counter.textContent = (index + 1) + ' / ' + slides.length;
         els.progress.style.width = (((index + 1) / slides.length) * 100) + '%';
         els.prev.disabled = index === 0;
@@ -241,22 +276,40 @@
      * what stopped the lock engaging while scrolling over the carousel.
      * Scrolling anywhere else on the page never reaches this handler.
      */
+    var wheelAccum = 0;
+    var wheelAccumAt = 0;
+
     function onWheel(e) {
         if (reduceMotion) return;
-        if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
 
         var dir = e.deltaY > 0 ? 1 : -1;
 
         // Boundary release — let the page scroll away.
         if ((index === 0 && dir === -1) ||
             (index === slides.length - 1 && dir === 1)) {
+            wheelAccum = 0;
             return;
         }
 
+        // Swallow EVERY event while engaged, including the tiny ones.
+        // A trackpad emits a stream of ~5-15px deltas; the old code returned
+        // before preventDefault for anything under the threshold, so those
+        // leaked straight through and scrolled the page underneath the
+        // carousel. The threshold now only decides when to ADVANCE.
         e.preventDefault();
 
-        // go() applies the same lock, so one flick == one slide
-        go(index + dir, true);
+        var now = Date.now();
+        if (now - wheelAccumAt > 220) wheelAccum = 0;   // new gesture
+        wheelAccumAt = now;
+
+        // reset if the user reverses direction mid-gesture
+        if (wheelAccum !== 0 && Math.sign(wheelAccum) !== dir) wheelAccum = 0;
+        wheelAccum += e.deltaY;
+
+        if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
+
+        wheelAccum = 0;
+        go(index + dir, true);   // go() holds the lock, so one flick == one slide
     }
 
     /* ---------------- touch ---------------------------------------------- */
@@ -299,6 +352,9 @@
         els.prev = section.querySelector('.deck-arrow[data-dir="-1"]');
         els.next = section.querySelector('.deck-arrow[data-dir="1"]');
         els.live = section.querySelector('.deck-live');
+        els.now = section.querySelector('.deck-nowplaying');
+        els.nowKind = section.querySelector('#deckKind');
+        els.nowTitle = section.querySelector('#deckTitle');
 
         // drive the stage aspect from the real slide dimensions
         var first = slides[0];
@@ -336,7 +392,11 @@
             els.dots.push(dot);
         });
 
-        layout();   // establish the coverflow positions before first paint
+        layout();          // establish the coverflow positions before first paint
+        if (els.nowTitle) {
+            els.nowKind.textContent = KIND_LABEL[slides[0].kind] || slides[0].kind;
+            els.nowTitle.textContent = slides[0].title;
+        }
 
         els.counter.textContent = '1 / ' + slides.length;
         els.progress.style.width = (100 / slides.length) + '%';

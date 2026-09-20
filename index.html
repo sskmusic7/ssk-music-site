@@ -14,10 +14,10 @@
     <link rel="icon" href="favicon.ico">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=f6cc1fc"/>
-    <link rel="stylesheet" href="assets/css/plugins.css?v=f6cc1fc"/>
-    <link rel="stylesheet" href="assets/css/main.css?v=f6cc1fc"/>
-    <link rel="stylesheet" href="assets/css/deck.css?v=f6cc1fc"/>
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=b6c9db8"/>
+    <link rel="stylesheet" href="assets/css/plugins.css?v=b6c9db8"/>
+    <link rel="stylesheet" href="assets/css/main.css?v=b6c9db8"/>
+    <link rel="stylesheet" href="assets/css/deck.css?v=b6c9db8"/>
 
     <!-- Premium Google Fonts - Syne for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
     <!-- Font icons -->
-    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=f6cc1fc"/>
-    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=f6cc1fc"/>
+    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=b6c9db8"/>
+    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=b6c9db8"/>
 
     <style>
         /* SSK Music Custom Styles */
@@ -1083,13 +1083,11 @@
     <!-- ARTIST DECK CAROUSEL -->
     <section class="deck-section" id="deck" tabindex="-1" aria-roledescription="carousel" aria-label="SSK Music artist deck">
         <div class="container">
-            <div class="section-title">
-                <h2>The Deck</h2>
+            <!-- No standing heading: the slide announces itself as you cycle. -->
+            <div class="deck-nowplaying" aria-hidden="true">
+                <span class="deck-now-kind" id="deckKind">Cover</span>
+                <h2 class="deck-now-title" id="deckTitle">SSK Music</h2>
             </div>
-            <p class="deck-intro">
-                The full SSK Music story &mdash; credentials, the artists, the rooms.
-                Scroll to cycle through, or hover a record to hear the work.
-            </p>
         </div>
 
         <div class="deck-shell">
@@ -1392,10 +1390,10 @@
 
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.js?v=f6cc1fc"></script>
-    <script src="assets/js/plugins.js?v=f6cc1fc"></script>
-    <script src="assets/js/main.js?v=f6cc1fc"></script>
-    <script src="assets/js/deck-carousel.js?v=f6cc1fc" defer></script>
+    <script src="assets/js/jquery.js?v=b6c9db8"></script>
+    <script src="assets/js/plugins.js?v=b6c9db8"></script>
+    <script src="assets/js/main.js?v=b6c9db8"></script>
+    <script src="assets/js/deck-carousel.js?v=b6c9db8" defer></script>
 
     <!-- Scroll-triggered capture: appears once past the deck, remembers dismissal -->
     <script>

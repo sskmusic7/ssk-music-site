@@ -5,7 +5,7 @@
 
 .deck-section {
     background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
-    padding: 5rem 0;
+    padding: 2.75rem 0 2.25rem;
     position: relative;
     overflow: hidden;
 }
@@ -24,13 +24,41 @@
     border: 0;
 }
 
-.deck-intro {
+/* Self-describing header: swaps to the current slide instead of a
+   standing "The Deck" title. */
+.deck-nowplaying {
     text-align: center;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 620px;
-    margin: 0 auto 2.5rem;
-    font-size: 1rem;
-    line-height: 1.7;
+    margin: 0 auto 1.35rem;
+    min-height: 4.6rem;
+}
+
+.deck-now-kind {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.6rem;
+    transition: opacity 0.3s ease;
+}
+
+.deck-now-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.22, 0.85, 0.24, 1);
+}
+
+.deck-nowplaying.is-changing .deck-now-title,
+.deck-nowplaying.is-changing .deck-now-kind {
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .deck-shell {
@@ -44,9 +72,17 @@
    Aspect comes from the real slide dimensions (set by JS from deck.json) —
    the deck pages are 1.42:1, not 16:9.
    overflow is visible so neighbouring slides can sit outside the frame. */
+/* Height-capped so the whole carousel — title, stage and controls — fits
+   between the sticky header and the fold. Without this the stage was taller
+   than the usable viewport and the sticky header sat on top of the slide
+   title while you were cycling. */
 .deck-stage {
     position: relative;
     aspect-ratio: var(--deck-aspect, 1.42);
+    max-height: calc(100vh - 372px);
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
     perspective: 2200px;
     perspective-origin: 50% 50%;
     transform-style: preserve-3d;
@@ -171,7 +207,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 1.75rem;
+    margin-top: 1.2rem;
     flex-wrap: wrap;
 }
 
@@ -234,7 +270,7 @@
 
 .deck-hint {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 0.7rem;
     font-size: 0.6875rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -354,6 +390,14 @@
 }
 
 .deck-disk[hidden] { display: none; }
+
+/* Only the front slide offers a record — neighbours showing theirs put
+   stray discs floating in the fan. */
+.deck-slide:not(.is-active) .deck-disk {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
 
 @keyframes deck-disk-spin {
     from { transform: rotate(0deg); }
