@@ -1,0 +1,34 @@
+{
+  "source": "SSK Music own productions (ama rock stems, Retrospect drum bounce)",
+  "sampleRate": 44100,
+  "oneshots": [
+    {
+      "id": "clap",
+      "src": "assets/funlab/oneshots/clap.wav"
+    },
+    {
+      "id": "hat",
+      "src": "assets/funlab/oneshots/hat.wav"
+    },
+    {
+      "id": "kick",
+      "src": "assets/funlab/oneshots/kick.wav"
+    },
+    {
+      "id": "logdrum",
+      "src": "assets/funlab/oneshots/logdrum.wav"
+    },
+    {
+      "id": "perc",
+      "src": "assets/funlab/oneshots/perc.wav"
+    },
+    {
+      "id": "shaker",
+      "src": "assets/funlab/oneshots/shaker.wav"
+    },
+    {
+      "id": "snare",
+      "src": "assets/funlab/oneshots/snare.wav"
+    }
+  ]
+}

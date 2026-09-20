@@ -264,3 +264,119 @@
     .funlab-drum-patterns *,
     .funlab-rhyme-finder * { transition: none !important; }
 }
+
+/* ==========================================================
+   Beat Machine
+   ========================================================== */
+
+.funlab-beat-machine {
+    --fl-navy: #1a365d;
+    --fl-line: #e4e8ee;
+    --fl-muted: #7c848d;
+    background: #fff;
+    border: 1px solid var(--fl-line);
+    padding: 1.5rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #0a1628;
+}
+
+.funlab-beat-machine .fbm-head { margin-bottom: 1.1rem; }
+
+.funlab-beat-machine .fbm-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--fl-navy);
+}
+
+.funlab-beat-machine .fbm-status {
+    font-size: 0.72rem;
+    color: var(--fl-muted);
+    margin-top: 0.2rem;
+}
+
+.funlab-beat-machine .fbm-board {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.funlab-beat-machine .fbm-row {
+    display: grid;
+    grid-template-columns: 78px repeat(16, minmax(22px, 1fr));
+    gap: 3px;
+    align-items: center;
+    min-width: 500px;
+}
+
+.funlab-beat-machine .fbm-name {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--fl-muted);
+    text-align: right;
+    padding-right: 0.4rem;
+}
+
+.funlab-beat-machine .fbm-cell {
+    aspect-ratio: 1;
+    background: #eef1f5;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.1s ease, transform 0.08s ease;
+}
+
+.funlab-beat-machine .fbm-cell.is-downbeat { background: #e3e8ef; }
+.funlab-beat-machine .fbm-cell:hover { background: #c9d3e0; }
+.funlab-beat-machine .fbm-cell.is-on { background: var(--fl-navy); }
+.funlab-beat-machine .fbm-cell.is-cursor { outline: 2px solid #f5b301; outline-offset: -2px; }
+.funlab-beat-machine .fbm-cell.is-on.is-cursor { background: #f5b301; transform: scale(1.12); }
+
+.funlab-beat-machine .fbm-ruler .fbm-beat {
+    font-size: 0.6rem; color: #b6bdc6; text-align: center; font-weight: 700;
+}
+
+.funlab-beat-machine .fbm-foot {
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+
+.funlab-beat-machine .fbm-play {
+    background: var(--fl-navy); color: #fff; border: none;
+    padding: 0.75rem 1.8rem;
+    font-family: 'Syne', sans-serif; font-size: 0.74rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+}
+.funlab-beat-machine .fbm-play:disabled { opacity: 0.45; cursor: default; }
+
+.funlab-beat-machine .fbm-tempo { display: flex; align-items: center; gap: 0.6rem; flex: 1; }
+.funlab-beat-machine .fbm-tempo input { flex: 1; min-width: 110px; accent-color: #1a365d; }
+.funlab-beat-machine .fbm-tempo-val {
+    font-family: 'Syne', sans-serif; font-size: 0.74rem;
+    letter-spacing: 0.08em; color: var(--fl-muted); min-width: 68px;
+}
+
+.funlab-beat-machine .fbm-clear {
+    background: none; border: 1px solid var(--fl-line);
+    padding: 0.6rem 1rem; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fl-navy); cursor: pointer;
+}
+.funlab-beat-machine .fbm-clear:hover { border-color: var(--fl-navy); }
+
+@media (max-width: 560px) {
+    .funlab-beat-machine { padding: 1rem; }
+    .funlab-beat-machine .fbm-row { grid-template-columns: 60px repeat(16, minmax(17px, 1fr)); }
+    .funlab-beat-machine .fbm-tempo { order: 3; width: 100%; flex: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .funlab-beat-machine * { transition: none !important; }
+}

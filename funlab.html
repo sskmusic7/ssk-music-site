@@ -147,8 +147,8 @@
 
         <section class="lab-tool">
             <h2>Beat Machine</h2>
-            <p class="lab-note">16-step sequencer. Coming next.</p>
-            <div class="lab-soon">Needs drum one-shots &mdash; see FUN_LAB_SPEC.md</div>
+            <p class="lab-note">Sixteen steps, seven sounds &mdash; every one sliced out of an SSK session. Tap the grid, or send a pattern up from the cheat sheet below.</p>
+            <div id="beat-machine"></div>
         </section>
 
         <section class="lab-tool">
@@ -166,6 +166,7 @@
     </main>
 
     <script src="assets/js/funlab/stem-replicator.js"></script>
+    <script src="assets/js/funlab/beat-machine.js"></script>
     <script src="assets/js/funlab/drum-patterns.js"></script>
     <script src="assets/js/funlab/rhyme-finder.js"></script>
     <script>
@@ -181,9 +182,17 @@
         document.addEventListener('DOMContentLoaded', function () {
             var L = window.SSKFunLab || {};
 
+            var bmHost = document.getElementById('beat-machine');
+            var bm = (bmHost && L.beatMachine)
+                ? L.beatMachine.mount(bmHost, { getAudioContext: sskAudioContext })
+                : null;
+
             var dp = document.getElementById('drum-patterns');
             if (dp && L.drumPatterns) {
-                L.drumPatterns.mount(dp, { getAudioContext: sskAudioContext });
+                L.drumPatterns.mount(dp, {
+                    getAudioContext: sskAudioContext,
+                    onLoad: bm ? function (p) { bm.loadPattern(p); } : null
+                });
             }
 
             var rf = document.getElementById('rhyme-finder');
