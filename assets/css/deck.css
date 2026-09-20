@@ -5,7 +5,7 @@
 
 .deck-section {
     background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
-    padding: 2.75rem 0 2.25rem;
+    padding: 1.5rem 0 1.25rem;
     position: relative;
     overflow: hidden;
 }
@@ -28,8 +28,8 @@
    standing "The Deck" title. */
 .deck-nowplaying {
     text-align: center;
-    margin: 0 auto 1.35rem;
-    min-height: 4.6rem;
+    margin: 0 auto 0.9rem;
+    min-height: 3.4rem;
 }
 
 .deck-now-kind {
@@ -45,7 +45,7 @@
 
 .deck-now-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-size: clamp(1.4rem, 3.4vw, 2.1rem);
     font-weight: 700;
     line-height: 1.1;
     color: #fff;
@@ -79,7 +79,7 @@
 .deck-stage {
     position: relative;
     aspect-ratio: var(--deck-aspect, 1.42);
-    max-height: calc(100vh - 372px);
+    max-height: calc(100vh - 312px);
     width: auto;
     max-width: 100%;
     margin: 0 auto;
@@ -207,13 +207,13 @@
     align-items: center;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 1.2rem;
+    margin-top: 0.9rem;
     flex-wrap: wrap;
 }
 
 .deck-arrow {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -239,7 +239,12 @@
     gap: 0.4rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    /* margin:0 auto was missing, so this 560px box sat flush-left in the
+       1100px shell while the dots centred inside it — the row read as
+       left-aligned against centred arrows. */
     max-width: 560px;
+    margin: 0.85rem auto 0;
 }
 
 .deck-dot {
@@ -270,8 +275,8 @@
 
 .deck-hint {
     text-align: center;
-    margin-top: 0.7rem;
-    font-size: 0.6875rem;
+    margin-top: 0.55rem;
+    font-size: 0.625rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
