@@ -1,8 +1,15 @@
 {
   "meta": {
     "steps": 16,
-    "note": "One bar of 16th notes. 1 = hit, 0 = rest. Tempos are the usual working range, not a rule.",
-    "tracks": ["kick", "snare", "clap", "hat", "openhat", "perc"]
+    "note": "One bar of 16th notes. 1 = hit, 0 = rest. Step 1 is the downbeat; steps 5/9/13 are beats 2/3/4.",
+    "tracks": ["kick", "snare", "clap", "hat", "openhat", "perc"],
+    "sources": [
+      "Attack Magazine — Beat Dissected series (UK Drill, UK Garage, Miami Bass)",
+      "Native Instruments blog — Jersey Club, Drill, UK Garage",
+      "MusicRadar — programming dancehall drum patterns",
+      "Roland Articles / RouteNote — Amapiano production",
+      "DancehallMag — the dancehall drum pattern explained"
+    ]
   },
   "patterns": [
     {
@@ -18,7 +25,8 @@
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0],
         "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
       },
-      "tip": "Swing the hats and let the kick land slightly late. The pocket comes from it not being quantised."
+      "swing": 58,
+      "tip": "Snare on 2 and 4, kick answering underneath. Swing the hats and let hits land slightly late — the pocket is in what isn't quantised."
     },
     {
       "id": "uk-drill",
@@ -26,14 +34,15 @@
       "bpm": 142,
       "family": "Drill",
       "tracks": {
-        "kick":    [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,1,0,0],
+        "kick":    [1,0,0,0, 0,0,1,0, 0,0,0,1, 0,0,1,0],
         "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
         "clap":    [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
-        "hat":     [1,0,1,1, 1,0,1,0, 1,1,1,0, 1,0,1,1],
+        "hat":     [1,0,0,1, 0,0,1,0, 1,0,0,1, 0,0,1,1],
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
       },
-      "tip": "The snare sits on 3, not 2 and 4. The 808 slides between notes — that glide is the genre."
+      "swing": 54,
+      "tip": "Snare on beat 3 only — half-time, and non-negotiable. Hats inherit grime's gappy 1/16 spacing (two gaps, two gaps, one) before you add rolls. The 808 glides between notes; that slide is the genre."
     },
     {
       "id": "trap",
@@ -48,7 +57,8 @@
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
       },
-      "tip": "Hat rolls do the work. Keep the kick sparse so the 808 has room to ring out."
+      "swing": 50,
+      "tip": "Half-time snare on beat 3. Hat rolls do the work — double and triple up in the back half of the bar. Keep the kick sparse so the 808 has room to ring."
     },
     {
       "id": "amapiano",
@@ -56,14 +66,15 @@
       "bpm": 112,
       "family": "Amapiano",
       "tracks": {
-        "kick":    [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "kick":    [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
         "hat":     [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "perc":    [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
       },
-      "tip": "The log drum carries the groove, not the kick. Shakers run all the way through — leave space on 2 and 4."
+      "swing": 56,
+      "tip": "Four-on-the-floor kick is the starting point, not a syncopated one — then the log drum answers it off-grid and carries the bass. Shakers run 16ths the whole way but must not be mechanical: vary velocity, drop the odd hit."
     },
     {
       "id": "afroswing",
@@ -72,13 +83,14 @@
       "family": "Afro",
       "tracks": {
         "kick":    [1,0,0,0, 0,0,1,0, 0,0,0,0, 1,0,0,0],
-        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
-        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
         "hat":     [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0],
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0],
         "perc":    [0,0,1,0, 0,0,0,1, 0,0,1,0, 0,1,0,0]
       },
-      "tip": "Half dancehall, half UK rap. The swing lives in the percussion, not the kick."
+      "swing": 57,
+      "tip": "Dancehall's displaced backbeat with UK rap weight — the clap sits late, on the 'and', not squarely on 2 and 4. Swing lives in the percussion, not the kick."
     },
     {
       "id": "afrobeats",
@@ -86,14 +98,15 @@
       "bpm": 105,
       "family": "Afro",
       "tracks": {
-        "kick":    [1,0,0,0, 0,0,1,0, 0,1,0,0, 0,0,1,0],
-        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
-        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
-        "hat":     [1,0,1,1, 0,1,1,0, 1,0,1,1, 0,1,1,0],
+        "kick":    [1,0,0,0, 0,0,0,1, 0,0,1,0, 0,0,0,1],
+        "snare":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":     [1,0,1,0, 0,1,0,1, 0,0,1,0, 0,1,0,0],
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
-        "perc":    [0,0,1,0, 0,1,0,0, 1,0,0,1, 0,0,1,0]
+        "perc":    [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0]
       },
-      "tip": "Built on a 3-2 feel. Let the shaker and conga argue with the kick rather than follow it."
+      "swing": 55,
+      "tip": "The hat sits on the 3+3+2 clave — steps 1, 3, 6, 8, 11, 14. That uneven spacing is the whole forward roll. Kick pushes on the 'ah' of 2 and 4; snare stays plain on 2 and 4 so the percussion can argue with it."
     },
     {
       "id": "dancehall",
@@ -101,14 +114,15 @@
       "bpm": 100,
       "family": "Caribbean",
       "tracks": {
-        "kick":    [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,1,0],
-        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
-        "clap":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "kick":    [1,0,1,0, 0,0,0,0, 1,0,1,0, 0,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
         "hat":     [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "perc":    [0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1]
       },
-      "tip": "One drop: the kick avoids beat 1 in the classic form. Here it lands on 1 and 3 for a steppers feel."
+      "swing": 54,
+      "tip": "Kick on 1 and the 'and' of 1, then 3 and the 'and' of 3. The clap is deliberately late — 'and' of 2 and 'and' of 4 — which is the displaced backbeat. Use a rimshot rather than a full snare."
     },
     {
       "id": "uk-garage",
@@ -123,7 +137,40 @@
         "openhat": [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
         "perc":    [0,1,0,0, 0,0,0,1, 0,0,0,0, 0,1,0,0]
       },
-      "tip": "Two-step means the kick skips beat 3. Shuffle the hats hard — straight 16ths kill it."
+      "swing": 62,
+      "tip": "Two-step: kick on 1 and halfway through beat 3, skipping the beat you expect. Snare on 2 and 4. Push swing to 55-60% and let the hats land late — straight 16ths kill it stone dead."
+    },
+    {
+      "id": "jersey-club",
+      "name": "Jersey Club",
+      "bpm": 140,
+      "family": "Club",
+      "tracks": {
+        "kick":    [1,0,0,0, 1,0,0,0, 1,0,0,1, 0,0,1,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,1,0]
+      },
+      "swing": 50,
+      "tip": "The 5-count: kick on steps 1, 5, 9, 12 and 15. Two quarter notes, two dotted eighths, then an eighth. That fifth kick landing just before the bar turns over is the whole forward pull. Chop a vocal or the bed-squeak onto the perc lane."
+    },
+    {
+      "id": "miami-bass",
+      "name": "Miami Bass",
+      "bpm": 130,
+      "family": "Electro",
+      "tracks": {
+        "kick":    [1,0,0,1, 0,0,1,0, 0,0,0,1, 0,0,1,0],
+        "snare":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [1,1,1,0, 1,1,0,1, 1,1,1,0, 1,0,1,1],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "swing": 50,
+      "tip": "Pure TR-808. Tune the kick absurdly low with a long decay so it rattles — 30-50Hz is the point of the genre. The kick weaves around a snare fixed on 2 and 4, and the 16th hats have holes punched in them rather than running straight."
     },
     {
       "id": "house",
@@ -138,7 +185,8 @@
         "openhat": [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
         "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
       },
-      "tip": "Four to the floor with the open hat on the off-beat. That hat is what makes it swing, not the kick."
+      "swing": 52,
+      "tip": "Four to the floor with the open hat sitting on every off-beat. That off-beat hat is what swings it — the kick is just the anchor."
     },
     {
       "id": "rnb",
@@ -153,7 +201,8 @@
         "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
         "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
       },
-      "tip": "Slow tempo, busy hats. Ghost notes on the snare matter more than the pattern itself."
+      "swing": 56,
+      "tip": "Slow tempo, busy hats. The ghost notes between the main snares matter more than the pattern itself — drop their velocity to 30-40%."
     }
   ]
 }
