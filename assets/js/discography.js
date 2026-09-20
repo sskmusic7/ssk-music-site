@@ -1,264 +1,220 @@
 /**
- * SSK MUSIC DISCOGRAPHY JAVASCRIPT
- * Loads data from JSON and handles tab switching, filtering, and search
+ * SSK MUSIC DISCOGRAPHY — library view
+ *
+ * 360 releases rendered as one flat grid was unreadable, so this groups them:
+ *   Tracks / Beats  ->  year shelves  ->  horizontal rail of cards
+ *
+ * Shelves collapse, so the page is short and everything is one click away.
+ * Searching flattens the view and auto-expands whatever matched.
  */
 
-// Global state
 let discographyData = null;
-let currentTab = 'releases';
-let currentFilter = 'all';
+let currentFilter = 'all';     // 'all' | 'track' | 'beat'
 let searchQuery = '';
+const openShelves = new Set(); // "track:2021"
 
-// Format numbers with commas
-function formatNumber(num) {
-    return num.toLocaleString('en-GB');
-}
+/* ---------------- helpers ---------------- */
 
-// Format streams/plays with K/M notation
-function formatStreams(num) {
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    } else if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-    } else {
-        return num.toLocaleString();
-    }
-}
-
-// Create release card HTML
 function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g,
         c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
-function createReleaseCard(item) {
-    const typeLabel = item.type === 'beat' ? 'Beat' : 'Track';
-    const viewsHTML = item.youtube_views || item.spotify_streams ? `
-        <div class="release-stats">
-            ${item.youtube_views ? `
-            <div class="stat-item">
-                <i class="ri-youtube-fill"></i>
-                <span>${formatNumber(item.youtube_views)}</span>
-            </div>
-            ` : ''}
-            ${item.spotify_streams ? `
-            <div class="stat-item">
-                <i class="ri-spotify-fill"></i>
-                <span>${formatStreams(item.spotify_streams)}</span>
-            </div>
-            ` : ''}
-        </div>
-    ` : '';
-
-    const platformsHTML = Object.keys(item.platforms || {}).map(platform => {
-        const platformNames = {
-            'youtube': 'YouTube',
-            'spotify': 'Spotify',
-            'beatstars': 'BeatStars',
-            'genius': 'Genius',
-            'apple_music': 'Apple Music'
-        };
-        const iconNames = {
-            'youtube': 'ri-youtube-fill',
-            'spotify': 'ri-spotify-fill',
-            'beatstars': 'ri-disc-fill',
-            'genius': 'ri-brain-line',
-            'apple_music': 'ri-music-fill'
-        };
-        return `
-            <a href="${item.platforms[platform]}" target="_blank" class="platform-link">
-                <i class="${iconNames[platform]}"></i>
-                <span>${platformNames[platform]}</span>
-            </a>
-        `;
-    }).join('');
-
-    // Real artwork from YouTube. maxresdefault isn't generated for every
-    // upload, so fall back to hqdefault (always exists) rather than the
-    // single hardcoded album-1.jpg that used to be on every card.
-    const art = item.artwork || '';
-    const artFallback = item.artwork_fallback || 'assets/images/album-1.jpg';
-
-    const subtitle = item.type === 'beat'
-        ? (item.typeBeatFor ? `${escapeHtml(item.typeBeatFor)} type beat` : 'Type beat')
-        : `${escapeHtml(item.artist)}${item.producer ? ` · Prod. ${escapeHtml(item.producer)}` : ''}`;
-
-    return `
-        <div class="release-card" data-type="${item.type}" data-year="${item.year}">
-            <div class="release-image">
-                <img src="${art}" alt="${escapeHtml(item.title)}" loading="lazy"
-                     onerror="this.onerror=null;this.src='${artFallback}';">
-            </div>
-            <div class="release-type">${typeLabel}</div>
-            <div class="release-info">
-                <h4 class="release-title">${escapeHtml(item.title)}</h4>
-                <div class="release-artist">
-                    <i class="ri-user-3-line"></i>
-                    ${subtitle}
-                </div>
-                <div class="release-year">${item.year}</div>
-                ${viewsHTML}
-                <div class="release-platforms">
-                    ${platformsHTML}
-                </div>
-            </div>
-        </div>
-    `;
+function formatViews(n) {
+    n = Number(n) || 0;
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+    return String(n);
 }
 
-// Filter items
-//
-// This previously only looked at searchQuery and never read currentFilter,
-// which is why the Beats / Albums buttons did nothing at all: handleFilter()
-// set the variable and re-rendered, but no code consumed it.
+function subtitleFor(item) {
+    if (item.type === 'beat') {
+        return item.typeBeatFor ? item.typeBeatFor + ' type beat' : 'Type beat';
+    }
+    return item.artist || 'Unknown';
+}
+
+/* ---------------- filtering ---------------- */
+
 function filterItems(items) {
     const q = searchQuery.toLowerCase();
 
     return items.filter(item => {
-        // type filter: "all" | "beat" | "track"
-        const matchesType = currentFilter === 'all' || item.type === currentFilter;
-        if (!matchesType) return false;
-
+        // This used to ignore currentFilter entirely, which is why the
+        // filter buttons did nothing.
+        if (currentFilter !== 'all' && item.type !== currentFilter) return false;
         if (!q) return true;
 
-        return [item.title, item.artist, item.producer, item.typeBeatFor]
+        return [item.title, item.artist, item.producer, item.typeBeatFor, String(item.year)]
             .some(v => v && String(v).toLowerCase().includes(q));
     });
 }
 
-// Render releases section
-function renderReleases() {
-    const content = document.getElementById('releases-content');
-    const loading = document.getElementById('releasesLoading');
+/* ---------------- rendering ---------------- */
 
-    if (!discographyData) {
-        loading.style.display = 'block';
-        return;
-    }
+function cardHTML(item) {
+    const art = item.artwork || '';
+    const fallback = item.artwork_fallback || 'assets/images/album-1.jpg';
+    const href = (item.platforms && item.platforms.youtube) || '#';
 
-    loading.style.display = 'none';
-
-    // Get all release items
-    const allItems = discographyData.releases || [];
-
-    // Apply filter
-    let filteredItems = filterItems(allItems);
-
-    if (filteredItems.length === 0) {
-        content.innerHTML = `
-            <div style="text-align: center; padding: 3rem;">
-                <i class="ri-search-line" style="font-size: 3rem; color: #999;"></i>
-                <p style="font-family: 'Inter', sans-serif; color: #666; margin-top: 1rem;">No releases found matching your search.</p>
+    return `
+        <a class="lib-card" href="${escapeHtml(href)}" target="_blank" rel="noopener">
+            <div class="lib-card-art">
+                <img src="${escapeHtml(art)}" alt="${escapeHtml(item.title)}" loading="lazy"
+                     onerror="this.onerror=null;this.src='${escapeHtml(fallback)}';">
+                <span class="lib-card-type">${item.type === 'beat' ? 'Beat' : 'Track'}</span>
             </div>
-        `;
-        return;
-    }
+            <div class="lib-card-body">
+                <h4 class="lib-card-title">${escapeHtml(item.title)}</h4>
+                <div class="lib-card-sub">${escapeHtml(subtitleFor(item))}</div>
+                <div class="lib-card-meta">
+                    <i class="ri-youtube-fill"></i>
+                    <span>${formatViews(item.youtube_views)}</span>
+                    <span>&middot; ${item.year}</span>
+                </div>
+            </div>
+        </a>`;
+}
 
-    // Newest first. Sort on the full publish date, not just the year —
-    // sorting by year alone left everything within a year in arbitrary order.
-    filteredItems.sort((a, b) =>
-        String(b.publishedAt || b.year).localeCompare(String(a.publishedAt || a.year)));
+function shelfHTML(type, year, items, forceOpen) {
+    const key = type + ':' + year;
+    const open = forceOpen || openShelves.has(key);
+
+    return `
+        <div class="lib-shelf${open ? ' is-open' : ''}" data-shelf="${key}">
+            <button class="lib-shelf-head" type="button" data-toggle="${key}"
+                    aria-expanded="${open}">
+                <span class="lib-chevron">&#9654;</span>
+                <span class="lib-year">${year}</span>
+                <span class="lib-shelf-count">${items.length} ${items.length === 1 ? 'release' : 'releases'}</span>
+                <span class="lib-viewall" data-grid="${key}" role="button">Grid</span>
+            </button>
+            <div class="lib-shelf-body">
+                <div class="lib-rail">${items.map(cardHTML).join('')}</div>
+            </div>
+        </div>`;
+}
+
+function groupHTML(label, type, items, forceOpen) {
+    if (!items.length) return '';
+
+    // newest year first
+    const byYear = {};
+    for (const it of items) (byYear[it.year] = byYear[it.year] || []).push(it);
+    const years = Object.keys(byYear).sort((a, b) => b - a);
+
+    // open the newest shelf by default so the section is never blank
+    const shelves = years.map((y, i) =>
+        shelfHTML(type, y, byYear[y], forceOpen || i === 0)).join('');
+
+    return `
+        <section class="lib-group">
+            <div class="lib-group-head">
+                <h3 class="lib-group-title">${label}</h3>
+                <span class="lib-group-count">${items.length} total &middot; ${years.length} years</span>
+            </div>
+            ${shelves}
+        </section>`;
+}
+
+function render() {
+    const root = document.getElementById('releases-content');
+    const loading = document.getElementById('releasesLoading');
+    if (!discographyData) return;
+    if (loading) loading.style.display = 'none';
+
+    const all = filterItems(discographyData.releases || []);
+    const searching = !!searchQuery;
 
     const subtitle = document.querySelector('#releases-section .section-subtitle');
     if (subtitle) {
-        const beats = filteredItems.filter(i => i.type === 'beat').length;
-        const tracks = filteredItems.length - beats;
-        subtitle.textContent = `${filteredItems.length} releases — ${tracks} tracks, ${beats} beats`;
+        const beats = all.filter(i => i.type === 'beat').length;
+        subtitle.textContent = searching
+            ? `${all.length} match${all.length === 1 ? '' : 'es'} for "${searchQuery}"`
+            : `${all.length} releases — ${all.length - beats} tracks, ${beats} beats`;
     }
 
-    content.innerHTML = filteredItems.map(createReleaseCard).join('');
-}
-
-// Update display based on tab
-function updateDisplay() {
-    const releasesSection = document.getElementById('releases-section');
-
-    if (currentTab === 'releases') {
-        releasesSection.style.display = 'block';
-        renderReleases();
-    } else {
-        releasesSection.style.display = 'none';
+    if (!all.length) {
+        root.innerHTML = `<div class="lib-empty">
+            <i class="ri-search-line" style="font-size:2.5rem;"></i>
+            <p>Nothing matches "${escapeHtml(searchQuery)}".</p>
+        </div>`;
+        return;
     }
+
+    const tracks = all.filter(i => i.type === 'track');
+    const beats = all.filter(i => i.type === 'beat');
+
+    root.innerHTML =
+        (searching ? `<p class="lib-searchinfo">Showing matches across every year.</p>` : '') +
+        groupHTML('Tracks', 'track', tracks, searching) +
+        groupHTML('Beats', 'beat', beats, searching);
 }
 
-// Handle tab switching
-function switchTab(tab) {
-    currentTab = tab;
+/* ---------------- interaction ---------------- */
 
-    // Update tab buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.tab === tab) {
-            btn.classList.add('active');
-        }
-    });
+function onRootClick(e) {
+    const grid = e.target.closest('[data-grid]');
+    if (grid) {                       // Grid toggle sits inside the header button
+        e.preventDefault();
+        e.stopPropagation();
+        grid.closest('.lib-shelf').classList.toggle('is-grid');
+        return;
+    }
 
-    updateDisplay();
+    const head = e.target.closest('[data-toggle]');
+    if (!head) return;
+
+    const key = head.dataset.toggle;
+    const shelf = head.closest('.lib-shelf');
+    const nowOpen = !shelf.classList.contains('is-open');
+
+    shelf.classList.toggle('is-open', nowOpen);
+    head.setAttribute('aria-expanded', String(nowOpen));
+    if (nowOpen) openShelves.add(key); else openShelves.delete(key);
 }
 
-// Handle filter buttons
-function handleFilter(filter) {
-    currentFilter = filter;
-
-    // Update filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.filter === filter) {
-            btn.classList.add('active');
-        }
-    });
-
-    updateDisplay();
+function setFilter(f) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.filter === f));
+    render();
 }
 
-// Handle search input
-function handleSearch(query) {
-    searchQuery = query.trim();
-    updateDisplay();
-}
+/* ---------------- init ---------------- */
 
-// Load data from JSON
 async function loadDiscographyData() {
+    const root = document.getElementById('releases-content');
     try {
-        const response = await fetch('data/discography.json');
-        discographyData = await response.json();
-        updateDisplay();
-    } catch (error) {
-        console.error('Error loading discography data:', error);
-        const content = document.getElementById('releases-content');
-        content.innerHTML = `
-            <div style="text-align: center; padding: 3rem;">
-                <i class="ri-error-warning-line" style="font-size: 3rem; color: #dc3545;"></i>
-                <p style="font-family: 'Inter', sans-serif; color: #666; margin-top: 1rem;">Error loading discography data.</p>
-            </div>
-        `;
+        const res = await fetch('data/discography.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        discographyData = await res.json();
+        render();
+    } catch (err) {
+        console.error('discography:', err.message);
+        root.innerHTML = `<div class="lib-empty">
+            <i class="ri-error-warning-line" style="font-size:2.5rem;color:#dc3545;"></i>
+            <p>Couldn't load the discography.</p>
+        </div>`;
     }
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Tab click handlers
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchTab(btn.dataset.tab);
-        });
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.filter-btn').forEach(btn =>
+        btn.addEventListener('click', () => setFilter(btn.dataset.filter)));
 
-    // Filter button handlers
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            handleFilter(btn.dataset.filter);
-        });
-    });
-
-    // Search input handler
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            handleSearch(e.target.value);
+    const search = document.getElementById('searchInput');
+    if (search) {
+        let t;
+        search.addEventListener('input', e => {
+            clearTimeout(t);
+            const v = e.target.value.trim();
+            t = setTimeout(() => { searchQuery = v; render(); }, 160);
         });
     }
 
-    // Load data
+    const root = document.getElementById('releases-content');
+    if (root) root.addEventListener('click', onRootClick);
+
     loadDiscographyData();
 });
