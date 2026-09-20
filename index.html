@@ -782,6 +782,197 @@
             padding-left: 1rem !important;
             padding-right: 1rem !important;
         }
+
+        /* ===== Compact live-stats bar =====
+           Was a 6rem-padded section with two big cards stacked vertically.
+           Now a single horizontal strip so it reads as a credibility line
+           under the deck rather than its own destination. */
+        .stats-compact {
+            background: #fff;
+            padding: 2rem 0 !important;
+            border-bottom: 1px solid #ececec;
+        }
+
+        .stats-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stats-strip-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #9aa3ad;
+        }
+
+        .stat-chip {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            font-family: inherit;
+            transition: opacity 0.2s ease;
+        }
+
+        .stat-chip:hover { opacity: 0.7; }
+
+        .stat-chip-icon { font-size: 1.15rem; align-self: center; }
+        .stat-chip-icon.youtube { color: #FF0000; }
+        .stat-chip-icon.spotify { color: #1DB954; }
+
+        .stat-chip-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1a365d;
+            line-height: 1;
+        }
+
+        .stat-chip-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8a929b;
+        }
+
+        /* ===== Email capture (now its own low section) ===== */
+        .email-section { background: #f8f9fa; }
+
+        .email-wrap {
+            max-width: 620px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .email-wrap h2 { color: #1a365d; margin-bottom: 0.75rem; }
+        .email-wrap > p { color: #666; margin-bottom: 1.75rem; }
+
+        .email-row {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .email-row input {
+            flex: 1;
+            min-width: 0;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .email-row input:focus { outline: none; border-color: #1a365d; }
+
+        .email-row .btn-ssk {
+            background: #1a365d;
+            color: #fff;
+            border: none;
+            padding: 1rem 1.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .email-fineprint { color: #999; font-size: 0.75rem; margin-top: 1rem; }
+
+        /* ===== Scroll-triggered capture popup ===== */
+        .capture-pop {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 9998;
+            width: min(340px, calc(100vw - 48px));
+            background: #fff;
+            border: 1px solid #e3e6ea;
+            box-shadow: 0 18px 50px rgba(10, 22, 40, 0.28);
+            padding: 1.4rem 1.4rem 1.2rem;
+            transform: translateY(140%);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .capture-pop.is-open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .capture-pop h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: #1a365d;
+            margin: 0 0 0.4rem;
+        }
+
+        .capture-pop p { font-size: 0.8rem; color: #666; margin: 0 0 0.9rem; line-height: 1.5; }
+
+        .capture-pop-row { display: flex; gap: 0.5rem; }
+
+        .capture-pop input {
+            flex: 1;
+            min-width: 0;
+            padding: 0.65rem 0.7rem;
+            border: 1px solid #dfe3e8;
+            font-size: 0.85rem;
+            font-family: inherit;
+        }
+
+        .capture-pop input:focus { outline: none; border-color: #1a365d; }
+
+        .capture-pop button[type="submit"] {
+            background: #1a365d;
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .capture-pop-close {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            line-height: 1;
+            color: #9aa3ad;
+            cursor: pointer;
+            padding: 4px 6px;
+        }
+
+        .capture-pop-close:hover { color: #1a365d; }
+
+        .capture-pop-done { font-size: 0.85rem; color: #1a365d; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .stats-strip { gap: 1.25rem; }
+            .stat-chip-number { font-size: 1.3rem; }
+            .stats-strip-label { width: 100%; text-align: center; }
+            .email-row { flex-direction: column; }
+            .capture-pop { left: 12px; bottom: 12px; width: calc(100vw - 24px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .capture-pop { transition: opacity 0.2s ease; transform: none; }
+        }
     </style>
 
 </head>
@@ -889,50 +1080,142 @@
     </section>
 
 
-    <!-- LIVE STATS -->
-    <section class="stats-section" id="stats" style="background: white; padding: 6rem 0;">
+    <!-- ARTIST DECK CAROUSEL -->
+    <section class="deck-section" id="deck" tabindex="-1" aria-roledescription="carousel" aria-label="SSK Music artist deck">
         <div class="container">
             <div class="section-title">
-                <h2 style="color: #1a365d;">Live Stats</h2>
-                <p style="color: #666;">Real-time streaming numbers</p>
+                <h2>The Deck</h2>
+            </div>
+            <p class="deck-intro">
+                The full SSK Music story &mdash; credentials, the artists, the rooms.
+                Scroll to cycle through, or hover a record to hear the work.
+            </p>
+        </div>
+
+        <div class="deck-shell">
+            <div class="deck-stage"></div>
+
+            <div class="deck-controls">
+                <button class="deck-arrow" data-dir="-1" type="button" aria-label="Previous slide">&#8592;</button>
+                <span class="deck-counter">1 / 1</span>
+                <button class="deck-arrow" data-dir="1" type="button" aria-label="Next slide">&#8594;</button>
             </div>
 
-            <div class="stats-grid">
-                <!-- YouTube -->
-                <div class="stat-card" onclick="openModal('youtube')" style="background: #f8f9fa; border-color: #e0e0e0;">
-                    <div class="stat-icon youtube" style="background: linear-gradient(135deg, #FF0000, #cc0000);">
-                        <i class="ri-youtube-fill" style="font-size: 28px; color: white;"></i>
-                    </div>
-                    <div class="stat-number" id="yt-count" style="color: #1a365d;">--</div>
-                    <div class="stat-label" style="color: #666;">YouTube Views</div>
-                </div>
+            <div class="deck-dots" role="tablist" aria-label="Deck slides"></div>
+            <p class="deck-hint">Keep scrolling to flip through the deck</p>
+            <p class="deck-live visually-hidden-deck" aria-live="polite"></p>
+        </div>
+    </section>
 
-                <!-- Spotify -->
-                <div class="stat-card" onclick="openModal('spotify')" style="background: #f8f9fa; border-color: #e0e0e0;">
-                    <div class="stat-icon spotify" style="background: linear-gradient(135deg, #1DB954, #169c46);">
-                        <i class="ri-spotify-fill" style="font-size: 28px; color: white;"></i>
+
+    <!-- LIVE STATS (compact bar) -->
+    <section class="stats-section stats-compact" id="stats">
+        <div class="container">
+            <div class="stats-strip">
+                <div class="stats-strip-label">Live Stats</div>
+                <button class="stat-chip" onclick="openModal('youtube')" type="button">
+                    <i class="ri-youtube-fill stat-chip-icon youtube"></i>
+                    <span class="stat-chip-number" id="yt-count">--</span>
+                    <span class="stat-chip-label">YouTube views</span>
+                </button>
+                <button class="stat-chip" onclick="openModal('spotify')" type="button">
+                    <i class="ri-spotify-fill stat-chip-icon spotify"></i>
+                    <span class="stat-chip-number" id="sp-count">--</span>
+                    <span class="stat-chip-label">Spotify streams</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-padding" id="about" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2">
+                    <div class="section-title">
+                        <h2 style="color: #0a1628;">About SSK Music</h2>
+                        <p>A comprehensive entertainment company delivering premium music production since 2015</p>
                     </div>
-                    <div class="stat-number" id="sp-count" style="color: #1a365d;">--</div>
-                    <div class="stat-label" style="color: #666;">Spotify Streams</div>
+
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 2rem;">
+                        <i class="ri-verified-badge-fill" style="color: #1a365d; font-size: 1.25rem;"></i>
+                        <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1a365d;">Google Knowledge Panel Verified</span>
+                    </div>
+
+                    <p style="font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 2rem;">
+                        <strong>SSK Music</strong> is a comprehensive entertainment company specializing in <strong>premium music production and licensing</strong> for film, television, advertising, gaming, and major label releases.
+                    </p>
+
+                    <p style="font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 3rem;">
+                        With nearly a decade of experience and <strong>Genius-verified production credits</strong>, we deliver professional music solutions that bring creative visions to life. Our work spans <strong>multiple media formats and genres</strong>, trusted by industry leaders including Sony Music, Atlantic Records, Warner Music, and Netflix.
+                    </p>
+
+                    <div class="row" style="text-align: center;">
+                        <div class="col-4">
+                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">10+</h3>
+                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Years</p>
+                        </div>
+                        <div class="col-4">
+                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">MAJOR</h3>
+                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Labels</p>
+                        </div>
+                        <div class="col-4">
+                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">GLOBAL</h3>
+                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Reach</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Email List Signup -->
-            <div style="max-width: 600px; margin: 3rem auto 0; text-align: center;">
-                <h3 style="color: #1a365d; margin-bottom: 1rem;">Get Exclusive Content</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">Join our email list for free beats, production tips, and industry insights</p>
-                <form id="homepage-email-signup" style="max-width: 400px; margin: 0 auto;">
-                    <div style="display: flex; gap: 1rem;">
-                        <input type="email" id="homepage-email" name="email" required placeholder="Enter your email"
-                               style="flex: 1; padding: 1rem; border: 2px solid #e9ecef; border-radius: 0; font-size: 1rem;">
-                        <button type="submit" class="btn-ssk" style="background: #1a365d; color: white; border: none; padding: 1rem 2rem;">
-                            Subscribe
-                        </button>
-                    </div>
-                </form>
-                <p style="color: #999; font-size: 0.75rem; margin-top: 1rem;">
-                    We respect your privacy. Unsubscribe at any time.
-                </p>
+
+    <!-- CLIENTS / TRUSTED BY -->
+    <section class="clients-section">
+        <div class="container">
+            <h2>Trusted By Industry Leaders</h2>
+            <div class="clients-grid">
+                <!-- Sony Music -->
+                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/images/sony-music-logo.png" alt="Sony Music" style="max-height: 50px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Atlantic Records -->
+                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/images/atlantic-records-logo.png" alt="Atlantic Records" style="max-height: 80px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Warner Music -->
+                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/images/warner-music-logo.png" alt="Warner Music" style="max-height: 60px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Netflix -->
+                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/images/netflix-logo.png" alt="Netflix" style="max-height: 40px; width: auto; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SOCIAL SECTION -->
+    <section class="section-padding" style="background: #1a365d;">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Connect With Us</h2>
+            </div>
+
+            <div class="social-links">
+                <a href="https://genius.com/artists/Ssk-music" target="_blank" rel="noopener" class="social-link">
+                    <img src="assets/images/genius-logo-transparent.png" alt="Genius" class="social-icon-img">
+                    <span class="social-label">Genius</span>
+                </a>
+                <a href="https://instagram.com/ssk_music" target="_blank" rel="noopener" class="social-link">
+                    <i class="ri-instagram-fill social-icon"></i>
+                    <span class="social-label">Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" rel="noopener" class="social-link">
+                    <i class="ri-youtube-fill social-icon"></i>
+                    <span class="social-label">YouTube</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1024,127 +1307,37 @@
     </section>
 
 
-    <!-- ABOUT SECTION -->
-    <section class="section-padding" style="background: #f8f9fa;">
+
+    <!-- EXCLUSIVE CONTENT / EMAIL CAPTURE (low on the page by design) -->
+    <section class="section-padding email-section" id="exclusive">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-8 offset-xl-2">
-                    <div class="section-title">
-                        <h2 style="color: #0a1628;">About SSK Music</h2>
-                        <p>A comprehensive entertainment company delivering premium music production since 2015</p>
+            <div class="email-wrap">
+                <h2>Get Exclusive Content</h2>
+                <p>Free beats, production tips and industry insights. No spam.</p>
+                <form id="homepage-email-signup">
+                    <div class="email-row">
+                        <input type="email" id="homepage-email" name="email" required
+                               placeholder="Enter your email" aria-label="Your email address">
+                        <button type="submit" class="btn-ssk">Subscribe</button>
                     </div>
-
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 2rem;">
-                        <i class="ri-verified-badge-fill" style="color: #1a365d; font-size: 1.25rem;"></i>
-                        <span style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1a365d;">Google Knowledge Panel Verified</span>
-                    </div>
-
-                    <p style="font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 2rem;">
-                        <strong>SSK Music</strong> is a comprehensive entertainment company specializing in <strong>premium music production and licensing</strong> for film, television, advertising, gaming, and major label releases.
-                    </p>
-
-                    <p style="font-size: 1.125rem; line-height: 1.8; color: #333; margin-bottom: 3rem;">
-                        With nearly a decade of experience and <strong>Genius-verified production credits</strong>, we deliver professional music solutions that bring creative visions to life. Our work spans <strong>multiple media formats and genres</strong>, trusted by industry leaders including Sony Music, Atlantic Records, Warner Music, and Netflix.
-                    </p>
-
-                    <div class="row" style="text-align: center;">
-                        <div class="col-4">
-                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">10+</h3>
-                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Years</p>
-                        </div>
-                        <div class="col-4">
-                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">MAJOR</h3>
-                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Labels</p>
-                        </div>
-                        <div class="col-4">
-                            <h3 style="font-size: 2.5rem; color: #1a365d; margin-bottom: 0.5rem;">GLOBAL</h3>
-                            <p style="font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">Reach</p>
-                        </div>
-                    </div>
-                </div>
+                </form>
+                <p class="email-fineprint">We respect your privacy. Unsubscribe at any time.</p>
             </div>
         </div>
     </section>
 
-
-    <!-- ARTIST DECK CAROUSEL -->
-    <section class="deck-section" id="deck" tabindex="-1" aria-roledescription="carousel" aria-label="SSK Music artist deck">
-        <div class="container">
-            <div class="section-title">
-                <h2>The Deck</h2>
+    <!-- SCROLL-TRIGGERED CAPTURE -->
+    <aside class="capture-pop" id="capturePop" role="complementary" aria-label="Newsletter signup" aria-hidden="true">
+        <button class="capture-pop-close" id="capturePopClose" type="button" aria-label="Dismiss">&#10005;</button>
+        <h4>Free beats in your inbox</h4>
+        <p>Production tips and first look at new packs. No spam.</p>
+        <form id="capturePopForm">
+            <div class="capture-pop-row">
+                <input type="email" name="email" required placeholder="you@email.com" aria-label="Your email address">
+                <button type="submit">Get it</button>
             </div>
-            <p class="deck-intro">
-                The full SSK Music story &mdash; credentials, the artists, the rooms.
-                Scroll to cycle through, or hover a record to hear the work.
-            </p>
-        </div>
-
-        <div class="deck-shell">
-            <div class="deck-stage"></div>
-
-            <div class="deck-controls">
-                <button class="deck-arrow" data-dir="-1" type="button" aria-label="Previous slide">&#8592;</button>
-                <span class="deck-counter">1 / 1</span>
-                <button class="deck-arrow" data-dir="1" type="button" aria-label="Next slide">&#8594;</button>
-            </div>
-
-            <div class="deck-dots" role="tablist" aria-label="Deck slides"></div>
-            <p class="deck-hint">Keep scrolling to flip through the deck</p>
-            <p class="deck-live visually-hidden-deck" aria-live="polite"></p>
-        </div>
-    </section>
-
-
-    <!-- SOCIAL SECTION -->
-    <section class="section-padding" style="background: #1a365d;">
-        <div class="container">
-            <div class="section-title">
-                <h2 style="color: white;">Connect With Us</h2>
-            </div>
-
-            <div class="social-links">
-                <a href="https://genius.com/artists/Ssk-music" target="_blank" rel="noopener" class="social-link">
-                    <img src="assets/images/genius-logo-transparent.png" alt="Genius" class="social-icon-img">
-                    <span class="social-label">Genius</span>
-                </a>
-                <a href="https://instagram.com/ssk_music" target="_blank" rel="noopener" class="social-link">
-                    <i class="ri-instagram-fill social-icon"></i>
-                    <span class="social-label">Instagram</span>
-                </a>
-                <a href="https://www.youtube.com/channel/UCTVT1JqREclqEvieKJ0T5ag" target="_blank" rel="noopener" class="social-link">
-                    <i class="ri-youtube-fill social-icon"></i>
-                    <span class="social-label">YouTube</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- CLIENTS / TRUSTED BY -->
-    <section class="clients-section">
-        <div class="container">
-            <h2>Trusted By Industry Leaders</h2>
-            <div class="clients-grid">
-                <!-- Sony Music -->
-                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="assets/images/sony-music-logo.png" alt="Sony Music" style="max-height: 50px; width: auto; object-fit: contain;">
-                </div>
-                <!-- Atlantic Records -->
-                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="assets/images/atlantic-records-logo.png" alt="Atlantic Records" style="max-height: 80px; width: auto; object-fit: contain;">
-                </div>
-                <!-- Warner Music -->
-                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="assets/images/warner-music-logo.png" alt="Warner Music" style="max-height: 60px; width: auto; object-fit: contain;">
-                </div>
-                <!-- Netflix -->
-                <div class="client-logo" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <img src="assets/images/netflix-logo.png" alt="Netflix" style="max-height: 40px; width: auto; object-fit: contain;">
-                </div>
-            </div>
-        </div>
-    </section>
-
+        </form>
+    </aside>
 
     <!-- FOOTER -->
     <footer>
@@ -1203,6 +1396,62 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/deck-carousel.js" defer></script>
+
+    <!-- Scroll-triggered capture: appears once past the deck, remembers dismissal -->
+    <script>
+    (function () {
+        var pop = document.getElementById('capturePop');
+        if (!pop) return;
+
+        var KEY = 'ssk_capture_dismissed';
+        try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+
+        var shown = false;
+
+        function open() {
+            if (shown) return;
+            shown = true;
+            pop.classList.add('is-open');
+            pop.setAttribute('aria-hidden', 'false');
+            window.removeEventListener('scroll', onScroll);
+        }
+
+        function dismiss() {
+            pop.classList.remove('is-open');
+            pop.setAttribute('aria-hidden', 'true');
+            try { localStorage.setItem(KEY, '1'); } catch (e) {}
+        }
+
+        // fire once the reader is properly into the page (past the deck)
+        function onScroll() {
+            var trigger = document.getElementById('about') ||
+                          document.querySelector('.email-section');
+            var y = window.scrollY + window.innerHeight;
+            var mark = trigger
+                ? trigger.getBoundingClientRect().top + window.scrollY
+                : document.body.scrollHeight * 0.45;
+            if (y > mark) open();
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        document.getElementById('capturePopClose').addEventListener('click', dismiss);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && pop.classList.contains('is-open')) dismiss();
+        });
+
+        document.getElementById('capturePopForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var email = e.target.email.value.trim();
+            if (!email) return;
+            pop.innerHTML = '<p class="capture-pop-done">Thanks — check your inbox.</p>';
+            try { localStorage.setItem(KEY, '1'); } catch (err) {}
+            setTimeout(dismiss, 2600);
+            console.log('[capture] signup:', email);
+        });
+    })();
+    </script>
 
     <!-- Live Stats Script -->
     <script>
