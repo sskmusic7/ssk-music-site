@@ -159,6 +159,136 @@
             margin-bottom: 2rem;
         }
 
+
+        /* ---- Sticky header: shared with index.html so the pages match ---- */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 54, 93, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999999 !important;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+        /* Ensure no elements cover the navigation */
+        .sticky-header * {
+            pointer-events: auto !important;
+        }
+
+        .sticky-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .sticky-logo img {
+            max-height: 40px;
+            display: block;
+        }
+
+        .sticky-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex: 1;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .sticky-stat {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sticky-stat-icon {
+            font-size: 1rem;
+        }
+
+        .sticky-stat-icon.youtube {
+            color: #FF0000;
+        }
+
+        .sticky-stat-icon.spotify {
+            color: #1DB954;
+        }
+
+        .sticky-stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+        }
+
+        .sticky-stat-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .sticky-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .sticky-nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+
+        @media (max-width: 768px) {
+            /* Sticky header adjustments */
+            .sticky-header {
+                padding: 0.75rem 1rem !important;
+            }
+
+            .sticky-header-content {
+                gap: 0.75rem !important;
+            }
+
+            /* Hide stats on mobile to save space */
+            .sticky-stats {
+                display: none !important;
+            }
+
+            /* Logo size */
+            .sticky-logo img {
+                max-height: 32px !important;
+            }
+
+            /* Mobile nav - make text smaller */
+            .sticky-cta {
+                gap: 0.5rem !important;
+            }
+
+            .sticky-nav-link {
+                font-size: 0.65rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            /* Body padding for smaller header */
+            body {
+                padding-top: 60px !important;
+            }
+
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -171,30 +301,34 @@
     </style>
 </head>
 <body>
-    <!-- Sticky Header -->
-    <header class="sticky-header">
+    <!-- Sticky Header — same structure as index.html so the two pages match -->
+    <header id="main-header" class="sticky-header" data-sticky-nav="true">
         <div class="sticky-header-content">
             <div class="sticky-logo">
-                <a href="index.html">SSK MUSIC</a>
+                <a href="index.html"><img src="assets/images/SSK Logo.png" alt="SSK Music"></a>
             </div>
-            <nav class="sticky-nav">
+            <div class="sticky-stats">
+                <div class="sticky-stat">
+                    <i class="ri-youtube-fill sticky-stat-icon youtube"></i>
+                    <div>
+                        <div class="sticky-stat-number" id="sticky-yt">--</div>
+                        <div class="sticky-stat-label">YouTube</div>
+                    </div>
+                </div>
+                <div class="sticky-stat">
+                    <i class="ri-spotify-fill sticky-stat-icon spotify"></i>
+                    <div>
+                        <div class="sticky-stat-number" id="sticky-sp">--</div>
+                        <div class="sticky-stat-label">Spotify</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sticky-cta">
                 <a href="index.html" class="sticky-nav-link bypass-touch-check">Home</a>
-                <a href="contact.html" class="sticky-nav-link bypass-touch-check">Contact</a>
+                <a href="index.html#services" class="sticky-nav-link bypass-touch-check">Services</a>
                 <a href="discography.html" class="sticky-nav-link bypass-touch-check active">Discography</a>
-            </nav>
-            <style>
-                .sticky-nav-link {
-                    transition: all 0.2s ease;
-                    position: relative !important;
-                    z-index: 1;
-                    cursor: pointer !important;
-                }
-                .sticky-nav-link:hover {
-                    opacity: 0.7;
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
-                }
-            </style>
+                <a href="contact.html" class="sticky-nav-link bypass-touch-check">Contact</a>
+            </div>
         </div>
     </header>
 
@@ -252,5 +386,21 @@
     <script src="assets/js/barba.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/discography.js"></script>
+
+    <!-- Live stats in the shared header, same endpoint as the homepage -->
+    <script>
+    (function () {
+        function fmt(n) { return Number(n).toLocaleString('en-GB'); }
+        fetch('/api/stats')
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                var yt = document.getElementById('sticky-yt');
+                var sp = document.getElementById('sticky-sp');
+                if (yt && d.youtube) yt.textContent = fmt(d.youtube);
+                if (sp && d.spotify) sp.textContent = fmt(d.spotify);
+            })
+            .catch(function () { /* header still renders with -- */ });
+    })();
+    </script>
 </body>
 </html>
