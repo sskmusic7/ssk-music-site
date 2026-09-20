@@ -1,0 +1,8 @@
+# deck slide -> source audio -> start seconds
+# Slide order matches data/deck.json. Only genuine name matches are mapped:
+# these are SSK's own type beats actually named for that artist.
+# Add rows for the other slides once you pick which beat represents each.
+#
+# order	source	start
+7	/Users/sskmusic/Documents/Organised Beats/Afroswing/B Young x Hardy Caprio x Type Beat Secure The Whine.mp3	62
+9	/Users/sskmusic/Documents/Organised Beats/Afroswing/Mist x Mostack x J Hus x Tion Wayne  type beat King for a Day - Prod. by SSK.mp3	58
