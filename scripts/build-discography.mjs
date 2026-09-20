@@ -94,8 +94,16 @@ const NOISE_RE = new RegExp([
   'what are beat leases'             // explainer video
 ].join('|'), 'i');
 
+// Behind-the-scenes / social posts that aren't releases. Deliberately
+// narrow: remixes, mashups and singles ARE releases and must survive.
+const BTS_RE = new RegExp([
+  'testing ', 'how .{0,20}is made', 'comment fire',
+  'tutorial', 'explained', 'out now\\b',
+  '\\bvlog\\b', 'behind the scenes', 'day in the life'
+].join('|'), 'i');
+
 function classify(title) {
-  if (NOISE_RE.test(title)) return 'noise';
+  if (NOISE_RE.test(title) || BTS_RE.test(title)) return 'noise';
   if (BEAT_RE.test(title)) return 'beat';
   return 'track';
 }
@@ -127,15 +135,58 @@ function parseTrack(raw) {
   return { artist: null, title: s };
 }
 
-/** '"Higher" — Burna Boy x Pharrell Type Beat | Afro-Fusion 2025' -> Higher */
-function parseBeat(raw) {
-  const quoted = raw.match(/[""'"]([^""'"]{2,60})[""'"]/);
-  let title = quoted ? quoted[1] : raw.split(/[-–—|]/)[0];
-  title = title.replace(/\(free\)|\[free\]/gi, '').trim();
+/** '"Higher" - Burna Boy x Pharrell Type Beat | Afro-Fusion 2025' -> Higher */
+// straight + curly quotes, by code point so the source stays unambiguous
+const QUOTES = ['"', "'", '‘', '’', '“', '”'].join('');
+const QUOTE_CLASS = `[${QUOTES}]`;
 
-  const type = raw.match(/([A-Za-z0-9 .'&]+?)\s*type\s*beat/i);
-  return { title: title || raw.slice(0, 60), typeBeatFor: type ? type[1].trim() : null };
+function parseBeat(raw) {
+  const quoted = raw.match(new RegExp(`${QUOTE_CLASS}([^${QUOTES}]{2,60})${QUOTE_CLASS}`));
+
+  let title;
+  let unquotedArtist = null;
+
+  if (quoted) {
+    title = quoted[1];
+  } else {
+    // No quoted name. Drop the trailing "... Type Beat ..." descriptor, then
+    // handle "Title - Artist" (e.g. "South of the Border - Sabrina Carpenter
+    // Type Beat") by splitting on the LAST dash: left is the beat name,
+    // right is who it's a type beat for.
+    const head = raw.split(/[|–—]/)[0]
+      .replace(/\(free\)|\[free\]/gi, '')
+      .replace(/\s*type\s*beat.*$/i, '')
+      .trim();
+    const lastDash = head.lastIndexOf(' - ');
+    if (lastDash > 0) {
+      title = head.slice(0, lastDash).trim();
+      unquotedArtist = head.slice(lastDash + 3).trim();
+    } else {
+      title = head;
+    }
+  }
+
+  title = title
+    .replace(/\(free\)|\[free\]/gi, '')
+    .replace(new RegExp(QUOTE_CLASS, 'g'), '')   // strip stray smart quotes
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  // hyphen + x must be allowed: "YG x G-Eazy Type Beat" was capturing "Eazy"
+  const type = raw.match(/([A-Za-z0-9 .'&\-]+?)\s*type\s*beat/i);
+  let typeBeatFor = type ? type[1].replace(new RegExp(QUOTE_CLASS, 'g'), '').trim() : null;
+  // the quoted track name often sits immediately before "… Type Beat"
+  if (typeBeatFor && quoted) {
+    typeBeatFor = typeBeatFor.replace(new RegExp(`^${escapeRe(quoted[1])}\\s*[-–—]?\\s*`), '').trim();
+  }
+  if (typeBeatFor === '') typeBeatFor = null;
+  // the dash-split above is more reliable than the regex for unquoted titles
+  if (unquotedArtist) typeBeatFor = unquotedArtist;
+
+  return { title: title || raw.slice(0, 60), typeBeatFor };
 }
+
+function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 function iso8601ToSeconds(d) {
   if (!d) return null;
@@ -189,8 +240,11 @@ async function main() {
 
     let kind = ov.type || classify(r.title);
     if (kind === 'noise') { dropped++; review.push(['DROPPED', r.title]); continue; }
-    // channel uploads default to beat unless they clearly parse as a track
-    if (!ov.type && r.defaultType === 'beat' && kind === 'track') kind = 'beat';
+
+    // Channel uploads default to beat. Requiring a literal "type beat" match
+    // was too strict — it binned real remixes and singles. Only genuine
+    // behind-the-scenes / social chatter is dropped, via BTS_RE.
+    if (!ov.type && r.defaultType === 'beat') kind = 'beat';
 
     let artist, title, typeBeatFor = null;
     if (kind === 'beat') {
