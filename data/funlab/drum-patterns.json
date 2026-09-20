@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "steps": 16,
+    "note": "One bar of 16th notes. 1 = hit, 0 = rest. Tempos are the usual working range, not a rule.",
+    "tracks": ["kick", "snare", "clap", "hat", "openhat", "perc"]
+  },
+  "patterns": [
+    {
+      "id": "boom-bap",
+      "name": "Boom Bap",
+      "bpm": 90,
+      "family": "Hip-Hop",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":     [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "tip": "Swing the hats and let the kick land slightly late. The pocket comes from it not being quantised."
+    },
+    {
+      "id": "uk-drill",
+      "name": "UK Drill",
+      "bpm": 142,
+      "family": "Drill",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,1,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":     [1,0,1,1, 1,0,1,0, 1,1,1,0, 1,0,1,1],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "tip": "The snare sits on 3, not 2 and 4. The 808 slides between notes — that glide is the genre."
+    },
+    {
+      "id": "trap",
+      "name": "Trap",
+      "bpm": 140,
+      "family": "Trap",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,1,0, 0,0,0,0, 1,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":     [1,0,1,0, 1,1,1,0, 1,0,1,0, 1,1,1,1],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "tip": "Hat rolls do the work. Keep the kick sparse so the 808 has room to ring out."
+    },
+    {
+      "id": "amapiano",
+      "name": "Amapiano",
+      "bpm": 112,
+      "family": "Amapiano",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
+      },
+      "tip": "The log drum carries the groove, not the kick. Shakers run all the way through — leave space on 2 and 4."
+    },
+    {
+      "id": "afroswing",
+      "name": "Afroswing",
+      "bpm": 102,
+      "family": "Afro",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,1,0, 0,0,0,0, 1,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,1,0],
+        "perc":    [0,0,1,0, 0,0,0,1, 0,0,1,0, 0,1,0,0]
+      },
+      "tip": "Half dancehall, half UK rap. The swing lives in the percussion, not the kick."
+    },
+    {
+      "id": "afrobeats",
+      "name": "Afrobeats",
+      "bpm": 105,
+      "family": "Afro",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,1,0, 0,1,0,0, 0,0,1,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [1,0,1,1, 0,1,1,0, 1,0,1,1, 0,1,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,1,0, 0,1,0,0, 1,0,0,1, 0,0,1,0]
+      },
+      "tip": "Built on a 3-2 feel. Let the shaker and conga argue with the kick rather than follow it."
+    },
+    {
+      "id": "dancehall",
+      "name": "Dancehall",
+      "bpm": 100,
+      "family": "Caribbean",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,1,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":     [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1]
+      },
+      "tip": "One drop: the kick avoids beat 1 in the classic form. Here it lands on 1 and 3 for a steppers feel."
+    },
+    {
+      "id": "uk-garage",
+      "name": "UK Garage (2-step)",
+      "bpm": 135,
+      "family": "Garage",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [1,0,1,1, 0,1,1,0, 1,1,0,1, 0,1,1,0],
+        "openhat": [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
+        "perc":    [0,1,0,0, 0,0,0,1, 0,0,0,0, 0,1,0,0]
+      },
+      "tip": "Two-step means the kick skips beat 3. Shuffle the hats hard — straight 16ths kill it."
+    },
+    {
+      "id": "house",
+      "name": "House",
+      "bpm": 124,
+      "family": "House",
+      "tracks": {
+        "kick":    [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare":   [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "clap":    [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":     [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
+        "openhat": [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "tip": "Four to the floor with the open hat on the off-beat. That hat is what makes it swing, not the kick."
+    },
+    {
+      "id": "rnb",
+      "name": "R&B / Slow Jam",
+      "bpm": 72,
+      "family": "R&B",
+      "tracks": {
+        "kick":    [1,0,0,0, 0,0,0,1, 0,0,1,0, 0,0,0,0],
+        "snare":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "clap":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":     [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1],
+        "openhat": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "perc":    [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+      },
+      "tip": "Slow tempo, busy hats. Ghost notes on the snare matter more than the pattern itself."
+    }
+  ]
+}

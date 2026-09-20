@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/plugins.css"/>
     <link rel="stylesheet" href="assets/css/main.css"/>
     <link rel="stylesheet" href="assets/css/funlab/stem-replicator.css"/>
+    <link rel="stylesheet" href="assets/css/funlab/tools.css"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,19 +153,21 @@
 
         <section class="lab-tool">
             <h2>Drum Pattern Cheat Sheet</h2>
-            <p class="lab-note">Classic patterns across boom bap, drill, amapiano, afroswing and more.</p>
-            <div class="lab-soon">In build</div>
+            <p class="lab-note">Ten classic grooves, one bar each. Hit Preview to hear it, or read it off the grid.</p>
+            <div id="drum-patterns"></div>
         </section>
 
         <section class="lab-tool">
             <h2>Rhyme Finder</h2>
-            <p class="lab-note">Drop a line in, get rhymes out, with syllable counts.</p>
-            <div class="lab-soon">In build</div>
+            <p class="lab-note">Paste a whole bar &mdash; it rhymes off the last word and groups by syllable count so you can match the length.</p>
+            <div id="rhyme-finder"></div>
         </section>
 
     </main>
 
     <script src="assets/js/funlab/stem-replicator.js"></script>
+    <script src="assets/js/funlab/drum-patterns.js"></script>
+    <script src="assets/js/funlab/rhyme-finder.js"></script>
     <script>
         // one AudioContext shared by every tool on the page
         window.SSK_AUDIO = window.SSK_AUDIO || null;
@@ -176,6 +179,16 @@
             return window.SSK_AUDIO;
         }
         document.addEventListener('DOMContentLoaded', function () {
+            var L = window.SSKFunLab || {};
+
+            var dp = document.getElementById('drum-patterns');
+            if (dp && L.drumPatterns) {
+                L.drumPatterns.mount(dp, { getAudioContext: sskAudioContext });
+            }
+
+            var rf = document.getElementById('rhyme-finder');
+            if (rf && L.rhymeFinder) L.rhymeFinder.mount(rf, {});
+
             var host = document.getElementById('stem-replicator');
             if (host && window.SSKFunLab && window.SSKFunLab.stemReplicator) {
                 // factory, not a live context — nothing is constructed until

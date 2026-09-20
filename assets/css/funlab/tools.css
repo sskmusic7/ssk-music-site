@@ -1,0 +1,266 @@
+/* Fun Lab — Drum Pattern Cheat Sheet + Rhyme Finder.
+   Scoped under their own root classes so nothing leaks into the page. */
+
+.funlab-drum-patterns,
+.funlab-rhyme-finder {
+    --fl-navy: #1a365d;
+    --fl-dark: #0a1628;
+    --fl-line: #e4e8ee;
+    --fl-muted: #7c848d;
+
+    background: #fff;
+    border: 1px solid var(--fl-line);
+    padding: 1.5rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--fl-dark);
+}
+
+/* ==========================================================
+   Drum Pattern Cheat Sheet
+   ========================================================== */
+
+.funlab-drum-patterns .fdp-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.funlab-drum-patterns .fdp-tab {
+    background: #f4f6f9;
+    border: 1px solid var(--fl-line);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--fl-navy);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.funlab-drum-patterns .fdp-tab:hover { border-color: var(--fl-navy); }
+
+.funlab-drum-patterns .fdp-tab.is-active {
+    background: var(--fl-navy);
+    border-color: var(--fl-navy);
+    color: #fff;
+}
+
+.funlab-drum-patterns .fdp-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.funlab-drum-patterns .fdp-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--fl-navy);
+    margin: 0;
+}
+
+.funlab-drum-patterns .fdp-info {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fl-muted);
+}
+
+/* grid */
+.funlab-drum-patterns .fdp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+}
+
+.funlab-drum-patterns .fdp-row {
+    display: grid;
+    grid-template-columns: 72px repeat(16, minmax(20px, 1fr));
+    gap: 3px;
+    align-items: center;
+    min-width: 460px;
+}
+
+.funlab-drum-patterns .fdp-label {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fl-muted);
+    text-align: right;
+    padding-right: 0.4rem;
+}
+
+.funlab-drum-patterns .fdp-cell {
+    aspect-ratio: 1;
+    background: #eef1f5;
+    border-radius: 2px;
+    transition: background 0.1s ease, transform 0.1s ease;
+}
+
+.funlab-drum-patterns .fdp-cell.is-downbeat { background: #e3e8ef; }
+
+.funlab-drum-patterns .fdp-cell.is-on {
+    background: var(--fl-navy);
+}
+
+.funlab-drum-patterns .fdp-cell.is-cursor {
+    outline: 2px solid #f5b301;
+    outline-offset: -2px;
+}
+
+.funlab-drum-patterns .fdp-cell.is-on.is-cursor {
+    background: #f5b301;
+    transform: scale(1.1);
+}
+
+.funlab-drum-patterns .fdp-ruler .fdp-beat {
+    font-size: 0.6rem;
+    color: #b6bdc6;
+    text-align: center;
+    font-weight: 700;
+}
+
+.funlab-drum-patterns .fdp-tip {
+    font-size: 0.82rem;
+    color: var(--fl-muted);
+    line-height: 1.6;
+    border-left: 2px solid #f5b301;
+    padding-left: 0.8rem;
+    margin: 1.1rem 0 1.25rem;
+}
+
+.funlab-drum-patterns .fdp-foot { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+.funlab-drum-patterns .fdp-play,
+.funlab-drum-patterns .fdp-send {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    border: 1px solid var(--fl-navy);
+}
+
+.funlab-drum-patterns .fdp-play { background: var(--fl-navy); color: #fff; }
+.funlab-drum-patterns .fdp-send { background: none; color: var(--fl-navy); }
+.funlab-drum-patterns .fdp-send:disabled {
+    opacity: 0.4; cursor: default; border-color: var(--fl-line); color: var(--fl-muted);
+}
+
+/* ==========================================================
+   Rhyme Finder
+   ========================================================== */
+
+.funlab-rhyme-finder .frf-form { display: flex; gap: 0.6rem; margin-bottom: 0.9rem; }
+
+.funlab-rhyme-finder .frf-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--fl-line);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--fl-dark);
+}
+
+.funlab-rhyme-finder .frf-input:focus { outline: none; border-color: var(--fl-navy); }
+
+.funlab-rhyme-finder .frf-go {
+    background: var(--fl-navy);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.funlab-rhyme-finder .frf-tabs { display: flex; gap: 0.35rem; margin-bottom: 0.9rem; }
+
+.funlab-rhyme-finder .frf-tab {
+    background: #f4f6f9;
+    border: 1px solid var(--fl-line);
+    padding: 0.45rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--fl-navy);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.funlab-rhyme-finder .frf-tab.is-active {
+    background: var(--fl-navy);
+    border-color: var(--fl-navy);
+    color: #fff;
+}
+
+.funlab-rhyme-finder .frf-status {
+    font-size: 0.78rem;
+    color: var(--fl-muted);
+    margin-bottom: 1rem;
+}
+
+.funlab-rhyme-finder .frf-group { margin-bottom: 1.1rem; }
+
+.funlab-rhyme-finder .frf-group-head {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #b6bdc6;
+    margin-bottom: 0.5rem;
+}
+
+.funlab-rhyme-finder .frf-words { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.funlab-rhyme-finder .frf-word {
+    background: #f4f6f9;
+    border: 1px solid var(--fl-line);
+    padding: 0.4rem 0.7rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--fl-dark);
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.funlab-rhyme-finder .frf-word:hover {
+    background: var(--fl-navy);
+    border-color: var(--fl-navy);
+    color: #fff;
+}
+
+.funlab-rhyme-finder .frf-word.is-copied {
+    background: #f5b301;
+    border-color: #f5b301;
+    color: #1a1a1a;
+}
+
+@media (max-width: 560px) {
+    .funlab-drum-patterns,
+    .funlab-rhyme-finder { padding: 1rem; }
+    .funlab-rhyme-finder .frf-form { flex-direction: column; }
+    .funlab-drum-patterns .fdp-row { grid-template-columns: 56px repeat(16, minmax(16px, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .funlab-drum-patterns *,
+    .funlab-rhyme-finder * { transition: none !important; }
+}
