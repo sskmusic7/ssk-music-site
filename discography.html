@@ -14,9 +14,9 @@
     <link rel="icon" href="favicon.ico">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=34a45c3"/>
-    <link rel="stylesheet" href="assets/css/plugins.css?v=34a45c3"/>
-    <link rel="stylesheet" href="assets/css/main.css?v=34a45c3"/>
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=05be84f"/>
+    <link rel="stylesheet" href="assets/css/plugins.css?v=05be84f"/>
+    <link rel="stylesheet" href="assets/css/main.css?v=05be84f"/>
 
     <!-- Premium Google Fonts - Syne for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,12 +24,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
     <!-- Font icons -->
-    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=34a45c3"/>
-    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=34a45c3"/>
+    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=05be84f"/>
+    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=05be84f"/>
 
     <!-- Discography specific styles -->
-    <link rel="stylesheet" href="assets/css/discography.css?v=34a45c3"/>
-    <link rel="stylesheet" href="assets/css/library.css?v=34a45c3"/>
+    <link rel="stylesheet" href="assets/css/discography.css?v=05be84f"/>
+    <link rel="stylesheet" href="assets/css/library.css?v=05be84f"/>
 
     <style>
         /* SSK Music Custom Styles */
@@ -156,18 +156,27 @@
             margin: 0 auto;
         }
 
+        /* Match the homepage type scale exactly.
+           This was 800 weight at a fixed 3.5rem while every heading on
+           index.html is 700 at a responsive size — which is what made the
+           discography hero read as a different font. */
         .hero-title {
             color: white;
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: clamp(2.5rem, 7vw, 3.6rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
             margin-bottom: 1rem;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
         .hero-subtitle {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.75);
+            font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+            margin-bottom: 0;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
 
@@ -401,12 +410,12 @@
     </main>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery-3.6.0.min.js?v=34a45c3"></script>
-    <script src="assets/js/gsap.min.js?v=34a45c3"></script>
-    <script src="assets/js/barba.min.js?v=34a45c3"></script>
-    <script src="assets/js/barba.js?v=34a45c3"></script>
-    <script src="assets/js/main.js?v=34a45c3"></script>
-    <script src="assets/js/discography.js?v=34a45c3"></script>
+    <script src="assets/js/jquery-3.6.0.min.js?v=05be84f"></script>
+    <script src="assets/js/gsap.min.js?v=05be84f"></script>
+    <script src="assets/js/barba.min.js?v=05be84f"></script>
+    <script src="assets/js/barba.js?v=05be84f"></script>
+    <script src="assets/js/main.js?v=05be84f"></script>
+    <script src="assets/js/discography.js?v=05be84f"></script>
 
     <!-- Live stats in the shared header, same endpoint as the homepage -->
     <script>

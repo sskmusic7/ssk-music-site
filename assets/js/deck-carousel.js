@@ -180,6 +180,32 @@
         return btn;
     }
 
+    /** Position every slide relative to the active one (coverflow). */
+    var NEAR = 3;   // how many slides stay on stage each side
+
+    function layout() {
+        for (var i = 0; i < els.slides.length; i++) {
+            var el = els.slides[i];
+            var offset = i - index;
+            var dist = Math.abs(offset);
+
+            el.style.setProperty('--i', offset);
+            el.style.setProperty('--d', dist);
+
+            el.classList.toggle('is-active', offset === 0);
+            el.classList.toggle('is-near', dist > 0 && dist <= NEAR);
+
+            // keep far slides out of the a11y tree and off the GPU.
+            // In reduced-motion the stage is a plain scroll-snap strip, so
+            // every slide must stay visible — an inline style here would
+            // beat the stylesheet and hide most of the strip.
+            el.setAttribute('aria-hidden', offset === 0 ? 'false' : 'true');
+            if (!reduceMotion) {
+                el.style.visibility = dist <= NEAR ? 'visible' : 'hidden';
+            }
+        }
+    }
+
     function go(next, viaScroll) {
         if (locked() || next === index) return;
         if (next < 0 || next >= slides.length) return;
@@ -187,13 +213,12 @@
         lockUntil = Date.now() + TRANSITION_MS;
         stopAudio();
 
-        els.slides[index].classList.remove('is-active');
         els.dots[index].classList.remove('is-active');
         els.dots[index].setAttribute('aria-current', 'false');
 
         index = next;
+        layout();
 
-        els.slides[index].classList.add('is-active');
         els.dots[index].classList.add('is-active');
         els.dots[index].setAttribute('aria-current', 'true');
 
@@ -210,21 +235,14 @@
     /* ---------------- wheel hijack --------------------------------------- */
 
     /**
-     * Engage while the stage straddles the middle of the viewport.
-     *
-     * An IntersectionObserver ratio is the wrong tool here: the section is
-     * ~1150px tall, so on a 754px viewport the ratio tops out at 0.65 and on a
-     * 600px laptop it never clears 0.52. A threshold would silently stop
-     * working on shorter screens. This test is viewport-height independent.
+     * The wheel listener is bound to the deck section itself, so it only
+     * fires when the pointer is actually over the deck. That IS the
+     * "am I on the deck" test — an extra geometry check on top of it was
+     * what stopped the lock engaging while scrolling over the carousel.
+     * Scrolling anywhere else on the page never reaches this handler.
      */
-    function stageEngaged() {
-        var r = els.stage.getBoundingClientRect();
-        var mid = window.innerHeight / 2;
-        return r.top < mid && r.bottom > mid;
-    }
-
     function onWheel(e) {
-        if (reduceMotion || !stageEngaged()) return;
+        if (reduceMotion) return;
         if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
 
         var dir = e.deltaY > 0 ? 1 : -1;
@@ -298,7 +316,13 @@
 
         slides.forEach(function (s, i) {
             var node = buildSlide(s);
-            if (i === 0) node.classList.add('is-active');
+            // click a neighbouring page to bring it to the front
+            (function (idx) {
+                node.addEventListener('click', function (e) {
+                    if (e.target.closest('.deck-disk')) return;   // disk handles itself
+                    if (idx !== index) { e.preventDefault(); go(idx, false); }
+                });
+            })(i);
             els.stage.appendChild(node);
             els.slides.push(node);
 
@@ -312,6 +336,8 @@
             els.dots.push(dot);
         });
 
+        layout();   // establish the coverflow positions before first paint
+
         els.counter.textContent = '1 / ' + slides.length;
         els.progress.style.width = (100 / slides.length) + '%';
         els.prev.disabled = true;
@@ -320,7 +346,7 @@
 
         if (!reduceMotion) {
             // only used to cut audio when the section scrolls away; the wheel
-            // gate is stageEngaged(), which doesn't depend on viewport height
+            // handler is bound to the section, which is its own scope test
             new IntersectionObserver(function (entries) {
                 inViewport = entries[0].isIntersecting;
                 if (!inViewport) stopAudio();

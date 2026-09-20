@@ -40,37 +40,79 @@
 }
 
 /* ---------- stage ---------- */
-/* Aspect comes from the real slide dimensions (set by JS from deck.json).
-   The deck pages are 1.42:1, not 16:9 — hard-coding 16/9 cropped the torn
-   top edge and the chart panel off every slide. */
+/* 3D coverflow stage.
+   Aspect comes from the real slide dimensions (set by JS from deck.json) —
+   the deck pages are 1.42:1, not 16:9.
+   overflow is visible so neighbouring slides can sit outside the frame. */
 .deck-stage {
     position: relative;
     aspect-ratio: var(--deck-aspect, 1.42);
-    background: #060d18;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    perspective: 2200px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+    overflow: visible;
 }
 
-/* Crossfade on opacity only.
-   An earlier version also scaled 1.03 -> 1, but the transform left the
-   slide 3% larger than the stage (overflow:hidden then clipped ~30px off
-   every deck page) and the transform transition sat stuck at currentTime 0.
-   Opacity alone reads the same and can't crop the artwork. */
+/* the lit frame behind the active slide */
+.deck-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #060d18;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+/* Coverflow slide.
+   JS sets --i (signed offset from the active slide) and the transform is
+   derived from it, so neighbours fan out in 3D either side of the current
+   page. Same idea as the BigHeadz town portal ring, adapted for 21 slides:
+   a full 360/21 ring would be unreadable, so only +/-3 are kept on stage. */
 .deck-slide {
     position: absolute;
     inset: 0;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-origin: 50% 50%;
+    transition:
+        transform 0.75s cubic-bezier(0.22, 0.85, 0.24, 1),
+        opacity 0.55s ease,
+        filter 0.55s ease;
+    will-change: transform, opacity;
+
+    /* default: parked offstage.
+       Spread values are custom properties so narrow screens can pull the
+       neighbours in — at 700px a 54% offset threw them right off the
+       section and only the clip on .deck-section kept the page from
+       scrolling sideways. */
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.55s ease, visibility 0s linear 0.55s;
-    will-change: opacity;
+    pointer-events: none;
+    z-index: 0;
+    transform:
+        translateX(calc(var(--i, 0) * var(--deck-spread, 54%)))
+        translateZ(var(--deck-depth, -460px))
+        rotateY(calc(var(--i, 0) * var(--deck-tilt, -38deg)))
+        scale(var(--deck-shrink, 0.82));
 }
 
+/* neighbours: visible, angled, dimmed */
+.deck-slide.is-near {
+    opacity: calc(1 - (var(--d, 1) * 0.26));
+    filter: brightness(calc(1 - (var(--d, 1) * 0.28))) saturate(0.85);
+    z-index: calc(10 - var(--d, 1));
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* the current page: square on, front and centre */
 .deck-slide.is-active {
     opacity: 1;
-    visibility: visible;
-    transition: opacity 0.55s ease, visibility 0s linear 0s;
-    z-index: 2;
+    filter: none;
+    z-index: 20;
+    pointer-events: auto;
+    transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.55);
 }
 
 /* the global `img{height:auto!important}` rule in index.html would squash
@@ -329,7 +371,20 @@
 /* ===========================================================
    Responsive
    =========================================================== */
+@media (max-width: 1100px) {
+    .deck-stage { --deck-spread: 42%; --deck-depth: -360px; --deck-tilt: -32deg; }
+}
+
 @media (max-width: 768px) {
+    /* neighbours only peek in; a wide fan is unreadable at this size */
+    .deck-stage {
+        --deck-spread: 30%;
+        --deck-depth: -260px;
+        --deck-tilt: -26deg;
+        --deck-shrink: 0.86;
+        perspective: 1400px;
+    }
+
     .deck-section { padding: 3rem 0; }
     .deck-shell { padding: 0 0.75rem; }
     .deck-slide-caption { padding: 2rem 1rem 0.9rem; }
