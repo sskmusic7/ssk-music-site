@@ -47,9 +47,15 @@
         var grid = {}, tracks = [];
         var playing = false, timer = null;
         var step = 0, nextTime = 0, bpm = 96;
+        var swing = 50;            // 50 = straight; higher delays every other 16th
         var cells = {};
+        var vol = {}, muted = {};  // per-channel mixer state
 
-        ORDER.forEach(function (t) { grid[t] = new Array(STEPS).fill(0); });
+        ORDER.forEach(function (t) {
+            grid[t] = new Array(STEPS).fill(0);
+            vol[t] = 0.85;
+            muted[t] = false;
+        });
 
         /* ---------- shell ---------- */
         var head = el('div', 'fbm-head');
@@ -74,11 +80,21 @@
         tempoWrap.appendChild(tempo);
         tempoWrap.appendChild(tempoVal);
 
+        var swingWrap = el('label', 'fbm-swing');
+        var swingIn = document.createElement('input');
+        swingIn.type = 'range';
+        swingIn.min = 50; swingIn.max = 70; swingIn.step = 1; swingIn.value = swing;
+        swingIn.setAttribute('aria-label', 'Swing');
+        var swingVal = el('span', 'fbm-swing-val', 'Swing ' + swing + '%');
+        swingWrap.appendChild(swingIn);
+        swingWrap.appendChild(swingVal);
+
         var clear = el('button', 'fbm-clear', 'Clear');
         clear.type = 'button';
 
         foot.appendChild(play);
         foot.appendChild(tempoWrap);
+        foot.appendChild(swingWrap);
         foot.appendChild(clear);
 
         root.appendChild(head);
@@ -111,6 +127,7 @@
 
             var ruler = el('div', 'fbm-row fbm-ruler');
             ruler.appendChild(el('div', 'fbm-name', ''));
+            ruler.appendChild(el('div', '', ''));   // spacer under the volume column
             for (var s = 0; s < STEPS; s++) {
                 ruler.appendChild(el('div', 'fbm-beat' + (s % 4 === 0 ? ' is-downbeat' : ''),
                                      s % 4 === 0 ? String(s / 4 + 1) : ''));
@@ -120,7 +137,28 @@
             tracks.forEach(function (t) {
                 var row = el('div', 'fbm-row');
                 row.dataset.track = t;
-                row.appendChild(el('div', 'fbm-name', LABEL[t] || t));
+
+                var nameBtn = el('button', 'fbm-name', LABEL[t] || t);
+                nameBtn.type = 'button';
+                nameBtn.title = 'Mute / unmute';
+                nameBtn.setAttribute('aria-pressed', 'true');
+                (function (track, node) {
+                    node.addEventListener('click', function () {
+                        muted[track] = !muted[track];
+                        node.setAttribute('aria-pressed', String(!muted[track]));
+                        row.classList.toggle('is-muted', muted[track]);
+                    });
+                })(t, nameBtn);
+                row.appendChild(nameBtn);
+
+                var lvl = document.createElement('input');
+                lvl.type = 'range'; lvl.min = 0; lvl.max = 100; lvl.value = 85;
+                lvl.className = 'fbm-vol';
+                lvl.setAttribute('aria-label', (LABEL[t] || t) + ' volume');
+                (function (track) {
+                    lvl.addEventListener('input', function () { vol[track] = +this.value / 100; });
+                })(t);
+                row.appendChild(lvl);
                 cells[t] = [];
                 for (var s = 0; s < STEPS; s++) {
                     var c = el('button', 'fbm-cell' + (s % 4 === 0 ? ' is-downbeat' : ''));
@@ -182,7 +220,7 @@
             var src = ctx.createBufferSource();
             src.buffer = b;
             var g = ctx.createGain();
-            g.gain.value = 0.85;
+            g.gain.value = muted[track] ? 0 : (vol[track] != null ? vol[track] : 0.85);
             src.connect(g).connect(ctx.destination);
             src.start(when);
         }
@@ -196,10 +234,17 @@
             var stepDur = (60 / bpm) / 4;             // 16th notes
             while (nextTime < ctx.currentTime + LOOKAHEAD) {
                 var s = step;
+                // Swing delays every ODD 16th toward the following one.
+                // 50% is straight; 66% approaches a triplet feel. Applied to
+                // the scheduled time only, so the grid stays readable.
+                var offset = (s % 2 === 1)
+                    ? ((swing - 50) / 50) * (stepDur * 0.5)
+                    : 0;
+                var at = nextTime + offset;
                 tracks.forEach(function (t) {
-                    if (grid[t][s]) hit(t, nextTime);
+                    if (grid[t][s]) hit(t, at);
                 });
-                paint(s, nextTime - ctx.currentTime);
+                paint(s, at - ctx.currentTime);
                 nextTime += stepDur;
                 step = (step + 1) % STEPS;
             }
@@ -251,8 +296,21 @@
             tempoVal.textContent = bpm + ' BPM';
         });
 
+        swingIn.addEventListener('input', function () {
+            swing = +swingIn.value;
+            swingVal.textContent = 'Swing ' + swing + '%';
+        });
+
         clear.addEventListener('click', function () {
-            ORDER.forEach(function (t) { grid[t] = new Array(STEPS).fill(0); });
+            ORDER.forEach(function (t) {
+                grid[t] = new Array(STEPS).fill(0);
+                muted[t] = false;
+            });
+            board.querySelectorAll('.fbm-row').forEach(function (r) {
+                r.classList.remove('is-muted');
+                var n = r.querySelector('.fbm-name');
+                if (n && n.tagName === 'BUTTON') n.setAttribute('aria-pressed', 'true');
+            });
             repaint();
         });
 
@@ -273,6 +331,11 @@
                     bpm = Math.max(60, Math.min(180, p.bpm));
                     tempo.value = bpm;
                     tempoVal.textContent = bpm + ' BPM';
+                }
+                if (p.swing) {
+                    swing = Math.max(50, Math.min(70, p.swing));
+                    swingIn.value = swing;
+                    swingVal.textContent = 'Swing ' + swing + '%';
                 }
                 repaint();
                 status.textContent = 'Loaded: ' + p.name;

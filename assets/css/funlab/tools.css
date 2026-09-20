@@ -380,3 +380,31 @@
 @media (prefers-reduced-motion: reduce) {
     .funlab-beat-machine * { transition: none !important; }
 }
+
+/* Beat Machine — per-channel mixer + swing */
+.funlab-beat-machine .fbm-row {
+    grid-template-columns: 78px 54px repeat(16, minmax(22px, 1fr));
+}
+.funlab-beat-machine .fbm-ruler { grid-template-columns: 78px 54px repeat(16, minmax(22px, 1fr)); }
+.funlab-beat-machine button.fbm-name {
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: #1a365d; text-align: right;
+    padding: 0 0.4rem 0 0;
+}
+.funlab-beat-machine button.fbm-name:hover { text-decoration: underline; }
+.funlab-beat-machine .fbm-row.is-muted { opacity: 0.4; }
+.funlab-beat-machine .fbm-row.is-muted button.fbm-name { text-decoration: line-through; }
+.funlab-beat-machine .fbm-vol { width: 48px; accent-color: #1a365d; cursor: pointer; }
+.funlab-beat-machine .fbm-swing { display: flex; align-items: center; gap: 0.5rem; }
+.funlab-beat-machine .fbm-swing input { width: 90px; accent-color: #f5b301; cursor: pointer; }
+.funlab-beat-machine .fbm-swing-val {
+    font-family: 'Syne', sans-serif; font-size: 0.7rem;
+    letter-spacing: 0.06em; color: #7c848d; min-width: 78px;
+}
+@media (max-width: 560px) {
+    .funlab-beat-machine .fbm-row,
+    .funlab-beat-machine .fbm-ruler { grid-template-columns: 58px 34px repeat(16, minmax(16px, 1fr)); }
+    .funlab-beat-machine .fbm-vol { width: 30px; }
+    .funlab-beat-machine .fbm-swing { order: 4; width: 100%; }
+}
