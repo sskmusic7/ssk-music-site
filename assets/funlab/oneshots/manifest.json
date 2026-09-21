@@ -1,34 +1,202 @@
 {
-  "source": "SSK Music own productions (ama rock stems, Retrospect drum bounce)",
-  "sampleRate": 44100,
+  "note": "Isolated one-shots \u2014 no bleed. Log drums and 808s synthesised.",
   "oneshots": [
     {
+      "id": "kick",
+      "variants": [
+        {
+          "label": "BH tight",
+          "src": "assets/funlab/oneshots/kick.wav",
+          "ms": 615
+        },
+        {
+          "label": "BH punch",
+          "src": "assets/funlab/oneshots/kick-1.wav",
+          "ms": 1200
+        },
+        {
+          "label": "BH sub",
+          "src": "assets/funlab/oneshots/kick-2.wav",
+          "ms": 1200
+        },
+        {
+          "label": "808",
+          "src": "assets/funlab/oneshots/kick-3.wav",
+          "ms": 422
+        },
+        {
+          "label": "Synth",
+          "src": "assets/funlab/oneshots/kick-4.wav",
+          "ms": 380
+        }
+      ],
+      "src": "assets/funlab/oneshots/kick.wav"
+    },
+    {
+      "id": "snare",
+      "variants": [
+        {
+          "label": "BH gucci",
+          "src": "assets/funlab/oneshots/snare.wav",
+          "ms": 142
+        },
+        {
+          "label": "BH 07",
+          "src": "assets/funlab/oneshots/snare-1.wav",
+          "ms": 1000
+        },
+        {
+          "label": "BH flexer",
+          "src": "assets/funlab/oneshots/snare-2.wav",
+          "ms": 498
+        },
+        {
+          "label": "Acoustic",
+          "src": "assets/funlab/oneshots/snare-3.wav",
+          "ms": 300
+        },
+        {
+          "label": "808",
+          "src": "assets/funlab/oneshots/snare-4.wav",
+          "ms": 187
+        }
+      ],
+      "src": "assets/funlab/oneshots/snare.wav"
+    },
+    {
       "id": "clap",
+      "variants": [
+        {
+          "label": "BH gucci",
+          "src": "assets/funlab/oneshots/clap.wav",
+          "ms": 106
+        },
+        {
+          "label": "Amapiano",
+          "src": "assets/funlab/oneshots/clap-1.wav",
+          "ms": 172
+        },
+        {
+          "label": "Short",
+          "src": "assets/funlab/oneshots/clap-2.wav",
+          "ms": 98
+        },
+        {
+          "label": "808",
+          "src": "assets/funlab/oneshots/clap-3.wav",
+          "ms": 263
+        }
+      ],
       "src": "assets/funlab/oneshots/clap.wav"
     },
     {
       "id": "hat",
+      "variants": [
+        {
+          "label": "BH gucci",
+          "src": "assets/funlab/oneshots/hat.wav",
+          "ms": 134
+        },
+        {
+          "label": "BH 02",
+          "src": "assets/funlab/oneshots/hat-1.wav",
+          "ms": 862
+        },
+        {
+          "label": "BH 04",
+          "src": "assets/funlab/oneshots/hat-2.wav",
+          "ms": 1000
+        },
+        {
+          "label": "Closed",
+          "src": "assets/funlab/oneshots/hat-3.wav",
+          "ms": 159
+        },
+        {
+          "label": "Open",
+          "src": "assets/funlab/oneshots/hat-4.wav",
+          "ms": 118
+        }
+      ],
       "src": "assets/funlab/oneshots/hat.wav"
     },
     {
-      "id": "kick",
-      "src": "assets/funlab/oneshots/kick.wav"
-    },
-    {
-      "id": "logdrum",
-      "src": "assets/funlab/oneshots/logdrum.wav"
-    },
-    {
-      "id": "perc",
-      "src": "assets/funlab/oneshots/perc.wav"
-    },
-    {
       "id": "shaker",
+      "variants": [
+        {
+          "label": "Shaker",
+          "src": "assets/funlab/oneshots/shaker.wav",
+          "ms": 296
+        },
+        {
+          "label": "Long",
+          "src": "assets/funlab/oneshots/shaker-1.wav",
+          "ms": 659
+        },
+        {
+          "label": "Soft",
+          "src": "assets/funlab/oneshots/shaker-2.wav",
+          "ms": 635
+        }
+      ],
       "src": "assets/funlab/oneshots/shaker.wav"
     },
     {
-      "id": "snare",
-      "src": "assets/funlab/oneshots/snare.wav"
+      "id": "perc",
+      "variants": [
+        {
+          "label": "Conga",
+          "src": "assets/funlab/oneshots/perc.wav",
+          "ms": 109
+        },
+        {
+          "label": "Rim",
+          "src": "assets/funlab/oneshots/perc-1.wav",
+          "ms": 51
+        },
+        {
+          "label": "Bongo",
+          "src": "assets/funlab/oneshots/perc-2.wav",
+          "ms": 447
+        },
+        {
+          "label": "Cowbell",
+          "src": "assets/funlab/oneshots/perc-3.wav",
+          "ms": 200
+        }
+      ],
+      "src": "assets/funlab/oneshots/perc.wav"
+    },
+    {
+      "id": "logdrum",
+      "variants": [
+        {
+          "label": "Log low",
+          "src": "assets/funlab/oneshots/logdrum.wav",
+          "ms": 500
+        },
+        {
+          "label": "Log mid",
+          "src": "assets/funlab/oneshots/logdrum-1.wav",
+          "ms": 420
+        },
+        {
+          "label": "Log high",
+          "src": "assets/funlab/oneshots/logdrum-2.wav",
+          "ms": 360
+        },
+        {
+          "label": "BH 808 C#",
+          "src": "assets/funlab/oneshots/logdrum-3.wav",
+          "ms": 1800
+        },
+        {
+          "label": "BH 808 E",
+          "src": "assets/funlab/oneshots/logdrum-4.wav",
+          "ms": 1800
+        }
+      ],
+      "src": "assets/funlab/oneshots/logdrum.wav"
     }
   ]
 }

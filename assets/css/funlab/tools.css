@@ -408,3 +408,29 @@
     .funlab-beat-machine .fbm-vol { width: 30px; }
     .funlab-beat-machine .fbm-swing { order: 4; width: 100%; }
 }
+
+/* Beat Machine — alternate sound picker */
+.funlab-beat-machine .fbm-row,
+.funlab-beat-machine .fbm-ruler {
+    grid-template-columns: 74px 94px 46px repeat(16, minmax(19px, 1fr));
+}
+.funlab-beat-machine .fbm-pick {
+    width: 90px; max-width: 90px;
+    font-family: inherit; font-size: 0.62rem; letter-spacing: 0.02em;
+    padding: 2px 3px; border: 1px solid rgba(26, 54, 93, 0.25);
+    border-radius: 4px; background: rgba(255, 255, 255, 0.85);
+    color: #1a365d; cursor: pointer;
+}
+.funlab-beat-machine .fbm-pick:focus-visible { outline: 2px solid #f5b301; outline-offset: 1px; }
+.funlab-beat-machine .fbm-row.is-muted .fbm-pick { opacity: 0.55; }
+@media (prefers-color-scheme: dark) {
+    .funlab-beat-machine .fbm-pick { background: rgba(20, 28, 40, 0.9); color: #e8eef7; }
+}
+@media (max-width: 720px) {
+    .funlab-beat-machine .fbm-row,
+    .funlab-beat-machine .fbm-ruler {
+        grid-template-columns: 54px 58px 30px repeat(16, minmax(15px, 1fr));
+    }
+    .funlab-beat-machine .fbm-pick { width: 54px; max-width: 54px; font-size: 0.55rem; }
+    .funlab-beat-machine .fbm-vol { width: 28px; }
+}

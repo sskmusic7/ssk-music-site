@@ -43,7 +43,8 @@
         root.classList.add('funlab-beat-machine');
         root.innerHTML = '';
 
-        var ctx = null, buffers = {}, loaded = false;
+        var ctx = null, buffers = {};      // src -> decoded AudioBuffer
+        var variants = {}, current = {};   // per-lane alternates + chosen index
         var grid = {}, tracks = [];
         var playing = false, timer = null;
         var step = 0, nextTime = 0, bpm = 96;
@@ -111,9 +112,15 @@
                 tracks = ORDER.filter(function (t) {
                     return m.oneshots.some(function (o) { return o.id === t; });
                 });
-                m.oneshots.forEach(function (o) { buffers[o.id] = { src: o.src }; });
+                m.oneshots.forEach(function (o) {
+                    variants[o.id] = (o.variants && o.variants.length)
+                        ? o.variants
+                        : [{ label: 'Default', src: o.src }];
+                    current[o.id] = 0;
+                });
                 drawBoard();
-                status.textContent = tracks.length + ' sounds · sliced from SSK sessions';
+                var total = tracks.reduce(function (a, t) { return a + variants[t].length; }, 0);
+                status.textContent = tracks.length + ' channels · ' + total + ' sounds';
                 play.disabled = false;
             })
             .catch(function (e) {
@@ -127,7 +134,8 @@
 
             var ruler = el('div', 'fbm-row fbm-ruler');
             ruler.appendChild(el('div', 'fbm-name', ''));
-            ruler.appendChild(el('div', '', ''));   // spacer under the volume column
+            ruler.appendChild(el('div', '', ''));   // spacer: sound picker
+            ruler.appendChild(el('div', '', ''));   // spacer: volume
             for (var s = 0; s < STEPS; s++) {
                 ruler.appendChild(el('div', 'fbm-beat' + (s % 4 === 0 ? ' is-downbeat' : ''),
                                      s % 4 === 0 ? String(s / 4 + 1) : ''));
@@ -150,6 +158,23 @@
                     });
                 })(t, nameBtn);
                 row.appendChild(nameBtn);
+
+                var pick = document.createElement('select');
+                pick.className = 'fbm-pick';
+                pick.setAttribute('aria-label', (LABEL[t] || t) + ' sound');
+                variants[t].forEach(function (v, i) {
+                    var o = document.createElement('option');
+                    o.value = i; o.textContent = v.label;
+                    pick.appendChild(o);
+                });
+                (function (track) {
+                    pick.addEventListener('change', function () {
+                        current[track] = +this.value;
+                        // Decode on demand so switching mid-loop doesn't drop a step.
+                        if (ctx) loadKit().then(function () { preview(track); });
+                    });
+                })(t);
+                row.appendChild(pick);
 
                 var lvl = document.createElement('input');
                 lvl.type = 'range'; lvl.min = 0; lvl.max = 100; lvl.value = 85;
@@ -199,23 +224,32 @@
             return ctx;
         }
 
+        function srcOf(track) {
+            var v = variants[track];
+            return v && v[current[track]] ? v[current[track]].src : null;
+        }
+
+        /** Decodes only the sounds currently selected; already-decoded ones are reused. */
         function loadKit() {
-            if (loaded) return Promise.resolve();
-            return Promise.all(Object.keys(buffers).map(function (id) {
-                return fetch(buffers[id].src)
+            var need = tracks.map(srcOf).filter(function (src, i, a) {
+                return src && !buffers[src] && a.indexOf(src) === i;
+            });
+            if (!need.length) return Promise.resolve();
+            return Promise.all(need.map(function (src) {
+                return fetch(src)
                     .then(function (r) { return r.arrayBuffer(); })
                     .then(function (ab) {
                         return new Promise(function (res, rej) {
                             ctx.decodeAudioData(ab, function (b) {
-                                buffers[id].buffer = b; res();
+                                buffers[src] = b; res();
                             }, rej);
                         });
                     });
-            })).then(function () { loaded = true; });
+            }));
         }
 
         function hit(track, when) {
-            var b = buffers[track] && buffers[track].buffer;
+            var b = buffers[srcOf(track)];
             if (!b) return;
             var src = ctx.createBufferSource();
             src.buffer = b;
