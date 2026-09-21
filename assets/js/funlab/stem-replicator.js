@@ -14,7 +14,7 @@
 
     window.SSKFunLab = window.SSKFunLab || {};
 
-    var MANIFEST = 'assets/funlab/stems/ama-rock/manifest.json';
+    var MANIFEST = 'assets/funlab/stems/african-dream/manifest.json';
     var RAMP = 0.06;   // seconds — short enough to feel instant, long enough not to click
 
     function el(tag, cls, text) {

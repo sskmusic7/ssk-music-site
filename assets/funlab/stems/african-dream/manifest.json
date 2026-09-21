@@ -1,0 +1,42 @@
+{
+  "id": "african-dream",
+  "title": "The African Dream",
+  "artist": "SSK Music",
+  "producer": "SSK Music",
+  "bpm": 98.0,
+  "bars": 16,
+  "duration": 39.1837,
+  "barSeconds": 2.44898,
+  "stems": [
+    {
+      "id": "kick",
+      "label": "Kick",
+      "src": "assets/funlab/stems/african-dream/kick.mp3"
+    },
+    {
+      "id": "snare",
+      "label": "Snare",
+      "src": "assets/funlab/stems/african-dream/snare.mp3"
+    },
+    {
+      "id": "hats",
+      "label": "Hats",
+      "src": "assets/funlab/stems/african-dream/hats.mp3"
+    },
+    {
+      "id": "808",
+      "label": "808",
+      "src": "assets/funlab/stems/african-dream/808.mp3"
+    },
+    {
+      "id": "sample",
+      "label": "Sample",
+      "src": "assets/funlab/stems/african-dream/sample.mp3"
+    },
+    {
+      "id": "sounds",
+      "label": "Sounds",
+      "src": "assets/funlab/stems/african-dream/sounds.mp3"
+    }
+  ]
+}
