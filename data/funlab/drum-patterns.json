@@ -7,15 +7,15 @@
       "snare",
       "clap",
       "hat",
-      "openhat",
-      "perc"
+      "shaker",
+      "perc",
+      "logdrum"
     ],
     "sources": [
-      "Attack Magazine \u2014 Beat Dissected series (UK Drill, UK Garage, Miami Bass)",
-      "Native Instruments blog \u2014 Jersey Club, Drill, UK Garage",
-      "MusicRadar \u2014 programming dancehall drum patterns",
-      "Roland Articles / RouteNote \u2014 Amapiano production",
-      "DancehallMag \u2014 the dancehall drum pattern explained"
+      "DancehallMag \u2014 The Dancehall Drum Pattern, Explained (With Notation)",
+      "Steel Banglez on Afroswing: the snare comes on the third, not the fourth",
+      "Wikipedia \u2014 Tresillo (3+3+2); Afroswing; One drop rhythm",
+      "Amapiano production guides \u2014 log drum syncopation, shaker as timekeeper, Private School vs S'gija/Bacardi 'Pitori bounce'"
     ]
   },
   "patterns": [
@@ -448,7 +448,7 @@
           0,
           1,
           0,
-          0,
+          1,
           0
         ],
         "snare": [
@@ -527,18 +527,18 @@
           0,
           0,
           0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
           0,
           1,
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          1,
           0
         ],
         "logdrum": [
@@ -561,7 +561,7 @@
         ]
       },
       "swing": 56,
-      "tip": "Four-on-the-floor kick is the starting point, not a syncopated one \u2014 then the log drum answers it off-grid and carries the bass. Shakers run 16ths the whole way but must not be mechanical: vary velocity, drop the odd hit."
+      "tip": "The kick holds four-on-the-floor but doesn't sit square on it \u2014 the push on the & of 4 is the Pitori bounce that Bacardi and s'gija records run on. The log drum is the signature: syncopated, carrying the bass, answering the kick rather than following it. Shaker keeps time; everything else pulls against."
     },
     {
       "id": "afroswing",
@@ -573,16 +573,16 @@
           1,
           0,
           0,
+          1,
+          0,
           0,
           0,
           0,
           1,
           0,
           0,
-          0,
-          0,
-          0,
           1,
+          0,
           0,
           0,
           0
@@ -596,7 +596,7 @@
           0,
           0,
           0,
-          0,
+          1,
           0,
           0,
           0,
@@ -612,7 +612,7 @@
           0,
           0,
           0,
-          1,
+          0,
           0,
           0,
           0,
@@ -631,7 +631,7 @@
           1,
           0,
           1,
-          0,
+          1,
           1,
           0,
           1,
@@ -639,7 +639,7 @@
           1,
           0,
           1,
-          0
+          1
         ],
         "shaker": [
           0,
@@ -662,10 +662,6 @@
         "perc": [
           0,
           0,
-          1,
-          0,
-          0,
-          0,
           0,
           1,
           0,
@@ -673,7 +669,11 @@
           1,
           0,
           0,
+          0,
+          0,
           1,
+          0,
+          0,
           0,
           0
         ],
@@ -697,7 +697,7 @@
         ]
       },
       "swing": 57,
-      "tip": "Dancehall's displaced backbeat with UK rap weight \u2014 the clap sits late, on the 'and', not squarely on 2 and 4. Swing lives in the percussion, not the kick."
+      "tip": "Steel Banglez puts it plainly: the snare comes on the third, where hip-hop puts it on the fourth, and that displacement is inherited from Afrobeats. Dancehall's dotted kick pairs underneath, grime and garage hi-hat flicks on top. That combination is the whole genre."
     },
     {
       "id": "afrobeats",
@@ -712,31 +712,31 @@
           0,
           0,
           0,
+          1,
           0,
           1,
           0,
           0,
+          0,
+          0,
+          0,
           1,
-          0,
-          0,
-          0,
-          0,
-          1
+          0
         ],
         "snare": [
           0,
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
           1,
           0,
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          1,
           0,
           0,
           0
@@ -764,36 +764,36 @@
           0,
           1,
           0,
+          1,
+          0,
+          1,
           0,
           1,
           0,
           1,
           0,
-          0,
           1,
           0,
-          0,
           1,
-          0,
           0
         ],
         "shaker": [
           1,
-          0,
-          0,
           1,
-          0,
-          0,
           1,
-          0,
           1,
-          0,
-          0,
           1,
-          0,
-          0,
           1,
-          0
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ],
         "perc": [
           1,
@@ -804,13 +804,13 @@
           0,
           1,
           0,
-          0,
           1,
           0,
           0,
           1,
           0,
           0,
+          1,
           0
         ],
         "logdrum": [
@@ -833,27 +833,27 @@
         ]
       },
       "swing": 55,
-      "tip": "The hat sits on the 3+3+2 clave \u2014 steps 1, 3, 6, 8, 11, 14. That uneven spacing is the whole forward roll. Kick pushes on the 'ah' of 2 and 4; snare stays plain on 2 and 4 so the percussion can argue with it."
+      "tip": "Afrobeats is built on the tresillo \u2014 3+3+2 \u2014 layered across the percussion, not on a straight backbeat. The shaker is the timekeeper and everything else moves against it. Snare sits on the third, the way it does across the Afro and Caribbean lineage, rather than on hip-hop's two and four."
     },
     {
       "id": "dancehall",
       "name": "Dancehall",
-      "bpm": 100,
+      "bpm": 94,
       "family": "Caribbean",
       "tracks": {
         "kick": [
           1,
           0,
-          1,
-          0,
-          0,
-          0,
-          0,
           0,
           1,
           0,
+          0,
+          0,
+          0,
           1,
           0,
+          0,
+          1,
           0,
           0,
           0,
@@ -883,7 +883,6 @@
           0,
           0,
           0,
-          0,
           1,
           0,
           0,
@@ -893,22 +892,23 @@
           0,
           0,
           1,
+          0,
           0
         ],
         "hat": [
-          0,
+          1,
           0,
           1,
           0,
-          0,
+          1,
           0,
           1,
           0,
-          0,
+          1,
           0,
           1,
           0,
-          0,
+          1,
           0,
           1,
           0
@@ -916,6 +916,24 @@
         "shaker": [
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "perc": [
+          0,
+          0,
           1,
           0,
           0,
@@ -930,24 +948,6 @@
           0,
           1,
           0
-        ],
-        "perc": [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1
         ],
         "logdrum": [
           0,
@@ -968,8 +968,8 @@
           0
         ]
       },
-      "swing": 54,
-      "tip": "Kick on 1 and the 'and' of 1, then 3 and the 'and' of 3. The clap is deliberately late \u2014 'and' of 2 and 'and' of 4 \u2014 which is the displaced backbeat. Use a rimshot rather than a full snare."
+      "swing": 58,
+      "tip": "A dotted-eighth groove, not a backbeat. Kick lands on 1 and 4, then 9 and 12 \u2014 one drop plus its anticipation. The clap is deliberately displaced to 6 and 14, and the rim fills the offbeats. Slower than people expect, around 90-95."
     },
     {
       "id": "uk-garage",

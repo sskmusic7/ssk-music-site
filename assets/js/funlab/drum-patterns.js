@@ -21,8 +21,9 @@
     var TIMER_MS = 25;      // how often we top the schedule up
 
     var TRACK_LABEL = {
-        kick: 'Kick', snare: 'Snare', clap: 'Clap',
-        hat: 'Hat', openhat: 'Open Hat', perc: 'Perc'
+        kick: 'Kick', snare: 'Snare', clap: 'Clap', hat: 'Hat',
+        shaker: 'Shaker', perc: 'Perc', logdrum: 'Log Drum',
+        openhat: 'Open Hat'   // legacy lane name, kept so old data still labels
     };
 
     function el(tag, cls, text) {
