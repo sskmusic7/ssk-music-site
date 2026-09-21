@@ -111,14 +111,35 @@
           "label": "Closed",
           "src": "assets/funlab/oneshots/hat-3.wav",
           "ms": 159
-        },
-        {
-          "label": "Open",
-          "src": "assets/funlab/oneshots/hat-4.wav",
-          "ms": 118
         }
       ],
       "src": "assets/funlab/oneshots/hat.wav"
+    },
+    {
+      "id": "openhat",
+      "variants": [
+        {
+          "label": "Tight",
+          "src": "assets/funlab/oneshots/openhat.wav",
+          "ms": 118
+        },
+        {
+          "label": "Mid",
+          "src": "assets/funlab/oneshots/openhat-1.wav",
+          "ms": 158
+        },
+        {
+          "label": "Long",
+          "src": "assets/funlab/oneshots/openhat-2.wav",
+          "ms": 301
+        },
+        {
+          "label": "Wide",
+          "src": "assets/funlab/oneshots/openhat-3.wav",
+          "ms": 178
+        }
+      ],
+      "src": "assets/funlab/oneshots/openhat.wav"
     },
     {
       "id": "shaker",

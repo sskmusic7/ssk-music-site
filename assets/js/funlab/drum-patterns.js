@@ -186,17 +186,46 @@
                 o.connect(g); o.start(when); o.stop(when + 0.24);
                 return;
             }
+            // The log drum is a tuned sub, not a noise burst. It was falling
+            // through to the percussion branch and coming out as filtered
+            // noise, which is nothing like the sound that defines amapiano.
+            if (track === 'logdrum') {
+                var lo = ctx.createOscillator();
+                lo.type = 'sine';
+                lo.frequency.setValueAtTime(190, when);          // the pitch dip
+                lo.frequency.exponentialRampToValueAtTime(58, when + 0.05);
+                g.gain.setValueAtTime(0.0001, when);
+                g.gain.exponentialRampToValueAtTime(0.85, when + 0.006);
+                g.gain.exponentialRampToValueAtTime(0.001, when + 0.34);
+                lo.connect(g); lo.start(when); lo.stop(when + 0.36);
+                return;
+            }
+
             // everything else is filtered noise
-            var len = track === 'openhat' ? 0.26 : 0.09;
+            var len = track === 'openhat' ? 0.30
+                    : track === 'shaker' ? 0.13
+                    : 0.09;
             var buf = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * len), ctx.sampleRate);
             var ch = buf.getChannelData(0);
             for (var i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
             var src = ctx.createBufferSource(); src.buffer = buf;
 
             var f = ctx.createBiquadFilter();
+            if (track === 'shaker') {
+                // A shaker is beads accelerating, not a stick hitting metal —
+                // it has a soft attack and a longer tail. Sharing the hat's
+                // instant transient made the two lanes indistinguishable.
+                f.type = 'bandpass'; f.frequency.value = 5600; f.Q.value = 0.7;
+                g.gain.setValueAtTime(0.0001, when);
+                g.gain.linearRampToValueAtTime(0.14, when + 0.035);   // slow attack
+                g.gain.exponentialRampToValueAtTime(0.001, when + len);
+                src.connect(f).connect(g);
+                src.start(when); src.stop(when + len);
+                return;
+            }
             if (track === 'hat' || track === 'openhat') {
                 f.type = 'highpass'; f.frequency.value = 7000;
-                g.gain.setValueAtTime(track === 'openhat' ? 0.22 : 0.16, when);
+                g.gain.setValueAtTime(track === 'openhat' ? 0.20 : 0.16, when);
             } else if (track === 'snare') {
                 f.type = 'bandpass'; f.frequency.value = 1900; f.Q.value = 0.8;
                 g.gain.setValueAtTime(0.5, when);

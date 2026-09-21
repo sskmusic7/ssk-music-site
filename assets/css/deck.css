@@ -89,12 +89,19 @@
     overflow: visible;
 }
 
-/* the lit frame behind the active slide */
+/* The frame behind the active slide.
+   This used to be filled #060d18. That fill is what everyone kept seeing as
+   "a black screen between slides": any moment a slide wasn't painted — mid
+   3D transition, or while its artwork decoded — the fill showed through as a
+   solid black rectangle exactly the size of a slide. It was never a missing
+   image; the measured artwork is normally lit and every file returns 200.
+   Transparent now, so the worst case is the section's own navy gradient. The
+   border and shadow still read as a frame. */
 .deck-stage::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: #060d18;
+    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
     z-index: 0;

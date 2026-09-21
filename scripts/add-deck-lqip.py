@@ -41,6 +41,14 @@ for s in slides:
     s["lqip"] = "data:image/jpeg;base64," + base64.b64encode(b).decode("ascii")
     total += len(s["lqip"])
 
+    # Dominant colour, painted under the placeholder. Borrowed from the
+    # BigHeadz towns carousel, which gives every slide a solid theme colour so
+    # there is never a black panel to catch — the artwork rides on top of a
+    # colour rather than on nothing. Darkened slightly so white deck text on
+    # the real artwork still reads while it fades in.
+    tiny = im.resize((1, 1), Image.LANCZOS).getpixel((0, 0))
+    s["tone"] = "#%02x%02x%02x" % tuple(max(12, int(c * 0.62)) for c in tiny)
+
 json.dump(data, open(DECK, "w"), indent=2)
 print(f"  {len(slides)} slides · {total // 1024} KB of placeholders "
       f"({total // max(len(slides),1)} bytes each)")

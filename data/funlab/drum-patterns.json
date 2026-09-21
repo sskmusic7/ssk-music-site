@@ -7,6 +7,7 @@
       "snare",
       "clap",
       "hat",
+      "openhat",
       "shaker",
       "perc",
       "logdrum"
@@ -95,6 +96,24 @@
           1,
           0,
           1,
+          0
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0
         ],
         "shaker": [
@@ -233,6 +252,24 @@
           1,
           1
         ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "shaker": [
           0,
           0,
@@ -369,6 +406,24 @@
           1,
           1
         ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "shaker": [
           0,
           0,
@@ -474,7 +529,7 @@
           0,
           0,
           0,
-          1,
+          0,
           0,
           0,
           0,
@@ -488,6 +543,24 @@
           0
         ],
         "hat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "openhat": [
           0,
           0,
           1,
@@ -527,10 +600,6 @@
           0,
           0,
           0,
-          1,
-          0,
-          0,
-          1,
           0,
           0,
           0,
@@ -539,7 +608,11 @@
           0,
           0,
           0,
-          0
+          1,
+          0,
+          0,
+          0,
+          1
         ],
         "logdrum": [
           0,
@@ -561,7 +634,7 @@
         ]
       },
       "swing": 56,
-      "tip": "The kick holds four-on-the-floor but doesn't sit square on it \u2014 the push on the & of 4 is the Pitori bounce that Bacardi and s'gija records run on. The log drum is the signature: syncopated, carrying the bass, answering the kick rather than following it. Shaker keeps time; everything else pulls against."
+      "tip": "The hat here is an OPEN hat on the offbeat \u2014 the third sixteenth of every beat. That 'tss' between the kicks is the sound the genre runs on, and it was being played as a closed hat before. Shaker holds 16ths underneath, the kick keeps four-on-the-floor but pushes the & of 4 for the Pitori bounce, and the rim answers rather than repeats. Log drum carries the bass off-grid."
     },
     {
       "id": "afroswing",
@@ -641,6 +714,24 @@
           1,
           1
         ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "shaker": [
           0,
           0,
@@ -709,7 +800,7 @@
           1,
           0,
           0,
-          0,
+          1,
           0,
           0,
           1,
@@ -773,6 +864,24 @@
           1,
           0,
           1,
+          0,
+          1,
+          0
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           1,
           0
@@ -833,7 +942,7 @@
         ]
       },
       "swing": 55,
-      "tip": "Afrobeats is built on the tresillo \u2014 3+3+2 \u2014 layered across the percussion, not on a straight backbeat. The shaker is the timekeeper and everything else moves against it. Snare sits on the third, the way it does across the Afro and Caribbean lineage, rather than on hip-hop's two and four."
+      "tip": "Built on the tresillo \u2014 3+3+2 \u2014 running across the percussion twice a bar. The shaker is the timekeeper and everything else moves against it. Kick anchors 1 and 3 and pushes the &s; snare sits on the third, the way it does across the Afro and Caribbean lineage, not on hip-hop's two and four."
     },
     {
       "id": "dancehall",
@@ -845,18 +954,18 @@
           1,
           0,
           0,
+          0,
+          0,
+          0,
+          1,
+          0,
           1,
           0,
           0,
           0,
           0,
-          1,
-          0,
           0,
           1,
-          0,
-          0,
-          0,
           0
         ],
         "snare": [
@@ -883,7 +992,6 @@
           0,
           0,
           0,
-          1,
           0,
           0,
           0,
@@ -891,7 +999,8 @@
           0,
           0,
           0,
-          1,
+          0,
+          0,
           0,
           0
         ],
@@ -909,6 +1018,24 @@
           1,
           0,
           1,
+          0,
+          1,
+          0
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           1,
           0
@@ -934,9 +1061,6 @@
         "perc": [
           0,
           0,
-          1,
-          0,
-          0,
           0,
           1,
           0,
@@ -947,7 +1071,10 @@
           0,
           0,
           1,
-          0
+          0,
+          0,
+          0,
+          1
         ],
         "logdrum": [
           0,
@@ -968,8 +1095,8 @@
           0
         ]
       },
-      "swing": 58,
-      "tip": "A dotted-eighth groove, not a backbeat. Kick lands on 1 and 4, then 9 and 12 \u2014 one drop plus its anticipation. The clap is deliberately displaced to 6 and 14, and the rim fills the offbeats. Slower than people expect, around 90-95."
+      "swing": 56,
+      "tip": "The dancehall bounce: kick on 1 and 3 with a push on the & of 2 and 4, and the rim answering on the last sixteenth of every beat. Dancehall covers several riddim families \u2014 one drop leaves beat 1 empty and puts kick and rim together on 3; steppers runs the kick straight through. This is the one most people mean. Slower than expected, around 90-95."
     },
     {
       "id": "uk-garage",
@@ -1047,6 +1174,24 @@
           0,
           1,
           1,
+          0
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0
         ],
         "shaker": [
@@ -1185,6 +1330,24 @@
           1,
           0
         ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "shaker": [
           0,
           0,
@@ -1320,6 +1483,24 @@
           0,
           1,
           1
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "shaker": [
           0,
@@ -1457,6 +1638,24 @@
           1,
           0
         ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "shaker": [
           0,
           0,
@@ -1592,6 +1791,24 @@
           1,
           1,
           1
+        ],
+        "openhat": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "shaker": [
           0,

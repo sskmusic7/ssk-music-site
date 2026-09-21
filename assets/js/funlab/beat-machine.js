@@ -22,14 +22,16 @@
     var LOOKAHEAD = 0.1;   // seconds scheduled ahead
     var TICK = 25;         // ms between scheduler wake-ups
 
-    // pattern lane -> one-shot. The cheat sheet has an openhat lane and we
-    // have no open hat, so it borrows the shaker.
-    var LANE_MAP = { openhat: 'shaker' };
+    // The open hat used to be remapped onto the shaker because there was no
+    // open hat in the kit. It has its own lane and its own samples now —
+    // amapiano's offbeat open hat is the sound the genre runs on, and playing
+    // it as a shaker lost it entirely. Map kept empty for old pattern data.
+    var LANE_MAP = {};
 
-    var ORDER = ['kick', 'snare', 'clap', 'hat', 'shaker', 'perc', 'logdrum'];
+    var ORDER = ['kick', 'snare', 'clap', 'hat', 'openhat', 'shaker', 'perc', 'logdrum'];
     var LABEL = {
         kick: 'Kick', snare: 'Snare', clap: 'Clap', hat: 'Hat',
-        shaker: 'Shaker', perc: 'Perc', logdrum: 'Log Drum'
+        openhat: 'Open Hat', shaker: 'Shaker', perc: 'Perc', logdrum: 'Log Drum'
     };
 
     function el(tag, cls, text) {

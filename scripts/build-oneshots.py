@@ -71,7 +71,7 @@ def load(path):
     return x
 
 # Per-lane tail budget. Sub-bass needs room; a hat does not.
-MAX_DUR = {"logdrum": 1.8, "kick": 1.2}
+MAX_DUR = {"logdrum": 1.8, "kick": 1.2, "openhat": 0.7}
 
 def finish(x, max_dur=1.0):
     x = np.asarray(x, dtype="float32")
@@ -114,7 +114,15 @@ KIT = {
         ("BH 02",      f"{KBH}/KBH_hihats/KBH_hihat_closed/KBH_hihat_closed_bighead_02.wav"),
         ("BH 04",      f"{KBH}/KBH_hihats/KBH_hihat_closed/KBH_hihat_closed_bighead_04.wav"),
         ("Closed",     f"{SAMP}/Basic 808 HiHat.wav"),
-        ("Open",       f"{PACK}/Open hats/KDM Open Hat (5).wav"),
+    ],
+    # Amapiano's hat is an OPEN hat on the offbeat — the "tss" between the
+    # kicks. It had no lane of its own, so that pattern was being played on a
+    # closed hat and losing the sound the genre is built on.
+    "openhat": [
+        ("Tight",      f"{PACK}/Open hats/KDM Open Hat (5).wav"),
+        ("Mid",        f"{PACK}/Open hats/KDM Open Hat (29).wav"),
+        ("Long",       f"{PACK}/Open hats/KDM Open Hat (23).wav"),
+        ("Wide",       f"{PACK}/Open hats/KDM Open Hat (19).wav"),
     ],
     "shaker": [
         ("Shaker",     f"{SSK1}/Shaker (4).wav"),

@@ -111,10 +111,15 @@
         fig.className = 'deck-slide';
         fig.dataset.order = slide.order;
 
-        // A 24px blurred copy of the artwork, inlined as a data URI by
-        // scripts/add-deck-lqip.py. ~570 bytes and no request, so it paints on
-        // the first frame — which means a slide is never an empty black box
-        // while its full image downloads. The real image fades in on top.
+        // Two layers under the artwork so there is never a black panel:
+        //   tone — the slide's own dominant colour, a flat fill that is
+        //          available before anything decodes at all
+        //   lqip — a 24px blurred copy of the artwork inlined as a data URI
+        //          (~570 bytes, no request), painted over the tone
+        // The full image then fades in on top. Same idea as the BigHeadz towns
+        // carousel, which gives every slide a solid theme colour rather than
+        // letting the stage show through.
+        if (slide.tone) fig.style.backgroundColor = slide.tone;
         if (slide.lqip) fig.style.backgroundImage = 'url(' + slide.lqip + ')';
 
         var pic = document.createElement('picture');
