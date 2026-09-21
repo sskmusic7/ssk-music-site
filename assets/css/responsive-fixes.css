@@ -1,0 +1,193 @@
+/* Shared responsive corrections.
+ *
+ * The sticky header's CSS is duplicated inline in all four pages (main.css
+ * has none of it), and those <style> blocks load after main.css, so they win
+ * on equal specificity. Rather than maintain the same fix in four places,
+ * this file is linked LAST in every page and is the one place responsive
+ * corrections live.
+ * ------------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+    /* The nav ran off the side of the screen on every page. At 390px the
+       Contact link's right edge sat at 452px — 62px past the viewport — and
+       because the page (correctly) can't scroll sideways, it was clipped:
+       you could not reach Contact on a phone at all.
+       Giving the links their own full-width row fixes it without a burger
+       menu, and there are only five of them. */
+    .sticky-header-content {
+        flex-wrap: wrap !important;
+        row-gap: 0.4rem !important;
+    }
+
+    .sticky-cta {
+        order: 3;
+        width: 100% !important;
+        justify-content: space-between !important;
+        gap: 0.1rem !important;
+
+        /* Fallback for the narrowest phones. The labels fit down to ~360px;
+           below that the row scrolls instead of clipping, so every link stays
+           reachable at any width rather than Contact falling off the edge
+           again. Scrolls inside itself — the page still must not move
+           sideways. */
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .sticky-cta::-webkit-scrollbar { display: none; }
+
+    .sticky-nav-link {
+        /* Sized in px on purpose. This site's root font-size is 18px, not the
+           usual 16 — so every rem value here is 12.5% bigger than it reads,
+           which is why the nav overflowed despite looking small in the source.
+           The five labels need ~277px at 10px; the row is ~354px at 390 wide.
+           Vertical padding is what lifts the tap target off its original 19px. */
+        font-size: 10px !important;
+        letter-spacing: 0.02em !important;
+        padding: 0.55rem 0.2rem !important;
+        white-space: nowrap;
+    }
+
+    /* The header is two rows on mobile now, so the fixed-header offset has to
+       grow with it or the first section hides underneath. */
+    body {
+        padding-top: 104px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .sticky-nav-link {
+        font-size: 9px !important;
+        padding: 0.55rem 0.12rem !important;
+        letter-spacing: 0 !important;
+    }
+}
+
+/* Tablets have room — don't punish them with the phone-sized nav.
+   The 10px above only exists to fit five labels on a 390px row. */
+@media (min-width: 481px) and (max-width: 768px) {
+    .sticky-nav-link {
+        font-size: 12px !important;
+        letter-spacing: 0.04em !important;
+        padding: 0.55rem 0.4rem !important;
+    }
+}
+
+/* Beat machine controls were unusable on a phone: the mute button measured
+   54x15 and the volume fader 28x16. Nothing that small is reliably tappable.
+   Heights here are the minimum that stays comfortable without forcing the
+   16-step grid any narrower. */
+@media (max-width: 720px) {
+    .funlab-beat-machine button.fbm-name {
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .funlab-beat-machine .fbm-pick {
+        min-height: 30px;
+        padding: 4px 3px;
+    }
+    .funlab-beat-machine .fbm-vol {
+        min-height: 30px;
+        /* A range input's hit area is its box, not the visible track. */
+        padding: 7px 0;
+    }
+    .funlab-beat-machine .fbm-len-btn,
+    .funlab-drum-patterns .fdp-len-btn {
+        min-height: 34px;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+    }
+}
+
+/* Links on the contact page came out 21px tall — under any usable touch
+   minimum. They carry no class of their own, so target them through the
+   blocks they sit in rather than inventing markup. */
+@media (max-width: 768px) {
+    .contact-item-content a,
+    footer a:not(.sticky-nav-link),
+    .footer a:not(.sticky-nav-link) {
+        display: inline-block;
+        min-height: 32px;
+        line-height: 32px;
+    }
+}
+
+/* Carousel dots measured 7x7 on a phone — visually right, but nowhere near
+   tappable. Rather than grow the dot and spoil the design, an invisible
+   ::after extends the hit area to 34px around each one. The dots sit in a
+   flex row with a gap, so the enlarged areas don't overlap. */
+.deck-dot {
+    position: relative;
+}
+.deck-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    transform: translate(-50%, -50%);
+}
+
+/* Step cells were 17px square on mobile — too small to hit the right
+   sixteenth. The board already scrolls horizontally inside its own box, so
+   there is room to make them properly tappable. */
+@media (max-width: 720px) {
+    .funlab-beat-machine .fbm-row,
+    .funlab-beat-machine .fbm-ruler {
+        grid-template-columns:
+            54px 58px 30px
+            repeat(var(--steps, 16), minmax(26px, 1fr));
+        min-width: calc(142px + var(--steps, 16) * 26px);
+    }
+    .funlab-beat-machine .fbm-cell { min-height: 26px; }
+
+    .funlab-drum-patterns .fdp-row,
+    .funlab-drum-patterns .fdp-ruler {
+        grid-template-columns: 62px repeat(var(--steps, 16), minmax(24px, 1fr));
+        min-width: calc(62px + var(--steps, 16) * 24px);
+    }
+}
+
+/* The tempo and swing sliders carry no class of their own — only the
+   per-channel faders do — so they were missed and stayed 16px tall. */
+@media (max-width: 720px) {
+    .funlab-beat-machine .fbm-tempo input[type="range"],
+    .funlab-beat-machine .fbm-swing input[type="range"] {
+        min-height: 30px;
+        padding: 7px 0;
+    }
+}
+
+/* Footer links sat at 21px on mobile across the site. */
+@media (max-width: 768px) {
+    footer a,
+    .footer-links a,
+    .site-footer a {
+        display: inline-block;
+        min-height: 30px;
+        line-height: 30px;
+    }
+}
+
+/* "SHAKER" was rendering as "HAKER": the 54px name column is narrower than
+   the word, and right-alignment clips the left edge rather than the right.
+   Widen the column and drop the label a point so every lane name fits. */
+@media (max-width: 720px) {
+    .funlab-beat-machine .fbm-row,
+    .funlab-beat-machine .fbm-ruler {
+        grid-template-columns:
+            64px 56px 28px
+            repeat(var(--steps, 16), minmax(26px, 1fr));
+        min-width: calc(148px + var(--steps, 16) * 26px);
+    }
+    .funlab-beat-machine button.fbm-name {
+        font-size: 0.58rem;
+        letter-spacing: 0.03em;
+        overflow: visible;
+        white-space: nowrap;
+    }
+}
