@@ -480,44 +480,35 @@
 }
 
 /* ---- loading state -------------------------------------------------------
-   The frame behind the slides is #060d18, so a slide whose artwork hasn't
-   decoded yet is just a black rectangle — it looked like a broken page
-   rather than a loading one. This shimmer says "busy" for the fraction of a
-   second before the image lands, and clears on load or error. */
-.deck-slide:not(.is-loaded) {
-    background: linear-gradient(135deg, #0d1a2e 0%, #16294a 100%);
+   Each slide carries a 24px blurred copy of its own artwork as an inline
+   data URI (see scripts/add-deck-lqip.py), painted as the element's
+   background. It costs no request, so it's on screen in the first frame and
+   the slide is never an empty box while the full image downloads.
+
+   An earlier attempt used a navy gradient plus a shimmer, which changed
+   nothing visible: the frame behind the slides is #060d18, so that was one
+   near-black box swapped for another. A blurred version of the actual slide
+   reads instantly as "this is arriving". */
+.deck-slide {
+    background-repeat: no-repeat;
+    background-position: center;
+    /* contain, to match object-fit on the img — a pitch deck must keep its
+       edges, and a cover-sized blur behind a contained image misaligns. */
+    background-size: contain;
 }
 
-.deck-slide:not(.is-loaded)::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(100deg,
-        rgba(255, 255, 255, 0) 32%,
-        rgba(255, 255, 255, 0.10) 50%,
-        rgba(255, 255, 255, 0) 68%);
-    background-size: 220% 100%;
-    animation: deck-shimmer 1.1s ease-in-out infinite;
+/* Fade the real artwork in over its own placeholder. */
+.deck-slide img.deck-slide-img {
+    opacity: 0;
+    transition: opacity 0.35s ease;
 }
+.deck-slide.is-loaded img.deck-slide-img { opacity: 1; }
 
-/* Hide the img itself until it's real, so a half-painted decode can't flash. */
-.deck-slide:not(.is-loaded) img.deck-slide-img { opacity: 0; }
-.deck-slide.is-loaded img.deck-slide-img {
-    opacity: 1;
-    transition: opacity 0.28s ease;
-}
-
-@keyframes deck-shimmer {
-    from { background-position: 180% 0; }
-    to   { background-position: -60% 0; }
-}
+/* Belt and braces: if the load event never arrives (cache quirk, decode
+   failure), don't strand the slide on its blur forever. */
+.deck-slide img.deck-slide-img[src]:not([src=""]) { animation: deck-reveal 0s 4s forwards; }
+@keyframes deck-reveal { to { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
-    /* Still show it's loading, just don't sweep anything across the screen. */
-    .deck-slide:not(.is-loaded)::after {
-        animation: none;
-        background: rgba(255, 255, 255, 0.05);
-    }
-    .deck-slide.is-loaded img.deck-slide-img { transition: none; }
+    .deck-slide img.deck-slide-img { transition: none; }
 }

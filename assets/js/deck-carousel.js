@@ -111,6 +111,12 @@
         fig.className = 'deck-slide';
         fig.dataset.order = slide.order;
 
+        // A 24px blurred copy of the artwork, inlined as a data URI by
+        // scripts/add-deck-lqip.py. ~570 bytes and no request, so it paints on
+        // the first frame — which means a slide is never an empty black box
+        // while its full image downloads. The real image fades in on top.
+        if (slide.lqip) fig.style.backgroundImage = 'url(' + slide.lqip + ')';
+
         var pic = document.createElement('picture');
         var src = document.createElement('source');
         src.dataset.srcset = slide.image;
