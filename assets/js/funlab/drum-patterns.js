@@ -32,7 +32,13 @@
         return n;
     }
 
+    var LENGTHS = [8, 16, 32];
+
     function mount(root, opts) {
+        // Patterns are authored as one 16-step bar. viewSteps is how much of
+        // that we draw and play: 8 truncates, 32 repeats it, so you can see
+        // two bars at once and hear where a variation would go.
+        var viewSteps = 16;
         opts = opts || {};
         root.classList.add('funlab-drum-patterns');
         root.innerHTML = '';
@@ -54,11 +60,33 @@
         var foot = el('div', 'fdp-foot');
         var play = el('button', 'fdp-play', 'Preview');
         play.type = 'button';
+        var lenWrap = el('div', 'fdp-len');
+        lenWrap.setAttribute('role', 'group');
+        lenWrap.setAttribute('aria-label', 'Steps shown');
+        LENGTHS.forEach(function (n) {
+            var b = el('button', 'fdp-len-btn' + (n === viewSteps ? ' is-on' : ''), String(n));
+            b.type = 'button';
+            b.setAttribute('aria-pressed', String(n === viewSteps));
+            b.addEventListener('click', function () {
+                if (n === viewSteps) return;
+                viewSteps = n;
+                step = 0;
+                [].forEach.call(lenWrap.children, function (x) {
+                    var on = +x.textContent === n;
+                    x.classList.toggle('is-on', on);
+                    x.setAttribute('aria-pressed', String(on));
+                });
+                if (current) drawGrid();
+            });
+            lenWrap.appendChild(b);
+        });
+
         var send = el('button', 'fdp-send', 'Load into Beat Machine');
         send.type = 'button';
         send.disabled = !opts.onLoad;
         send.title = opts.onLoad ? '' : 'Beat Machine not built yet';
         foot.appendChild(play);
+        foot.appendChild(lenWrap);
         foot.appendChild(send);
 
         root.appendChild(tabs);
@@ -105,7 +133,8 @@
 
         function drawGrid() {
             grid.innerHTML = '';
-            var steps = data.meta.steps;
+            var steps = viewSteps;
+            grid.style.setProperty('--steps', steps);
 
             var ruler = el('div', 'fdp-row fdp-ruler');
             ruler.appendChild(el('div', 'fdp-label', ''));
@@ -121,12 +150,12 @@
                 var row = el('div', 'fdp-row');
                 row.dataset.track = t;
                 row.appendChild(el('div', 'fdp-label', TRACK_LABEL[t] || t));
-                pat.forEach(function (v, i) {
-                    var c = el('div', 'fdp-cell' + (v ? ' is-on' : '') +
+                for (var i = 0; i < steps; i++) {
+                    var c = el('div', 'fdp-cell' + (pat[i % pat.length] ? ' is-on' : '') +
                                       (i % 4 === 0 ? ' is-downbeat' : ''));
                     c.dataset.step = i;
                     row.appendChild(c);
-                });
+                }
                 grid.appendChild(row);
             });
         }
@@ -188,11 +217,11 @@
                 var s = step;
                 data.meta.tracks.forEach(function (t) {
                     var pat = current.tracks[t];
-                    if (pat && pat[s]) voice(t, nextNoteTime);
+                    if (pat && pat.length && pat[s % pat.length]) voice(t, nextNoteTime);
                 });
                 paintStep(s, nextNoteTime - ctx.currentTime);
                 nextNoteTime += stepDur;
-                step = (step + 1) % data.meta.steps;
+                step = (step + 1) % viewSteps;
             }
         }
 

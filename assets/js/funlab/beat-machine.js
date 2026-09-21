@@ -17,7 +17,8 @@
     window.SSKFunLab = window.SSKFunLab || {};
 
     var MANIFEST = 'assets/funlab/oneshots/manifest.json';
-    var STEPS = 16;
+    var LENGTHS = [8, 16, 32];   // selectable grid lengths
+    var DEFAULT_STEPS = 16;
     var LOOKAHEAD = 0.1;   // seconds scheduled ahead
     var TICK = 25;         // ms between scheduler wake-ups
 
@@ -48,6 +49,7 @@
         var grid = {}, tracks = [];
         var playing = false, timer = null;
         var step = 0, nextTime = 0, bpm = 96;
+        var STEPS = DEFAULT_STEPS;     // per-instance: 8, 16 or 32
         var swing = 50;            // 50 = straight; higher delays every other 16th
         var cells = {};
         var vol = {}, muted = {};  // per-channel mixer state
@@ -90,12 +92,24 @@
         swingWrap.appendChild(swingIn);
         swingWrap.appendChild(swingVal);
 
+        var lenWrap = el('div', 'fbm-len');
+        lenWrap.setAttribute('role', 'group');
+        lenWrap.setAttribute('aria-label', 'Steps per loop');
+        LENGTHS.forEach(function (n) {
+            var b = el('button', 'fbm-len-btn' + (n === STEPS ? ' is-on' : ''), String(n));
+            b.type = 'button';
+            b.setAttribute('aria-pressed', String(n === STEPS));
+            b.addEventListener('click', function () { setSteps(n); });
+            lenWrap.appendChild(b);
+        });
+
         var clear = el('button', 'fbm-clear', 'Clear');
         clear.type = 'button';
 
         foot.appendChild(play);
         foot.appendChild(tempoWrap);
         foot.appendChild(swingWrap);
+        foot.appendChild(lenWrap);
         foot.appendChild(clear);
 
         root.appendChild(head);
@@ -128,7 +142,35 @@
                 console.error('[beat-machine]', e.message);
             });
 
+        /**
+         * Change the loop length. Growing tiles the existing bar into the new
+         * space rather than padding with silence — going 16 -> 32 to add a
+         * variation shouldn't hand you an empty second half. Shrinking keeps
+         * the leading steps.
+         */
+        function setSteps(n) {
+            if (n === STEPS) return;
+            var old = STEPS;
+            STEPS = n;
+            tracks.forEach(function (t) {
+                var src = grid[t], next = new Array(n).fill(0);
+                for (var i = 0; i < n; i++) next[i] = src[i % old] || 0;
+                grid[t] = next;
+            });
+            ORDER.forEach(function (t) {
+                if (!grid[t] || grid[t].length !== n) grid[t] = new Array(n).fill(0);
+            });
+            step = 0;
+            lenWrap.querySelectorAll('.fbm-len-btn').forEach(function (b) {
+                var on = +b.textContent === n;
+                b.classList.toggle('is-on', on);
+                b.setAttribute('aria-pressed', String(on));
+            });
+            drawBoard();
+        }
+
         function drawBoard() {
+            root.style.setProperty('--steps', STEPS);
             board.innerHTML = '';
             cells = {};
 
@@ -357,9 +399,14 @@
                 Object.keys(p.tracks || {}).forEach(function (lane) {
                     var target = LANE_MAP[lane] || lane;
                     if (!grid[target]) return;
-                    p.tracks[lane].forEach(function (v, i) {
-                        if (v && i < STEPS) grid[target][i] = 1;
-                    });
+                    var row = p.tracks[lane];
+                    if (!row || !row.length) return;
+                    // Patterns are written as one bar. On a longer grid they
+                    // repeat to fill it rather than leaving the rest silent;
+                    // on a shorter one the leading steps win.
+                    for (var i = 0; i < STEPS; i++) {
+                        if (row[i % row.length]) grid[target][i] = 1;
+                    }
                 });
                 if (p.bpm) {
                     bpm = Math.max(60, Math.min(180, p.bpm));

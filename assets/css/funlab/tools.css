@@ -434,3 +434,117 @@
     .funlab-beat-machine .fbm-pick { width: 54px; max-width: 54px; font-size: 0.55rem; }
     .funlab-beat-machine .fbm-vol { width: 28px; }
 }
+
+/* ---- Beat Machine: selectable loop length (8 / 16 / 32) ------------------
+   Column count comes from --steps, which drawBoard() sets on the root. At 32
+   steps the grid is wider than most viewports, so the board scrolls sideways
+   inside its own box — the page itself must never scroll horizontally. */
+.funlab-beat-machine .fbm-board {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 2px;
+}
+
+.funlab-beat-machine .fbm-row,
+.funlab-beat-machine .fbm-ruler {
+    grid-template-columns:
+        74px 94px 46px
+        repeat(var(--steps, 16), minmax(19px, 1fr));
+    /* Below this the cells would be unusably thin, so let it scroll instead
+       of squeezing. 214px is the three control columns. */
+    min-width: calc(214px + var(--steps, 16) * 19px);
+}
+
+/* Every 4th step starts a bar — at 32 steps the eye needs the grouping. */
+.funlab-beat-machine .fbm-cell.is-downbeat,
+.funlab-beat-machine .fbm-beat.is-downbeat {
+    box-shadow: inset 2px 0 0 rgba(26, 54, 93, 0.30);
+}
+
+.funlab-beat-machine .fbm-len {
+    display: inline-flex;
+    border: 1px solid rgba(26, 54, 93, 0.25);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.funlab-beat-machine .fbm-len-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.34rem 0.6rem;
+    border: 0;
+    border-right: 1px solid rgba(26, 54, 93, 0.18);
+    background: transparent;
+    color: #1a365d;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.funlab-beat-machine .fbm-len-btn:last-child { border-right: 0; }
+.funlab-beat-machine .fbm-len-btn:hover { background: rgba(26, 54, 93, 0.08); }
+.funlab-beat-machine .fbm-len-btn.is-on { background: #1a365d; color: #fff; }
+.funlab-beat-machine .fbm-len-btn:focus-visible {
+    outline: 2px solid #f5b301;
+    outline-offset: -2px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .funlab-beat-machine .fbm-len-btn { color: #e8eef7; }
+    .funlab-beat-machine .fbm-len-btn.is-on { background: #e8eef7; color: #0d1a2e; }
+}
+
+@media (max-width: 720px) {
+    .funlab-beat-machine .fbm-row,
+    .funlab-beat-machine .fbm-ruler {
+        grid-template-columns:
+            54px 58px 30px
+            repeat(var(--steps, 16), minmax(17px, 1fr));
+        min-width: calc(142px + var(--steps, 16) * 17px);
+    }
+}
+
+/* ---- Cheat sheet: selectable view length (8 / 16 / 32) ------------------- */
+.funlab-drum-patterns .fdp-grid {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+.funlab-drum-patterns .fdp-row,
+.funlab-drum-patterns .fdp-ruler {
+    grid-template-columns: 84px repeat(var(--steps, 16), minmax(19px, 1fr));
+    min-width: calc(84px + var(--steps, 16) * 19px);
+}
+.funlab-drum-patterns .fdp-len {
+    display: inline-flex;
+    border: 1px solid rgba(26, 54, 93, 0.25);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.funlab-drum-patterns .fdp-len-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.34rem 0.6rem;
+    border: 0; border-right: 1px solid rgba(26, 54, 93, 0.18);
+    background: transparent; color: #1a365d; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.funlab-drum-patterns .fdp-len-btn:last-child { border-right: 0; }
+.funlab-drum-patterns .fdp-len-btn:hover { background: rgba(26, 54, 93, 0.08); }
+.funlab-drum-patterns .fdp-len-btn.is-on { background: #1a365d; color: #fff; }
+.funlab-drum-patterns .fdp-len-btn:focus-visible {
+    outline: 2px solid #f5b301; outline-offset: -2px;
+}
+@media (prefers-color-scheme: dark) {
+    .funlab-drum-patterns .fdp-len-btn { color: #e8eef7; }
+    .funlab-drum-patterns .fdp-len-btn.is-on { background: #e8eef7; color: #0d1a2e; }
+}
+@media (max-width: 720px) {
+    .funlab-drum-patterns .fdp-row,
+    .funlab-drum-patterns .fdp-ruler {
+        grid-template-columns: 62px repeat(var(--steps, 16), minmax(17px, 1fr));
+        min-width: calc(62px + var(--steps, 16) * 17px);
+    }
+}

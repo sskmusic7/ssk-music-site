@@ -193,7 +193,8 @@
 
     /** Position every slide relative to the active one (coverflow). */
     var NEAR = 3;     // how many slides stay on stage each side
-    var PRELOAD = 5;  // how far ahead to fetch artwork
+    var PRELOAD = 8;  // how far ahead to fetch artwork (was 5 — too late,
+                      // slides arrived mid-download and showed the frame)
 
     /** Attach the real src once a slide is close enough to be seen. */
     function preload(el) {
@@ -201,6 +202,21 @@
         if (!img || img.dataset.loaded) return;
         var source = el.querySelector('source');
         if (source && source.dataset.srcset) source.srcset = source.dataset.srcset;
+
+        // "Told to load" is not "loaded". The frame behind the slides is
+        // near-black, so between assigning src and the bytes decoding you
+        // just see a black panel — which reads as broken rather than busy.
+        // is-loaded is what clears the shimmer, so it has to wait for the
+        // real event. Errors clear it too: a shimmer that never stops is
+        // worse than a missing image.
+        function done() { el.classList.add('is-loaded'); }
+        if (img.complete && img.naturalWidth) {
+            done();
+        } else {
+            img.addEventListener('load', done, { once: true });
+            img.addEventListener('error', done, { once: true });
+        }
+
         img.src = img.dataset.src;
         img.dataset.loaded = '1';
     }
