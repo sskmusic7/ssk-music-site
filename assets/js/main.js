@@ -22,14 +22,29 @@
     document.addEventListener('DOMContentLoaded', function () {
         // A link pointing at the page you're already on can't navigate, which
         // reads as "broken". Mark it so it looks deliberate instead.
-        var here = location.pathname.replace(/\/$/, '').split('/').pop() || 'index';
+        //
+        // The fragment matters. "index.html#services" is a link to a section,
+        // not to a page — marking it aria-current="page" on the homepage (which
+        // an earlier version did, by stripping the "#" before comparing) tells
+        // a screen reader the wrong thing and lights up the wrong nav item. So:
+        // a bare fragment ("#hero") always means this page; a path plus a
+        // fragment never does.
+        var here = (location.pathname.replace(/\/$/, '').split('/').pop() || 'index')
+            .replace(/\.html$/, '');
+
         document.querySelectorAll('.sticky-nav-link').forEach(function (a) {
-            var href = (a.getAttribute('href') || '').split('#')[0];
+            var href = a.getAttribute('href') || '';
             if (!href) return;
-            var target = href.replace(/\.html$/, '').replace(/\/$/, '') || 'index';
-            if (target === here.replace(/\.html$/, '')) {
-                a.setAttribute('aria-current', 'page');
-            }
+
+            var hash = href.indexOf('#');
+            var path = (hash === -1 ? href : href.slice(0, hash))
+                .replace(/\.html$/, '').replace(/\/$/, '');
+
+            var isCurrent = path === ''
+                ? hash !== -1          // bare fragment: same page by definition
+                : hash === -1 && path === here;
+
+            if (isCurrent) a.setAttribute('aria-current', 'page');
         });
     });
 })();

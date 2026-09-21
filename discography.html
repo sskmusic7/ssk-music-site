@@ -14,9 +14,9 @@
     <link rel="icon" href="favicon.ico">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=b785e2c"/>
-    <link rel="stylesheet" href="assets/css/plugins.css?v=b785e2c"/>
-    <link rel="stylesheet" href="assets/css/main.css?v=b785e2c"/>
+    <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css?v=95eb50a"/>
+    <link rel="stylesheet" href="assets/css/plugins.css?v=95eb50a"/>
+    <link rel="stylesheet" href="assets/css/main.css?v=95eb50a"/>
 
     <!-- Premium Google Fonts - Syne for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,12 +24,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
     <!-- Font icons -->
-    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=b785e2c"/>
-    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=b785e2c"/>
+    <link rel="stylesheet" href="assets/icon-fonts/fontawesome/css/all.min.css?v=95eb50a"/>
+    <link rel="stylesheet" href="assets/icon-fonts/remixicon/remixicon.css?v=95eb50a"/>
 
     <!-- Discography specific styles -->
-    <link rel="stylesheet" href="assets/css/discography.css?v=b785e2c"/>
-    <link rel="stylesheet" href="assets/css/library.css?v=b785e2c"/>
+    <link rel="stylesheet" href="assets/css/discography.css?v=95eb50a"/>
+    <link rel="stylesheet" href="assets/css/library.css?v=95eb50a"/>
 
     <style>
         /* SSK Music Custom Styles */
@@ -144,7 +144,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('assets/images/pattern.jpg') repeat;
+            /* Was url(assets/images/pattern.jpg) — that file has never existed, so it
+               404'd on every load for a texture sitting at 5% opacity. Same effect,
+               no request. */
+            background: repeating-linear-gradient(45deg,
+                rgba(255, 255, 255, 0.6) 0 1px, transparent 1px 6px);
             opacity: 0.05;
             pointer-events: none;
         }
@@ -411,9 +415,9 @@
     </main>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.js?v=b785e2c"></script>
-    <script src="assets/js/main.js?v=b785e2c"></script>
-    <script src="assets/js/discography.js?v=b785e2c"></script>
+    <script src="assets/js/jquery.js?v=95eb50a"></script>
+    <script src="assets/js/main.js?v=95eb50a"></script>
+    <script src="assets/js/discography.js?v=95eb50a"></script>
 
     <!-- Live stats in the shared header, same endpoint as the homepage -->
     <script>
