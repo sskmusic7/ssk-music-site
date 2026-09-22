@@ -5,7 +5,7 @@
 
 .deck-section {
     background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
-    padding: 1.5rem 0 1.25rem;
+    padding: 1rem 0;
     position: relative;
     overflow: hidden;
 }
@@ -28,8 +28,8 @@
    standing "The Deck" title. */
 .deck-nowplaying {
     text-align: center;
-    margin: 0 auto 0.9rem;
-    min-height: 3.4rem;
+    margin: 0 auto 0.6rem;
+    min-height: 3rem;
 }
 
 .deck-now-kind {
@@ -62,7 +62,11 @@
 }
 
 .deck-shell {
-    max-width: 1100px;
+    /* Was 1100px -- the stage measured only 58% of viewport width / 65% of
+       viewport height at 1440x900, nowhere near "closer to full screen".
+       Widened so the active slide reads as the dominant thing on the
+       section rather than a card floating in a lot of navy. */
+    max-width: 1480px;
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -79,7 +83,11 @@
 .deck-stage {
     position: relative;
     aspect-ratio: var(--deck-aspect, 1.42);
-    max-height: calc(100vh - 312px);
+    /* Was 100vh - 312px. The 312px reserve covered the header, now-playing
+       title, and the controls/dots row below -- tightened those (see the
+       rules further down) to free real height rather than just shrinking
+       this number and risking the stage clipping under the header again. */
+    max-height: calc(100vh - 250px);
     width: auto;
     max-width: 100%;
     margin: 0 auto;
@@ -214,7 +222,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 0.9rem;
+    margin-top: 0.6rem;
     flex-wrap: wrap;
 }
 
@@ -324,6 +332,63 @@
 
 .deck-disk:hover,
 .deck-disk:focus-visible { transform: scale(1.08); }
+
+/* Idle "click me" aurora.
+   Nothing on the disk said it was interactive until you hovered it, and by
+   then you'd already found it by accident. A soft pulsing ring behind the
+   disk invites the first click; it hands off to the existing .is-playing
+   glow once there's actually something to signal, so the two states never
+   compete. Sits behind the disk's own children (z-index: -1 inside the
+   disk's own stacking context, which .deck-disk establishes via
+   position: absolute), so it can't intercept clicks meant for the disk. */
+.deck-disk::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 50%;
+    /* box-shadow rather than a background gradient: a gradient's own alpha
+       falloff got lost against a real photo behind it -- confirmed by
+       swapping in a solid debug colour, which rendered perfectly, proving
+       the stacking was fine and the effect was just too subtle to read.
+       box-shadow paints its blur outside the circle regardless of what's
+       underneath, which is far more reliable across 21 different slide
+       photos than a translucent gradient competing with image detail. */
+    box-shadow:
+        0 0 30px 8px rgba(140, 205, 255, 0.85),
+        0 0 55px 18px rgba(150, 190, 255, 0.6),
+        0 0 90px 32px rgba(180, 140, 255, 0.35);
+    opacity: 0;
+    animation: deck-disk-aurora 2.6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Pausing an animation freezes it wherever it was mid-cycle rather than
+   hiding it — the ring was showing up to 85% opacity on hover, whatever
+   point the pulse happened to be at. animation: none removes the keyframe's
+   hold on the property entirely, so the plain opacity: 0 below it actually
+   applies. */
+.deck-disk.is-playing::before,
+.deck-disk:hover::before,
+.deck-disk:focus-visible::before {
+    animation: none;
+    opacity: 0;
+}
+
+@keyframes deck-disk-aurora {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Still an invitation to click, just not a moving one. */
+    .deck-disk::before {
+        animation: none;
+        opacity: 0.4;
+        transform: scale(1.05);
+    }
+    .deck-disk.is-playing::before { opacity: 0; }
+}
 
 .deck-disk-face {
     position: absolute;
