@@ -240,9 +240,12 @@ h1, h2, h3, h4 {
    The article title block is also a <header> — correct HTML for it — so it
    inherited position:fixed, pinned itself to the viewport at full width, and
    overlapped the crumb, standfirst, tags and first paragraph. Keeping the
-   semantic element and resetting the layout, rather than swapping in a div. */
+   semantic element and resetting the layout, rather than swapping in a div.
+   Applies to the listing head as well — same element, same inheritance, and
+   missing it there left the blog index overlapping its own first card. */
 .blog-post .blog-post-head,
-.blog-post .blog-post-foot {
+.blog-post .blog-post-foot,
+.blog-index .blog-index-head {
     position: static !important;
     top: auto !important;
     left: auto !important;

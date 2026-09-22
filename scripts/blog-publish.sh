@@ -39,6 +39,18 @@ log "slugs: ${SLUGS[*]}"
 # --- rebuild ----------------------------------------------------------------
 git pull --ff-only origin main >/dev/null 2>&1 || log "WARN pull skipped"
 
+# Voice lint is a hard gate, not a warning. BigHeadz's equivalent step calls
+# a script (scripts/audit-blog-copy.ts) that was never committed to that
+# repo, so it has failed and been waved through on every run since the
+# pipeline was written. This one exists, runs, and blocks the push on a
+# FAIL — that's the whole point of building it.
+for slug in "${SLUGS[@]}"; do
+  if ! node scripts/blog-voice-lint.mjs "$slug"; then
+    log "BLOCKED — $slug failed the voice lint. Fix the post and re-run."
+    exit 1
+  fi
+done
+
 node scripts/build-blog.mjs
 node scripts/stamp-assets.mjs >/dev/null 2>&1 || true
 
