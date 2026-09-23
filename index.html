@@ -1584,10 +1584,25 @@
             e.preventDefault();
             var email = e.target.email.value.trim();
             if (!email) return;
+
+            // This used to be entirely fake: console.log(email) and a "Thanks"
+            // message with nothing behind it. Anyone who signed up through the
+            // scroll popup was never added to the sheet and never got the
+            // warming email -- it just looked like it worked. Same endpoint and
+            // no-cors pattern as the homepage form below; duplicated here rather
+            // than sharing the constant across script blocks, since this handler
+            // is defined before that block runs and the two forms are otherwise
+            // independent.
+            fetch('https://script.google.com/macros/s/AKfycbwUkrwN7XoEDxp99czeb2JMekYfkET0GcTgLv_fcAIFzC6_NJSXm-9Zj64KW5tHsvfK3A/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, name: '', source: 'website-popup' })
+            }).catch(function (err) { console.error('[capture] signup failed:', err); });
+
             pop.innerHTML = '<p class="capture-pop-done">Thanks — check your inbox.</p>';
             try { localStorage.setItem(KEY, '1'); } catch (err) {}
             setTimeout(dismiss, 2600);
-            console.log('[capture] signup:', email);
         });
     })();
     </script>
@@ -1714,17 +1729,15 @@
                     })
                 });
 
-                // Google Apps Script with no-cors returns opaque response
-                // Assume success if no network error
+                // no-cors makes the response opaque -- its body can't be read at
+                // all, by design. This used to also check `data.success` below,
+                // but `data` was never assigned anywhere in this function, so
+                // that line threw a ReferenceError on every single submission,
+                // landing in the catch block and showing "Network error" right
+                // after the success alert had already fired. The form was
+                // telling everyone it failed even when the signup went through.
                 alert('Success! Check your email for confirmation.');
                 this.reset();
-
-                if (data.success) {
-                    alert('Success! Check your email for confirmation.');
-                    this.reset();
-                } else {
-                    alert(data.error || 'Something went wrong. Please try again.');
-                }
             } catch (error) {
                 console.error('Error:', error);
                 alert('Network error. Please check your connection and try again.');
