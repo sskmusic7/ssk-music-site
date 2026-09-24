@@ -60,6 +60,14 @@ h1, h2, h3, h4 {
     text-decoration: none;
     color: inherit;
 }
+.blog-card-image {
+    display: block;
+    width: calc(100% + 3rem);
+    margin: -1.6rem -1.5rem 1.1rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
 .blog-card h2 { font-size: 1.22rem; line-height: 1.3; margin: 0 0 0.6rem; }
 .blog-card-excerpt { margin: 0 0 0.9rem; color: #4a5560; font-size: 0.97rem; }
 .blog-card-more {
@@ -186,6 +194,7 @@ h1, h2, h3, h4 {
 @media (max-width: 600px) {
     .blog-index-head { padding: 2.5rem 0 1.5rem; }
     .blog-card-link { padding: 1.3rem 1.15rem; }
+    .blog-card-image { width: calc(100% + 2.3rem); margin: -1.3rem -1.15rem 1rem; }
     .blog-body { font-size: 1.02rem; }
 }
 

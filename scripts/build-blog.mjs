@@ -27,6 +27,36 @@ const POSTS_DIR = join(ROOT, 'data', 'blog', 'posts');
 const OUT_DIR = join(ROOT, 'blog');
 const SITE = 'https://sskmusic.com';
 
+/* ---------------- .env (PEXELS_API_KEY) ---------------- */
+// No npm dependencies in this script by design -- a few lines beats adding dotenv.
+const ENV_PATH = join(ROOT, '.env');
+if (existsSync(ENV_PATH) && !process.env.PEXELS_API_KEY) {
+  for (const line of readFileSync(ENV_PATH, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
+    if (m) process.env[m[1]] = m[2];
+  }
+}
+
+/* ---------------- Pexels ---------------- */
+// Best-effort: a missing key, network failure, or empty result must never
+// break the build -- it just leaves that post without a stock image.
+async function fetchPexelsImage(query) {
+  const key = process.env.PEXELS_API_KEY;
+  if (!key || !query) return null;
+  try {
+    const res = await fetch(
+      'https://api.pexels.com/v1/search?per_page=1&orientation=landscape&query=' + encodeURIComponent(query),
+      { headers: { Authorization: key } }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.photos && data.photos[0] ? data.photos[0].src.landscape : null;
+  } catch (e) {
+    console.warn('  Pexels fetch failed for "' + query + '":', e.message);
+    return null;
+  }
+}
+
 /* ---------------- markdown ---------------- */
 
 const esc = (s) =>
@@ -181,6 +211,24 @@ const posts = readdirSync(POSTS_DIR)
   .filter((p) => p.published !== false)
   .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
 
+/* Fetch a stock image for any post that doesn't already have one, once, and
+   cache it into the post's own source file -- never re-fetched, never
+   overwrites an image someone set by hand. */
+for (const p of posts) {
+  if (p.image) continue;
+  const query = [...(p.tags || []).slice(0, 2), 'music studio'].join(' ');
+  const image = await fetchPexelsImage(query);
+  if (image) {
+    p.image = image;
+    const postFile = join(POSTS_DIR, `${p.slug}.json`);
+    if (existsSync(postFile)) {
+      const raw = JSON.parse(readFileSync(postFile, 'utf8'));
+      raw.image = image;
+      writeFileSync(postFile, JSON.stringify(raw, null, 2) + '\n');
+    }
+  }
+}
+
 for (const p of posts) {
   const canonical = `${SITE}/blog/${p.slug}`;
   const desc = p.excerpt || String(p.content || '').slice(0, 155);
@@ -263,6 +311,7 @@ const cards = index.length
   ? index.map((p) => `
                 <article class="blog-card">
                     <a class="blog-card-link" href="${p.url}">
+                        ${p.image ? `<img class="blog-card-image" src="${esc(p.image)}" alt="" loading="lazy">` : ''}
                         <p class="blog-meta">
                             <time datetime="${esc(p.date)}">${esc(fmtDate(p.date))}</time>
                             <span aria-hidden="true">·</span> ${p.readingMinutes} min read
