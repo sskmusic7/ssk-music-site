@@ -1,6 +1,20 @@
 {
-  "count": 1,
+  "count": 2,
   "posts": [
+    {
+      "slug": "sample-clearance",
+      "title": "Two copyrights, one sample: what clears and what it costs when you get it wrong",
+      "excerpt": "Every sample sits behind two doors: the master and the publishing. What clearing both actually involves, and what an uncleared chop costs once Content ID finds it.",
+      "date": "2026-09-23",
+      "tags": [
+        "Sampling",
+        "Licensing",
+        "Business"
+      ],
+      "image": "https://images.pexels.com/photos/27141308/pexels-photo-27141308.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/sample-clearance.html"
+    },
     {
       "slug": "afroswing-snare-on-the-third",
       "title": "The One Drum Hit That Defines Afroswing",

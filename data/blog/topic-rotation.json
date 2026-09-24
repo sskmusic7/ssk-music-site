@@ -1,4 +1,6 @@
 {
-  "usedTopicIds": [],
-  "lastCategory": null
+  "usedTopicIds": [
+    "sample-clearance"
+  ],
+  "lastCategory": "business"
 }
