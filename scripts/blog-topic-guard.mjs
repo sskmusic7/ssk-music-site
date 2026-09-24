@@ -28,6 +28,53 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const POSTS = join(ROOT, 'data', 'blog', 'posts');
 const ROTATION = join(ROOT, 'data', 'blog', 'topic-rotation.json');
 
+/* ---------------- .env (CONTENT_IDEAS_SECRET) ---------------- */
+const ENV_PATH = join(ROOT, '.env');
+if (existsSync(ENV_PATH) && !process.env.CONTENT_IDEAS_SECRET) {
+  for (const line of readFileSync(ENV_PATH, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
+    if (m) process.env[m[1]] = m[2];
+  }
+}
+
+/* ---------------- manually-submitted content ideas ---------------- */
+// The ?page=ideas form on the Apps Script side (SSK Email List Lead hook)
+// writes into a "Content Ideas" sheet tab. Checked first, oldest first --
+// a human dropping in a specific topic should always win over the seeded
+// rotation below. Best-effort: any failure here (no secret configured, the
+// endpoint being unreachable) just falls through to the seeded list rather
+// than blocking the whole pipeline.
+const IDEAS_URL = 'https://script.google.com/macros/s/AKfycbwUkrwN7XoEDxp99czeb2JMekYfkET0GcTgLv_fcAIFzC6_NJSXm-9Zj64KW5tHsvfK3A/exec';
+
+async function fetchPendingIdea() {
+  const secret = process.env.CONTENT_IDEAS_SECRET;
+  if (!secret) return null;
+  try {
+    const res = await fetch(`${IDEAS_URL}?action=contentIdeas&secret=${encodeURIComponent(secret)}`);
+    if (!res.ok) return null;
+    const ideas = await res.json();
+    if (!Array.isArray(ideas) || !ideas.length) return null;
+    return ideas.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))[0];
+  } catch (e) {
+    console.warn('  Content-ideas fetch failed:', e.message);
+    return null;
+  }
+}
+
+async function markIdeaUsed(row) {
+  const secret = process.env.CONTENT_IDEAS_SECRET;
+  if (!secret) return;
+  try {
+    await fetch(IDEAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'markIdeaUsed', row, secret }),
+    });
+  } catch (e) {
+    console.warn('  Failed to mark idea used:', e.message);
+  }
+}
+
 const TOPICS = [
   // --- catalogue & history: things only SSK can write ---
   { id: 'been-wavey-anatomy', cat: 'catalogue', t: 'Anatomy of "Been Wavey": what the arrangement does in the first 30 seconds and why it broke' },
@@ -110,7 +157,13 @@ function pick() {
 const arg = process.argv[2];
 
 if (arg === '--pick') {
-  console.log(pick().t);
+  const idea = await fetchPendingIdea();
+  if (idea) {
+    await markIdeaUsed(idea.row);
+    console.log(idea.idea);
+  } else {
+    console.log(pick().t);
+  }
 } else if (arg === '--forbidden') {
   const covered = CLUSTERS.filter((c) => titles.some((t) => c.re.test(t)));
   console.log(JSON.stringify({
