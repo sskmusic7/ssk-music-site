@@ -18,10 +18,24 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SITE="https://sskmusic.com"
+IDEAS_URL="https://script.google.com/macros/s/AKfycbwUkrwN7XoEDxp99czeb2JMekYfkET0GcTgLv_fcAIFzC6_NJSXm-9Zj64KW5tHsvfK3A/exec"
 DEPLOY_TIMEOUT="${DEPLOY_TIMEOUT:-300}"   # seconds to wait for Pages
 cd "$REPO"
 
+[[ -f .env ]] && { set -a; source .env; set +a; }
+
 log() { echo "[blog-publish] $(date -Is) $*"; }
+
+# Best-effort activity-log entry (same shared secret as the ideas endpoints).
+# Never fails the script -- a log write failing is not a publish failing.
+activity_log() {
+  local status="$1" message="$2"
+  [[ -n "${CONTENT_IDEAS_SECRET:-}" ]] || return 0
+  curl -s -m 15 -X POST "$IDEAS_URL" \
+    -H 'Content-Type: application/json' \
+    -d "$(node -e "console.log(JSON.stringify({type:'activity',activityType:'blog',status:process.argv[1],message:process.argv[2],secret:process.argv[3]}))" "$status" "$message" "$CONTENT_IDEAS_SECRET")" \
+    >/dev/null 2>&1 || true
+}
 
 # --- work out what we're publishing -----------------------------------------
 SLUGS=("$@")
@@ -47,6 +61,7 @@ git pull --ff-only origin main >/dev/null 2>&1 || log "WARN pull skipped"
 for slug in "${SLUGS[@]}"; do
   if ! node scripts/blog-voice-lint.mjs "$slug"; then
     log "BLOCKED — $slug failed the voice lint. Fix the post and re-run."
+    activity_log "error" "Voice lint blocked: $slug"
     exit 1
   fi
 done
@@ -95,6 +110,8 @@ log "listing /blog -> $listing"
 
 if [[ ${#FAILED[@]} -gt 0 ]]; then
   log "PUBLISH INCOMPLETE: ${FAILED[*]}"
+  activity_log "error" "Publish incomplete, never went live: ${FAILED[*]}"
   exit 1
 fi
 log "done — ${#SLUGS[@]} post(s) live"
+activity_log "ok" "Published: ${SLUGS[*]} (${#SLUGS[@]} post(s) live)"
