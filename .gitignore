@@ -1,2 +1,4 @@
 .env
 .DS_Store
+# Ad-hoc research tooling (droplet-only, not part of the site build/publish pipeline)
+scripts/research/
