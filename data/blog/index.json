@@ -1,6 +1,21 @@
 {
-  "count": 2,
+  "count": 3,
   "posts": [
+    {
+      "slug": "what-makes-a-beat-read-as-its-genre",
+      "title": "Log drums, pushed kicks and one swing setting: what makes a beat read as its genre",
+      "excerpt": "A type beat's tag is a promise the first bar has to keep. The exact moves that make a beat read as amapiano, dancehall or UK garage, and which of them survive being played badly.",
+      "date": "2026-09-25",
+      "tags": [
+        "Amapiano",
+        "Dancehall",
+        "UK Garage",
+        "Production"
+      ],
+      "image": "https://images.pexels.com/photos/31343727/pexels-photo-31343727.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/what-makes-a-beat-read-as-its-genre.html"
+    },
     {
       "slug": "sample-clearance",
       "title": "Two copyrights, one sample: what clears and what it costs when you get it wrong",
