@@ -1,6 +1,20 @@
 {
-  "count": 3,
+  "count": 4,
   "posts": [
+    {
+      "slug": "loud-isnt-big-density-vs-size",
+      "title": "Loud isn't big: density vs size in a mix",
+      "excerpt": "Two records can tie on the meter and still differ in size. Perceived loudness gets bought with contrast and density, size gets bought with space, and the order you buy them in decides what survives the master.",
+      "date": "2026-09-28",
+      "tags": [
+        "Mixing",
+        "Arrangement",
+        "Loudness"
+      ],
+      "image": "https://images.pexels.com/photos/35307143/pexels-photo-35307143.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/loud-isnt-big-density-vs-size.html"
+    },
     {
       "slug": "what-makes-a-beat-read-as-its-genre",
       "title": "Log drums, pushed kicks and one swing setting: what makes a beat read as its genre",
