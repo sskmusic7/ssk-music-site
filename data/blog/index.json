@@ -1,6 +1,20 @@
 {
-  "count": 4,
+  "count": 5,
   "posts": [
+    {
+      "slug": "the-pocket-doesnt-fit-in-a-prompt",
+      "title": "The pocket doesn't fit in a prompt: what an AI beat generator can't hold",
+      "excerpt": "A prompt is a description; a beat is a set of decisions at resolutions a description can't reach. What breaks first: step-level timing, a vocalist who hasn't turned up, and a sound with a name instead of a category.",
+      "date": "2026-09-30",
+      "tags": [
+        "Production",
+        "AI",
+        "Craft"
+      ],
+      "image": "https://images.pexels.com/photos/2876659/pexels-photo-2876659.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/the-pocket-doesnt-fit-in-a-prompt.html"
+    },
     {
       "slug": "loud-isnt-big-density-vs-size",
       "title": "Loud isn't big: density vs size in a mix",
