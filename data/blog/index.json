@@ -1,6 +1,20 @@
 {
-  "count": 5,
+  "count": 6,
   "posts": [
+    {
+      "slug": "paid-two-periods-in-arrears",
+      "title": "Paid two periods in arrears: how a producer actually gets paid off a placement",
+      "excerpt": "The streams start on release weekend. The money starts on the label's accounting calendar, which runs months behind by design.",
+      "date": "2026-10-02",
+      "tags": [
+        "Royalties",
+        "Contracts",
+        "Music Business"
+      ],
+      "image": "https://images.pexels.com/photos/7876001/pexels-photo-7876001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/paid-two-periods-in-arrears.html"
+    },
     {
       "slug": "the-pocket-doesnt-fit-in-a-prompt",
       "title": "The pocket doesn't fit in a prompt: what an AI beat generator can't hold",
