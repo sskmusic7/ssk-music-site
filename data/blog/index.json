@@ -1,6 +1,20 @@
 {
-  "count": 6,
+  "count": 7,
   "posts": [
+    {
+      "slug": "cross-collateralisation-record-one-clause",
+      "title": "Cross-collateralisation and the missing Record One clause",
+      "excerpt": "The streams did the numbers and the royalty ledger still reads zero, because the producer points wait behind every cost the deal can reach. One clause decides which paper you signed.",
+      "date": "2026-10-07",
+      "tags": [
+        "Contracts",
+        "Royalties",
+        "Music Business"
+      ],
+      "image": "https://images.pexels.com/photos/7841818/pexels-photo-7841818.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 4,
+      "url": "blog/cross-collateralisation-record-one-clause.html"
+    },
     {
       "slug": "paid-two-periods-in-arrears",
       "title": "Paid two periods in arrears: how a producer actually gets paid off a placement",

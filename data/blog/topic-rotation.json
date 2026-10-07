@@ -1,6 +1,7 @@
 {
   "usedTopicIds": [
-    "sample-clearance"
+    "sample-clearance",
+    "hooks-in-beats"
   ],
-  "lastCategory": "business"
+  "lastCategory": "technique"
 }
