@@ -21,6 +21,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pickPostImage, photoId } from './blog-image.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const POSTS_DIR = join(ROOT, 'data', 'blog', 'posts');
@@ -34,26 +35,6 @@ if (existsSync(ENV_PATH) && !process.env.PEXELS_API_KEY) {
   for (const line of readFileSync(ENV_PATH, 'utf8').split(/\r?\n/)) {
     const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
     if (m) process.env[m[1]] = m[2];
-  }
-}
-
-/* ---------------- Pexels ---------------- */
-// Best-effort: a missing key, network failure, or empty result must never
-// break the build -- it just leaves that post without a stock image.
-async function fetchPexelsImage(query) {
-  const key = process.env.PEXELS_API_KEY;
-  if (!key || !query) return null;
-  try {
-    const res = await fetch(
-      'https://api.pexels.com/v1/search?per_page=1&orientation=landscape&query=' + encodeURIComponent(query),
-      { headers: { Authorization: key } }
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.photos && data.photos[0] ? data.photos[0].src.landscape : null;
-  } catch (e) {
-    console.warn('  Pexels fetch failed for "' + query + '":', e.message);
-    return null;
   }
 }
 
@@ -214,11 +195,14 @@ const posts = readdirSync(POSTS_DIR)
 /* Fetch a stock image for any post that doesn't already have one, once, and
    cache it into the post's own source file -- never re-fetched, never
    overwrites an image someone set by hand. */
-for (const p of posts) {
+const usedPhotoIds = new Set(posts.map((p) => photoId(p.image)).filter(Boolean));
+for (const p of [...posts].reverse()) { // oldest first, so new posts avoid older posts' photos
   if (p.image) continue;
-  const query = [...(p.tags || []).slice(0, 2), 'music studio'].join(' ');
-  const image = await fetchPexelsImage(query);
-  if (image) {
+  const picked = await pickPostImage(p, usedPhotoIds);
+  if (picked) {
+    const image = picked.url;
+    usedPhotoIds.add(picked.id);
+    console.log(`  image for ${p.slug}: "${picked.alt}"`);
     p.image = image;
     const postFile = join(POSTS_DIR, `${p.slug}.json`);
     if (existsSync(postFile)) {
