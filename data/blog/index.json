@@ -1,6 +1,20 @@
 {
-  "count": 8,
+  "count": 9,
   "posts": [
+    {
+      "slug": "one-page-beats-nine-epk",
+      "title": "One page beats nine: what an EPK is actually for",
+      "excerpt": "An A&R gives the email forty seconds on a phone between sessions. One page with three links survives that; a nine-page PDF does not, and the same rule sells a beat pack.",
+      "date": "2026-10-12",
+      "tags": [
+        "Music Business",
+        "Sync",
+        "Producers"
+      ],
+      "image": "https://images.pexels.com/photos/16600269/pexels-photo-16600269.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/one-page-beats-nine-epk.html"
+    },
     {
       "slug": "ear-range-timing-curation-career-asset",
       "title": "Ear, range and timing: curation as a producer's real career asset",
