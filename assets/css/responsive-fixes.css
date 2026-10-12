@@ -191,3 +191,38 @@
         white-space: nowrap;
     }
 }
+
+/* The nav fix above stopped working once a sixth link (Blog) was added:
+   index.html has a second <style> block INSIDE <body>, after the header,
+   setting .sticky-cta { gap: 1rem !important }. Same specificity, later in
+   the document, so it beat the 0.1rem here and pushed Contact to 432px on a
+   390px screen. The extra .sticky-header qualifier wins on specificity
+   instead of relying on source order. */
+@media (max-width: 768px) {
+    .sticky-header .sticky-cta {
+        gap: 0.1rem !important;
+    }
+}
+
+/* index.html sets `* { max-width: 100% }` as an overflow guard. Bootstrap
+   rows are deliberately a gutter wider than their container (negative side
+   margins), so the cap cut 27px off the right of every row and shifted each
+   section's content ~13px left of centre. Rows can't overflow: Bootstrap's
+   container padding always covers the half-gutter. */
+.row {
+    max-width: none;
+}
+
+/* About stats: "MAJOR" and "GLOBAL" at 2.5rem (45px) need ~200px each but
+   get a third of a phone screen, so the words ran into each other. Sized to
+   the viewport so the widest word fits down to 320px, with the column padding
+   trimmed to give the words the room. */
+@media (max-width: 480px) {
+    #about .col-4 {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    #about .col-4 h3 {
+        font-size: min(6vw, 2.5rem) !important;
+    }
+}
