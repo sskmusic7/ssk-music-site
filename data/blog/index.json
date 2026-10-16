@@ -1,6 +1,20 @@
 {
-  "count": 9,
+  "count": 10,
   "posts": [
+    {
+      "slug": "repetition-makes-the-tag-yours",
+      "title": "From Been Wavey to Erdz Boy: repetition makes the tag yours",
+      "excerpt": "A beat signature earns \"your sound\" by surviving vocalists, years and tempos across the catalogue, until a listener can find you in two bars with the tag stripped out.",
+      "date": "2026-10-16",
+      "tags": [
+        "Production",
+        "Branding",
+        "Catalogue"
+      ],
+      "image": "https://images.pexels.com/photos/7173393/pexels-photo-7173393.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 4,
+      "url": "blog/repetition-makes-the-tag-yours.html"
+    },
     {
       "slug": "one-page-beats-nine-epk",
       "title": "One page beats nine: what an EPK is actually for",
