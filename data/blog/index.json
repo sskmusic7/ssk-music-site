@@ -1,6 +1,20 @@
 {
-  "count": 10,
+  "count": 11,
   "posts": [
+    {
+      "slug": "seven-to-ten-exposures",
+      "title": "The 7-10 exposure rule: what ten thousand views actually buys",
+      "excerpt": "Seven to ten exposures before a listener acts: the attrition arithmetic run against a 10,000-view post, priced against a 360-release catalogue with a median of 2,700 views.",
+      "date": "2026-10-19",
+      "tags": [
+        "Marketing",
+        "Catalogue",
+        "Audience"
+      ],
+      "image": "https://images.pexels.com/photos/15635393/pexels-photo-15635393.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/seven-to-ten-exposures.html"
+    },
     {
       "slug": "repetition-makes-the-tag-yours",
       "title": "From Been Wavey to Erdz Boy: repetition makes the tag yours",
