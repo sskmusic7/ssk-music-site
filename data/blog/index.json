@@ -1,6 +1,20 @@
 {
-  "count": 11,
+  "count": 12,
   "posts": [
+    {
+      "slug": "first-thousand-plays-channel-audit",
+      "title": "Find the one channel that carried your first 1,000 plays, then stop guessing",
+      "excerpt": "Pull traffic sources on the three fastest movers, count the answers, and the channel that carries your traction names itself. A twenty-minute audit, run against 360 releases of catalogue.",
+      "date": "2026-10-21",
+      "tags": [
+        "Marketing",
+        "Catalogue",
+        "Analytics"
+      ],
+      "image": "https://images.pexels.com/photos/5749192/pexels-photo-5749192.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/first-thousand-plays-channel-audit.html"
+    },
     {
       "slug": "seven-to-ten-exposures",
       "title": "The 7-10 exposure rule: what ten thousand views actually buys",
