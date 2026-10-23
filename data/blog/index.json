@@ -1,6 +1,20 @@
 {
-  "count": 12,
+  "count": 13,
   "posts": [
+    {
+      "slug": "track-one-sets-the-terms",
+      "title": "Track one sets the terms: what makes a project read as an album",
+      "excerpt": "An album is an order, and orders break under shuffle. Cohesion built from decisions you can point at: key adjacency, tempo ladders, one shared palette, and a contract set at track one.",
+      "date": "2026-10-23",
+      "tags": [
+        "Sequencing",
+        "Arrangement",
+        "Projects"
+      ],
+      "image": "https://images.pexels.com/photos/3796788/pexels-photo-3796788.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/track-one-sets-the-terms.html"
+    },
     {
       "slug": "first-thousand-plays-channel-audit",
       "title": "Find the one channel that carried your first 1,000 plays, then stop guessing",
