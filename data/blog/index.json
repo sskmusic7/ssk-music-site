@@ -1,6 +1,20 @@
 {
-  "count": 13,
+  "count": 14,
   "posts": [
+    {
+      "slug": "the-bar-before-the-hook-transition-craft",
+      "title": "The bar before the hook: transition craft on SwingYano and Face to Face",
+      "excerpt": "The handoff into the hook is its own craft, separate from writing the hook. The last two bars of a verse decide how big the hook can feel.",
+      "date": "2026-10-28",
+      "tags": [
+        "Arrangement",
+        "Transitions",
+        "Afroswing"
+      ],
+      "image": "https://images.pexels.com/photos/6173811/pexels-photo-6173811.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 5,
+      "url": "blog/the-bar-before-the-hook-transition-craft.html"
+    },
     {
       "slug": "track-one-sets-the-terms",
       "title": "Track one sets the terms: what makes a project read as an album",
