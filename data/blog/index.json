@@ -1,6 +1,20 @@
 {
-  "count": 14,
+  "count": 15,
   "posts": [
+    {
+      "slug": "stuck-is-a-technique-problem-constraint-exercises",
+      "title": "Stuck is a technique problem: constraint exercises that start the session",
+      "excerpt": "Stuck has technical causes: a blank page, a dead loop, an idea you don't believe. Each one has a constraint that gets the session moving again.",
+      "date": "2026-10-30",
+      "tags": [
+        "Craft",
+        "Session workflow",
+        "Constraints"
+      ],
+      "image": "https://images.pexels.com/photos/8133326/pexels-photo-8133326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+      "readingMinutes": 4,
+      "url": "blog/stuck-is-a-technique-problem-constraint-exercises.html"
+    },
     {
       "slug": "the-bar-before-the-hook-transition-craft",
       "title": "The bar before the hook: transition craft on SwingYano and Face to Face",
